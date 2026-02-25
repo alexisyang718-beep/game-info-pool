@@ -3,30 +3,31 @@
 """
 
 import os
-import json
 import smtplib
 import requests
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from datetime import datetime
 
 WECOM_WEBHOOK_URL = os.environ.get("WECOM_WEBHOOK_URL", "")
+GITHUB_PAGES_URL  = os.environ.get("GITHUB_PAGES_URL", "")   # 仪表盘链接，在 Secrets 配置
 EMAIL_SMTP_HOST = os.environ.get("EMAIL_SMTP_HOST", "smtp.gmail.com")
 EMAIL_SMTP_PORT = int(os.environ.get("EMAIL_SMTP_PORT", "587"))
 EMAIL_USER = os.environ.get("EMAIL_USER", "")
 EMAIL_PASS = os.environ.get("EMAIL_PASS", "")
-EMAIL_TO = os.environ.get("EMAIL_TO", "")
+EMAIL_TO   = os.environ.get("EMAIL_TO", "")
 
 
-# ─── 企业微信推送 ────────────────────────────────────────────
+# ─── 企业微信核心发送 ──────────────────────────────────────
 
-def send_wecom_text(text: str):
-    """发送纯文本消息到企业微信群"""
+def _send_markdown(markdown: str):
+    """发送 Markdown 到企业微信（内部函数）"""
     if not WECOM_WEBHOOK_URL:
         print("[WeCom] 未配置 Webhook URL，跳过推送")
         return
-
-    payload = {"msgtype": "text", "text": {"content": text}}
+    # 企业微信单条 Markdown 上限 4096 字符
+    if len(markdown) > 4000:
+        markdown = markdown[:3980] + "\n\n...（内容已截断）"
+    payload = {"msgtype": "markdown", "markdown": {"content": markdown}}
     try:
         resp = requests.post(WECOM_WEBHOOK_URL, json=payload, timeout=10)
         result = resp.json()
@@ -39,134 +40,161 @@ def send_wecom_text(text: str):
 
 
 def send_wecom_markdown(markdown: str):
-    """发送 Markdown 消息到企业微信群（最多4096字符）"""
+    """对外接口：发送 Markdown"""
+    _send_markdown(markdown)
+
+
+def send_wecom_text(text: str):
+    payload = {"msgtype": "text", "text": {"content": text}}
     if not WECOM_WEBHOOK_URL:
-        print("[WeCom] 未配置 Webhook URL，跳过推送")
         return
-
-    # 企业微信 Markdown 限制 4096 字符，超出则截断
-    if len(markdown) > 4000:
-        markdown = markdown[:4000] + "\n\n...（内容已截断，请查看 Google Sheets 完整报告）"
-
-    payload = {"msgtype": "markdown", "markdown": {"content": markdown}}
     try:
-        resp = requests.post(WECOM_WEBHOOK_URL, json=payload, timeout=10)
-        result = resp.json()
-        if result.get("errcode") == 0:
-            print("[WeCom] Markdown 推送成功")
-        else:
-            print(f"[WeCom] Markdown 推送失败: {result}")
+        requests.post(WECOM_WEBHOOK_URL, json=payload, timeout=10)
     except Exception as e:
         print(f"[WeCom] 推送异常: {e}")
 
 
-def build_daily_wecom_message(changes: list[dict], ai_analysis: str, date_str: str) -> str:
-    """构建每日推送的企业微信消息"""
-    # 取前10个重要异动
-    top_changes = changes[:10]
+# ─── 每日推送：两条消息 ────────────────────────────────────
 
+def send_daily_wecom(
+    chart_data: list[dict],
+    changes: list[dict],
+    chart_summary: str,
+    ai_analysis: str,
+    date_str: str,
+):
+    """
+    每日推送分两条发送：
+    第一条：榜单概要（各渠道 Top5 表格）
+    第二条：异动解读 + 仪表盘链接
+    """
+    dashboard_link = GITHUB_PAGES_URL or ""
+    link_line = f"\n\n[📊 查看完整仪表盘]({dashboard_link})" if dashboard_link else ""
+
+    # ── 第一条：榜单概要 ──────────────────────────────────
+    # 从 chart_summary 提取精简版（企业微信 Markdown 不支持复杂表格，用列表代替）
+    from collections import defaultdict
+    store_order  = {"appstore": 0, "google_play": 1}
+    chart_order  = {"免费游戏榜": 0, "付费游戏榜": 1, "畅销榜": 2}
+
+    groups = defaultdict(list)
+    for app in chart_data:
+        key = (app.get("store", ""), app.get("chart_name", ""), app.get("region_name", ""))
+        groups[key].append(app)
+
+    sorted_keys = sorted(
+        groups.keys(),
+        key=lambda k: (store_order.get(k[0], 9), chart_order.get(k[1], 9), k[2])
+    )
+
+    section_lines = []
+    current_section = ""
+    for store, chart_name, region in sorted_keys:
+        store_label = "App Store" if store == "appstore" else "Google Play"
+        section = f"{store_label} · {chart_name}"
+        if section != current_section:
+            section_lines.append(f"\n**{section}**")
+            current_section = section
+        apps = sorted(groups[(store, chart_name, region)], key=lambda x: x.get("rank", 999))[:5]
+        top5 = " / ".join([f"#{a['rank']}{a['name']}" for a in apps])
+        section_lines.append(f"> `{region}` {top5}")
+
+    total = len(chart_data)
+    regions_count = len(set(a.get("region_name") for a in chart_data))
+
+    msg1 = f"""## 🎮 手游榜单日报 · {date_str}（一）榜单概要
+
+**数据概览**：{total} 条记录 · {regions_count} 个地区 · App Store + Google Play
+{"".join(section_lines)}
+"""
+    _send_markdown(msg1)
+
+    # ── 第二条：异动解读 ──────────────────────────────────
     change_lines = []
-    for c in top_changes:
+    for c in changes[:12]:
         store = "AS" if c.get("store", "") != "google_play" else "GP"
-        region = c.get("region_name", c.get("region", ""))
+        region = c.get("region_name", "")
         change_type = c["change_type"]
         name = c["name"]
-
         if change_type == "新进榜":
-            change_lines.append(f"> `{region}/{store}` 【新进榜】**{name}** #{c['rank_today']}")
+            change_lines.append(f"> `{region}/{store}` **【新进榜】{name}** #{c['rank_today']}")
         elif change_type == "退榜":
-            change_lines.append(f"> `{region}/{store}` 【退榜】**{name}** (昨日#{c['rank_yesterday']})")
+            change_lines.append(f"> `{region}/{store}` **【退榜】{name}** 昨日#{c['rank_yesterday']}")
         else:
             arrow = "↑" if change_type == "上升" else "↓"
             delta = abs(c.get("rank_delta", 0))
             change_lines.append(
-                f"> `{region}/{store}` 【{change_type}{delta}位{arrow}】**{name}** "
+                f"> `{region}/{store}` **{name}** {change_type}{delta}位{arrow} "
                 f"#{c['rank_yesterday']}→#{c['rank_today']}"
             )
 
-    change_text = "\n".join(change_lines) if change_lines else "> 今日无显著异动"
+    change_text = "\n".join(change_lines) if change_lines else "> 今日无显著异动（首次运行或数据未更新）"
 
-    # AI 分析截取前500字
-    analysis_short = ai_analysis[:500] + "..." if len(ai_analysis) > 500 else ai_analysis
+    # AI 分析取第二部分（## 第二部分 之后的内容）
+    if "第二部分" in ai_analysis:
+        ai_short = ai_analysis[ai_analysis.index("第二部分"):]
+    else:
+        ai_short = ai_analysis
+    ai_short = ai_short[:1200] + ("..." if len(ai_short) > 1200 else "")
 
-    message = f"""## 🎮 手游榜单日报 · {date_str}
+    msg2 = f"""## 🎮 手游榜单日报 · {date_str}（二）异动解读
 
-**今日重点异动（共{len(changes)}个）**
+**今日异动（共{len(changes)}个）**
 {change_text}
 
 ---
-**AI 市场解读**
-{analysis_short}
-
----
-📊 完整数据请在 GitHub 仓库 data/ 目录下载 Excel 文件查看
+{ai_short}{link_line}
 """
-    return message
+    _send_markdown(msg2)
 
+
+# ─── 周报推送 ──────────────────────────────────────────────
 
 def build_weekly_wecom_message(weekly_summary: str, date_str: str) -> str:
-    """构建每周推送的企业微信消息"""
+    dashboard_link = GITHUB_PAGES_URL or ""
+    link_line = f"\n\n[📊 查看完整仪表盘]({dashboard_link})" if dashboard_link else ""
     summary_short = weekly_summary[:1500] + "..." if len(weekly_summary) > 1500 else weekly_summary
     return f"""## 📈 手游市场周报 · {date_str}
 
-{summary_short}
-
----
-📊 完整周报请查看 Google Sheets
+{summary_short}{link_line}
 """
 
 
-# ─── 邮件推送 ────────────────────────────────────────────────
+# ─── 邮件推送 ──────────────────────────────────────────────
+
+def _markdown_to_html(md_text: str) -> str:
+    import re
+    html = md_text
+    html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
+    html = re.sub(r'^## (.+)$',  r'<h2>\1</h2>', html, flags=re.MULTILINE)
+    html = re.sub(r'^# (.+)$',   r'<h1>\1</h1>', html, flags=re.MULTILINE)
+    html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
+    html = re.sub(r'^- (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+    html = html.replace('\n', '<br>\n')
+    return (
+        "<html><body style='font-family:sans-serif;max-width:800px;margin:auto;padding:20px'>"
+        + html + "</body></html>"
+    )
+
 
 def send_email(subject: str, html_body: str):
-    """发送 HTML 邮件"""
-    if not EMAIL_USER or not EMAIL_PASS or not EMAIL_TO:
-        print("[Email] 未完整配置邮件信息，跳过发送")
+    if not all([EMAIL_USER, EMAIL_PASS, EMAIL_TO]):
+        print("[Email] 未完整配置邮件信息，跳过")
         return
-
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
-    msg["From"] = EMAIL_USER
-    msg["To"] = EMAIL_TO
-
-    part = MIMEText(html_body, "html", "utf-8")
-    msg.attach(part)
-
+    msg["From"]    = EMAIL_USER
+    msg["To"]      = EMAIL_TO
+    msg.attach(MIMEText(html_body, "html", "utf-8"))
     try:
         with smtplib.SMTP(EMAIL_SMTP_HOST, EMAIL_SMTP_PORT) as server:
-            server.ehlo()
-            server.starttls()
+            server.ehlo(); server.starttls()
             server.login(EMAIL_USER, EMAIL_PASS)
             server.sendmail(EMAIL_USER, EMAIL_TO.split(","), msg.as_string())
-        print(f"[Email] 邮件已发送至 {EMAIL_TO}")
+        print(f"[Email] 已发送至 {EMAIL_TO}")
     except Exception as e:
         print(f"[Email] 发送失败: {e}")
 
 
-def markdown_to_html(md_text: str) -> str:
-    """简单的 Markdown 转 HTML（避免引入额外依赖）"""
-    import re
-    html = md_text
-    # 标题
-    html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
-    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
-    html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
-    # 粗体
-    html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
-    # 列表
-    html = re.sub(r'^- (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
-    # 换行
-    html = html.replace('\n', '<br>\n')
-    return f"<html><body style='font-family:sans-serif;max-width:800px;margin:auto;padding:20px'>{html}</body></html>"
-
-
 def send_weekly_email(weekly_summary: str, date_str: str):
-    """发送周报邮件"""
-    subject = f"手游市场周报 · {date_str}"
-    html = markdown_to_html(weekly_summary)
-    send_email(subject, html)
-
-
-if __name__ == "__main__":
-    # 测试企业微信推送
-    send_wecom_text("测试消息：手游信息池系统运行正常 ✓")
+    send_email(f"手游市场周报 · {date_str}", _markdown_to_html(weekly_summary))

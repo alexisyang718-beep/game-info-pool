@@ -4,12 +4,12 @@ on:
   schedule:
     # 每天 UTC 00:00（北京时间 08:00）运行
     - cron: "0 0 * * *"
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   daily-scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
 
     steps:
       - name: 检出代码
@@ -38,12 +38,24 @@ jobs:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           MINIMAX_GROUP_ID: ${{ secrets.MINIMAX_GROUP_ID }}
           WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}
+          GITHUB_PAGES_URL: ${{ secrets.GITHUB_PAGES_URL }}
         run: python main_daily.py
 
-      - name: 提交 Excel 和历史数据到仓库
+      - name: 复制仪表盘到 data 目录
+        run: cp dashboard/index.html data/index.html
+
+      - name: 提交数据文件到仓库
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           git diff --staged --quiet || git commit -m "chore: 更新榜单数据 $(date -u '+%Y-%m-%d')"
           git push
+
+      - name: 部署仪表盘到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./data
+          publish_branch: gh-pages
+          force_orphan: false

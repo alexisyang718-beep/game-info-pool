@@ -1,16 +1,16 @@
 """
-AI 异动解读模块
-使用 MiniMax API 分析榜单异动原因
+AI 分析模块
+使用 MiniMax API 生成两部分报告：
+第一部分：各地区榜单概要（表格）
+第二部分：结合行业新闻的异动解读
 """
 
 import os
-import json
 import requests
+from collections import defaultdict
 from datetime import datetime
 
-
 MINIMAX_API_KEY = os.environ.get("MINIMAX_API_KEY", "")
-MINIMAX_GROUP_ID = os.environ.get("MINIMAX_GROUP_ID", "")
 MINIMAX_API_URL = "https://api.minimax.chat/v1/text/chatcompletion_v2"
 
 
@@ -30,10 +30,10 @@ def call_minimax(prompt: str, system_prompt: str = "") -> str:
             {"role": "user", "content": prompt},
         ],
         "temperature": 0.5,
-        "max_tokens": 1500,
+        "max_tokens": 2000,
     }
     try:
-        resp = requests.post(MINIMAX_API_URL, headers=headers, json=payload, timeout=30)
+        resp = requests.post(MINIMAX_API_URL, headers=headers, json=payload, timeout=60)
         resp.raise_for_status()
         data = resp.json()
         return data["choices"][0]["message"]["content"]
@@ -41,114 +41,189 @@ def call_minimax(prompt: str, system_prompt: str = "") -> str:
         return f"[AI 分析失败: {e}]"
 
 
-def analyze_changes(changes: list[dict]) -> str:
+def build_chart_summary(chart_data: list[dict]) -> str:
     """
-    对榜单异动进行 AI 解读
-    输入：异动列表
-    输出：分析报告文字
+    构建第一部分：各渠道 Top5 榜单概要文本（供 AI 扩写）
+    格式：地区 > 榜单类型 > Top5
+    """
+    # 按 (store, chart_name, region_name) 分组，取 Top5
+    groups = defaultdict(list)
+    for app in chart_data:
+        key = (app.get("store", "appstore"), app.get("chart_name", ""), app.get("region_name", ""))
+        groups[key].append(app)
+
+    lines = []
+    # 按商店、榜单类型、地区排序输出
+    store_order = {"appstore": 0, "google_play": 1}
+    chart_order = {"免费游戏榜": 0, "付费游戏榜": 1, "畅销榜": 2}
+
+    sorted_keys = sorted(
+        groups.keys(),
+        key=lambda k: (store_order.get(k[0], 9), chart_order.get(k[1], 9), k[2])
+    )
+
+    for store, chart_name, region in sorted_keys:
+        store_label = "App Store" if store == "appstore" else "Google Play"
+        apps = sorted(groups[(store, chart_name, region)], key=lambda x: x.get("rank", 999))[:5]
+        top5 = " / ".join([f"#{a['rank']} {a['name']}" for a in apps])
+        lines.append(f"[{store_label}·{region}·{chart_name}] {top5}")
+
+    return "\n".join(lines)
+
+
+def analyze_changes(changes: list[dict], news_list: list = None) -> str:
+    """
+    生成完整的两部分分析报告
+    第一部分：榜单概要（由 build_chart_summary 数据驱动）
+    第二部分：结合新闻的异动解读
     """
     if not changes:
         return "今日暂无显著榜单异动。"
 
-    # 整理异动数据为可读格式
-    lines = []
-    for c in changes[:30]:  # 最多分析30条，避免 token 过多
-        region = c.get("region_name", c.get("region", ""))
+    today = datetime.now().strftime("%Y年%m月%d日")
+    news_text = ""
+    if news_list:
+        from scrapers.news_scraper import format_news_for_ai
+        news_text = format_news_for_ai(news_list)
+
+    # 整理异动数据
+    change_lines = []
+    for c in changes[:30]:
+        region = c.get("region_name", "")
         store = "App Store" if c.get("store", "") != "google_play" else "Google Play"
         change_type = c["change_type"]
         name = c["name"]
         artist = c.get("artist", "")
-
         if change_type == "新进榜":
-            lines.append(f"- {region}/{store}: 《{name}》({artist}) 新进榜，当前排名 #{c['rank_today']}")
+            change_lines.append(f"- {region}/{store}: 《{name}》({artist}) 新进榜 #{c['rank_today']}")
         elif change_type == "退榜":
-            lines.append(f"- {region}/{store}: 《{name}》({artist}) 退榜（昨日 #{c['rank_yesterday']}）")
-        elif change_type in ("上升", "下降"):
+            change_lines.append(f"- {region}/{store}: 《{name}》({artist}) 退榜（昨日#{c['rank_yesterday']}）")
+        else:
             delta = abs(c.get("rank_delta", 0))
-            lines.append(
-                f"- {region}/{store}: 《{name}》({artist}) {change_type} {delta} 位"
-                f"（昨日 #{c['rank_yesterday']} → 今日 #{c['rank_today']}）"
+            change_lines.append(
+                f"- {region}/{store}: 《{name}》({artist}) {change_type} {delta}位 "
+                f"（#{c['rank_yesterday']}→#{c['rank_today']}）"
             )
 
-    changes_text = "\n".join(lines)
-    today = datetime.utcnow().strftime("%Y年%m月%d日")
+    changes_text = "\n".join(change_lines)
+
+    news_section = f"""
+**最新行业新闻（供参考）：**
+{news_text}
+""" if news_text else ""
 
     prompt = f"""
-以下是 {today} 的手游榜单异动数据（覆盖美国、英国、德国、法国、日本、韩国、印尼、泰国、新加坡、越南市场）：
+请根据以下 {today} 手游榜单异动数据及行业新闻，生成一份专业分析报告。
 
+**今日榜单异动：**
 {changes_text}
+{news_section}
+---
 
-请从以下角度进行专业解读（约500字）：
-1. **重点异动**：挑选最值得关注的3-5个异动进行点评
-2. **可能原因**：分析每个重点异动的可能原因（版本更新、买量加大、节假日/赛事营销、竞品下架、品类趋势等）
-3. **地区规律**：有哪些值得注意的地区性特征
-4. **品类趋势**：从今日异动能看出哪些品类在走强或走弱
+请严格按照以下格式输出，不要改变结构：
 
-输出格式：中文，使用 Markdown，段落清晰。
+## 第二部分：异动解读
+
+### 重点异动分析
+（挑选3-5个最值得关注的异动，每条100字左右，结合行业新闻分析可能原因）
+
+### 地区趋势
+（各地区有何规律或差异，2-3句话）
+
+### 品类动向
+（从今日异动看到的品类走势，2-3句话）
+
+### 相关行业动态
+（结合新闻，1-2条与榜单变化相关的行业背景，如无相关新闻可省略）
 """
 
-    system = "你是一位拥有10年经验的手游市场分析师，熟悉全球各地区手游市场特征、买量策略和产品生命周期规律。请基于数据给出专业、务实的分析。"
-
+    system = "你是一位拥有10年经验的手游市场分析师，熟悉全球各地区手游市场特征。请基于数据和新闻给出专业、务实的分析，语言简洁，避免空话。"
     return call_minimax(prompt, system)
+
+
+def generate_chart_summary_text(chart_data: list[dict], news_list: list = None) -> str:
+    """
+    生成第一部分：榜单概要
+    直接基于数据生成，不调用 AI（节省 token）
+    """
+    today = datetime.now().strftime("%Y年%m月%d日")
+    summary = build_chart_summary(chart_data)
+
+    # 统计基本数字
+    stores = set(a.get("store") for a in chart_data)
+    regions = set(a.get("region_name") for a in chart_data)
+    total = len(chart_data)
+
+    header = f"""## 第一部分：{today} 榜单概要
+
+**数据概览**
+- 覆盖商店：{"App Store、Google Play" if len(stores) > 1 else list(stores)[0]}
+- 覆盖地区：{len(regions)} 个（{"、".join(sorted(regions))}）
+- 总记录数：{total} 条
+
+**各地区 Top5 一览**
+"""
+    # 格式化为可读表格文本
+    lines = []
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for app in chart_data:
+        key = (app.get("store", ""), app.get("chart_name", ""), app.get("region_name", ""))
+        groups[key].append(app)
+
+    store_order = {"appstore": 0, "google_play": 1}
+    chart_order = {"免费游戏榜": 0, "付费游戏榜": 1, "畅销榜": 2}
+    sorted_keys = sorted(
+        groups.keys(),
+        key=lambda k: (store_order.get(k[0], 9), chart_order.get(k[1], 9), k[2])
+    )
+
+    current_store = ""
+    current_chart = ""
+    for store, chart_name, region in sorted_keys:
+        store_label = "App Store" if store == "appstore" else "Google Play"
+        if store_label != current_store or chart_name != current_chart:
+            lines.append(f"\n**{store_label} · {chart_name}**")
+            current_store = store_label
+            current_chart = chart_name
+
+        apps = sorted(groups[(store, chart_name, region)], key=lambda x: x.get("rank", 999))[:5]
+        top5 = "、".join([f"#{a['rank']}{a['name']}" for a in apps])
+        lines.append(f"- {region}：{top5}")
+
+    return header + "\n".join(lines)
 
 
 def generate_weekly_summary(all_week_changes: list[dict], top_charts: list[dict]) -> str:
     """生成周报摘要"""
-    # 统计本周异动频率最高的游戏
     from collections import Counter
     app_counter = Counter(c["name"] for c in all_week_changes)
     top_movers = app_counter.most_common(10)
-
     movers_text = "\n".join([f"- 《{name}》: 出现 {count} 次异动" for name, count in top_movers])
 
-    # 各地区 Top3 游戏
-    region_tops = {}
+    region_tops = defaultdict(list)
     for app in top_charts:
-        region = app.get("region_name", app.get("region", ""))
-        if region not in region_tops:
-            region_tops[region] = []
-        if app["rank"] <= 3:
+        if app.get("rank", 999) <= 3:
+            region = app.get("region_name", "")
             region_tops[region].append(f"#{app['rank']} {app['name']}")
 
-    region_text = ""
-    for region, tops in region_tops.items():
-        region_text += f"\n**{region}**: {', '.join(tops)}"
+    region_text = "\n".join([f"**{r}**: {', '.join(tops)}" for r, tops in region_tops.items()])
 
     prompt = f"""
-请基于以下本周手游市场数据，生成一份简洁的**周报摘要**（约800字）：
+本周手游市场数据摘要：
 
-**本周异动最频繁的游戏（上榜/下榜/大幅波动次数）：**
+**本周异动最频繁的游戏：**
 {movers_text}
 
-**各地区当前 Top3 游戏：**
+**各地区当前 Top3：**
 {region_text}
 
-请输出：
+请生成一份简洁的**周报**（约600字），包含：
 1. **本周市场总结**（整体趋势，2-3段）
 2. **重点关注产品**（3-5款值得持续跟踪的游戏及原因）
-3. **下周预判**（基于当前趋势的合理预测）
+3. **下周预判**
 
 语言：中文，Markdown 格式，适合发送给游戏公司产品/市场团队阅读。
 """
-    system = "你是一位专业的手游市场周报分析师，为游戏公司产品和市场团队提供市场洞察。"
+    system = "你是一位专业的手游市场周报分析师。"
     return call_minimax(prompt, system)
-
-
-if __name__ == "__main__":
-    # 测试
-    test_changes = [
-        {
-            "name": "Royal Match",
-            "artist": "Dream Games",
-            "region": "us",
-            "region_name": "美国",
-            "store": "appstore",
-            "chart_name": "免费游戏榜",
-            "change_type": "上升",
-            "rank_today": 3,
-            "rank_yesterday": 15,
-            "rank_delta": 12,
-        }
-    ]
-    result = analyze_changes(test_changes)
-    print(result)
