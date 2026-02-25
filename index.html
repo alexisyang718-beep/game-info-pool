@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>手游榜单仪表盘</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --border: #e8eaed;
+      --text: #1a1a2e;
+      --sub: #6b7280;
+      --accent: #4f46e5;
+      --accent2: #06b6d4;
+      --up: #10b981;
+      --down: #ef4444;
+      --new: #f59e0b;
+      --tag-as: #818cf8;
+      --tag-gp: #34d399;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; line-height: 1.6; }
+
+    /* ── Header ── */
+    header { background: var(--card); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    header h1 { font-size: 18px; font-weight: 700; letter-spacing: -.3px; }
+    header h1 span { color: var(--accent); }
+    #last-updated { font-size: 12px; color: var(--sub); }
+
+    /* ── Layout ── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 20px 24px; }
+
+    /* ── Stats row ── */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+    .stat-card .label { font-size: 12px; color: var(--sub); margin-bottom: 4px; }
+    .stat-card .value { font-size: 24px; font-weight: 700; }
+
+    /* ── Filters ── */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; align-items: center; }
+    .filters label { font-size: 12px; color: var(--sub); margin-right: 2px; }
+    select, input[type=text] { border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 13px; background: var(--card); color: var(--text); outline: none; transition: border .2s; }
+    select:focus, input:focus { border-color: var(--accent); }
+    .filter-group { display: flex; align-items: center; gap: 6px; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: 4px; margin-bottom: 16px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; width: fit-content; }
+    .tab { padding: 6px 16px; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s, color .15s; color: var(--sub); border: none; background: none; }
+    .tab.active { background: var(--accent); color: #fff; }
+
+    /* ── Table ── */
+    .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { background: #f3f4f6; font-size: 12px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: .5px; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f9fafb; }
+    tbody td { padding: 10px 14px; vertical-align: middle; }
+    .rank { font-weight: 700; font-size: 15px; width: 40px; text-align: center; color: var(--sub); }
+    .rank.top3 { color: var(--accent); }
+    .app-name { font-weight: 600; max-width: 200px; }
+    .app-name .artist { font-size: 12px; font-weight: 400; color: var(--sub); display: block; margin-top: 1px; }
+    .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .tag-as { background: #eef2ff; color: var(--tag-as); }
+    .tag-gp { background: #ecfdf5; color: #059669; }
+    .tag-free { background: #f0f9ff; color: var(--accent2); }
+    .tag-paid { background: #fef3c7; color: #d97706; }
+    .tag-gross { background: #fdf4ff; color: #9333ea; }
+
+    /* ── Changes section ── */
+    .section-title { font-size: 16px; font-weight: 700; margin: 28px 0 12px; display: flex; align-items: center; gap: 8px; }
+    .section-title .badge { font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+    .changes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .change-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
+    .change-card .change-type { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; width: fit-content; }
+    .type-new { background: #fef9c3; color: #854d0e; }
+    .type-up { background: #dcfce7; color: #166534; }
+    .type-down { background: #fee2e2; color: #991b1b; }
+    .type-out { background: #f3f4f6; color: var(--sub); }
+    .change-card .game-title { font-weight: 600; font-size: 14px; }
+    .change-card .meta { font-size: 12px; color: var(--sub); }
+    .change-card .delta { font-size: 18px; font-weight: 700; }
+    .delta-up { color: var(--up); }
+    .delta-down { color: var(--down); }
+
+    /* ── AI Analysis ── */
+    .analysis-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow); line-height: 1.8; }
+    .analysis-box h2 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; color: var(--accent); }
+    .analysis-box h3 { font-size: 13px; font-weight: 700; margin: 12px 0 6px; color: var(--text); }
+    .analysis-box p { margin-bottom: 8px; color: #374151; }
+    .analysis-box ul { padding-left: 18px; }
+    .analysis-box li { margin-bottom: 4px; }
+    .analysis-box strong { color: var(--text); }
+
+    /* ── Pagination ── */
+    .pagination { display: flex; gap: 6px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+    .page-btn { border: 1px solid var(--border); background: var(--card); border-radius: 6px; padding: 5px 12px; font-size: 13px; cursor: pointer; transition: all .15s; }
+    .page-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .page-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 24px; color: var(--sub); font-size: 12px; }
+
+    @media (max-width: 640px) {
+      .container { padding: 12px 14px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      table thead th:nth-child(n+5) { display: none; }
+      table tbody td:nth-child(n+5) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎮 手游<span>榜单</span>仪表盘</h1>
+  <div id="last-updated">加载中...</div>
+</header>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats" id="stats-row"></div>
+
+  <!-- AI Analysis -->
+  <div class="section-title">AI 市场分析</div>
+  <div class="analysis-box" id="analysis-box"><p style="color:var(--sub)">加载中...</p></div>
+
+  <!-- Changes -->
+  <div class="section-title">今日异动 <span class="badge" id="change-count">0</span></div>
+  <div class="changes-grid" id="changes-grid"></div>
+
+  <!-- Chart Table -->
+  <div class="section-title">完整榜单数据</div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <label>商店</label>
+      <select id="filter-store">
+        <option value="">全部</option>
+        <option value="appstore">App Store</option>
+        <option value="google_play">Google Play</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>地区</label>
+      <select id="filter-region"><option value="">全部</option></select>
+    </div>
+    <div class="filter-group">
+      <label>榜单</label>
+      <select id="filter-chart">
+        <option value="">全部</option>
+        <option value="免费游戏榜">免费游戏榜</option>
+        <option value="付费游戏榜">付费游戏榜</option>
+        <option value="畅销榜">畅销榜</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>搜索</label>
+      <input type="text" id="filter-search" placeholder="游戏名 / 开发商" style="width:160px" />
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:50px">排名</th>
+          <th>游戏</th>
+          <th>开发商</th>
+          <th>地区</th>
+          <th>商店</th>
+          <th>榜单</th>
+          <th>评分</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+  <div class="pagination" id="pagination"></div>
+
+</div>
+
+<footer>
+  数据来源：App Store iTunes RSS · Google Play · 每日北京时间 08:00 自动更新
+</footer>
+
+<script>
+// ── 数据加载 ──────────────────────────────────────────────
+const DATA_URL   = 'data/latest.json';
+const CHANGE_URL = 'data/latest_changes.json';
+const AI_URL     = 'data/latest_analysis.json';
+
+const PAGE_SIZE = 50;
+let allData = [], filtered = [], currentPage = 1;
+
+async function loadJSON(url) {
+  try {
+    const r = await fetch(url + '?t=' + Date.now());
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+async function init() {
+  const [chartData, changeData, analysisData] = await Promise.all([
+    loadJSON(DATA_URL), loadJSON(CHANGE_URL), loadJSON(AI_URL)
+  ]);
+
+  if (chartData) {
+    allData = chartData.data || [];
+    renderStats(chartData);
+    populateRegions(allData);
+    applyFilters();
+  } else {
+    document.getElementById('table-body').innerHTML =
+      '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--sub)">暂无数据，请等待首次采集完成</td></tr>';
+  }
+
+  renderChanges(changeData?.changes || []);
+  renderAnalysis(analysisData?.analysis || '');
+
+  const updated = chartData?.date || analysisData?.date || '';
+  document.getElementById('last-updated').textContent =
+    updated ? `更新时间：${updated}` : '';
+}
+
+// ── Stats ─────────────────────────────────────────────────
+function renderStats(meta) {
+  const stats = [
+    { label: '总记录数',  value: (meta.total || 0).toLocaleString() },
+    { label: '覆盖地区',  value: meta.regions || 0 },
+    { label: '今日新进榜', value: meta.new_entries || 0 },
+    { label: '今日异动',  value: meta.changes || 0 },
+  ];
+  document.getElementById('stats-row').innerHTML = stats.map(s =>
+    `<div class="stat-card"><div class="label">${s.label}</div><div class="value">${s.value}</div></div>`
+  ).join('');
+}
+
+// ── Changes ───────────────────────────────────────────────
+function renderChanges(changes) {
+  document.getElementById('change-count').textContent = changes.length;
+  if (!changes.length) {
+    document.getElementById('changes-grid').innerHTML =
+      '<p style="color:var(--sub);font-size:13px">今日无显著异动（首次运行或数据未更新）</p>';
+    return;
+  }
+  document.getElementById('changes-grid').innerHTML = changes.slice(0, 24).map(c => {
+    const store = c.store === 'google_play' ? 'GP' : 'AS';
+    let typeClass = 'type-out', typeLabel = c.change_type;
+    if (c.change_type === '新进榜') typeClass = 'type-new';
+    else if (c.change_type === '上升')  typeClass = 'type-up';
+    else if (c.change_type === '下降')  typeClass = 'type-down';
+
+    const deltaHTML = c.rank_delta != null
+      ? `<div class="delta ${c.change_type === '上升' ? 'delta-up' : 'delta-down'}">
+          ${c.change_type === '上升' ? '↑' : '↓'}${Math.abs(c.rank_delta)}
+         </div>`
+      : '';
+
+    return `<div class="change-card">
+      <span class="change-type ${typeClass}">${typeLabel}</span>
+      <div class="game-title">${esc(c.name)}</div>
+      <div class="meta">${esc(c.region_name)} · ${store} · ${esc(c.chart_name)}</div>
+      <div class="meta">${c.rank_yesterday != null ? '#'+c.rank_yesterday+' → ' : ''}${c.rank_today != null ? '#'+c.rank_today : ''}</div>
+      ${deltaHTML}
+    </div>`;
+  }).join('');
+}
+
+// ── Analysis ──────────────────────────────────────────────
+function renderAnalysis(text) {
+  if (!text || text.includes('未配置')) {
+    document.getElementById('analysis-box').innerHTML =
+      '<p style="color:var(--sub)">AI 分析暂未生成，请配置 MINIMAX_API_KEY 后重新运行</p>';
+    return;
+  }
+  // 简单 Markdown → HTML
+  let html = text
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/gs, m => '<ul>' + m + '</ul>')
+    .replace(/\n{2,}/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+  document.getElementById('analysis-box').innerHTML = '<p>' + html + '</p>';
+}
+
+// ── Table ─────────────────────────────────────────────────
+function populateRegions(data) {
+  const regions = [...new Set(data.map(d => d.region_name))].sort();
+  const sel = document.getElementById('filter-region');
+  regions.forEach(r => {
+    const o = document.createElement('option');
+    o.value = r; o.textContent = r;
+    sel.appendChild(o);
+  });
+}
+
+function applyFilters() {
+  const store  = document.getElementById('filter-store').value;
+  const region = document.getElementById('filter-region').value;
+  const chart  = document.getElementById('filter-chart').value;
+  const search = document.getElementById('filter-search').value.toLowerCase();
+
+  filtered = allData.filter(d =>
+    (!store  || d.store === store) &&
+    (!region || d.region_name === region) &&
+    (!chart  || d.chart_name === chart) &&
+    (!search || d.name?.toLowerCase().includes(search) || d.artist?.toLowerCase().includes(search))
+  );
+
+  currentPage = 1;
+  renderTable();
+  renderPagination();
+}
+
+function renderTable() {
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const rows  = filtered.slice(start, start + PAGE_SIZE);
+
+  const chartTagClass = { '免费游戏榜': 'tag-free', '付费游戏榜': 'tag-paid', '畅销榜': 'tag-gross' };
+
+  document.getElementById('table-body').innerHTML = rows.length
+    ? rows.map(d => `<tr>
+        <td class="rank ${d.rank <= 3 ? 'top3' : ''}">${d.rank}</td>
+        <td class="app-name">${esc(d.name)}<span class="artist">${esc(d.artist||'')}</span></td>
+        <td style="color:var(--sub);font-size:13px">${esc(d.artist||'')}</td>
+        <td>${esc(d.region_name)}</td>
+        <td><span class="tag ${d.store==='google_play'?'tag-gp':'tag-as'}">${d.store==='google_play'?'Google Play':'App Store'}</span></td>
+        <td><span class="tag ${chartTagClass[d.chart_name]||''}">${esc(d.chart_name)}</span></td>
+        <td>${d.score ? Number(d.score).toFixed(1) : '-'}</td>
+      </tr>`).join('')
+    : '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--sub)">无匹配数据</td></tr>';
+}
+
+function renderPagination() {
+  const total = Math.ceil(filtered.length / PAGE_SIZE);
+  const p = document.getElementById('pagination');
+  if (total <= 1) { p.innerHTML = ''; return; }
+
+  let html = '';
+  const show = (n) => n >= 1 && n <= total;
+  const pages = [...new Set([1, currentPage-1, currentPage, currentPage+1, total])].filter(show).sort((a,b)=>a-b);
+
+  pages.forEach((n, i) => {
+    if (i > 0 && pages[i] - pages[i-1] > 1) html += '<span style="color:var(--sub);padding:0 4px">…</span>';
+    html += `<button class="page-btn ${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`;
+  });
+  p.innerHTML = `<span style="color:var(--sub);font-size:12px;margin-right:4px">共${filtered.length}条</span>` + html;
+}
+
+function goPage(n) { currentPage = n; renderTable(); renderPagination(); window.scrollTo(0,0); }
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Event listeners ───────────────────────────────────────
+['filter-store','filter-region','filter-chart'].forEach(id =>
+  document.getElementById(id).addEventListener('change', applyFilters)
+);
+document.getElementById('filter-search').addEventListener('input', applyFilters);
+
+init();
+</script>
+</body>
+</html>
