@@ -38,7 +38,7 @@ jobs:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           MINIMAX_GROUP_ID: ${{ secrets.MINIMAX_GROUP_ID }}
           WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}
-          GITHUB_PAGES_URL: ${{ secrets.GITHUB_PAGES_URL }}
+          GAMEINFO_PAGES_URL: ${{ secrets.GAMEINFO_PAGES_URL }}
         run: python main_daily.py
 
       - name: 复制仪表盘到 data 目录

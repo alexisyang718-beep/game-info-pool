@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 WECOM_WEBHOOK_URL = os.environ.get("WECOM_WEBHOOK_URL", "")
-GITHUB_PAGES_URL  = os.environ.get("GITHUB_PAGES_URL", "")   # 仪表盘链接，在 Secrets 配置
+GITHUB_PAGES_URL  = os.environ.get("GAMEINFO_PAGES_URL", "")  # 仪表盘链接，在 Secrets 配置
 EMAIL_SMTP_HOST = os.environ.get("EMAIL_SMTP_HOST", "smtp.gmail.com")
 EMAIL_SMTP_PORT = int(os.environ.get("EMAIL_SMTP_PORT", "587"))
 EMAIL_USER = os.environ.get("EMAIL_USER", "")
