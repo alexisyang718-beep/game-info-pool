@@ -1,11 +1,14 @@
 """
 App Store 榜单爬虫
-使用苹果官方 RSS API，完全合法，无需额外权限
+使用苹果 iTunes RSS API（稳定，官方支持）
 """
 
 import requests
-import json
-from datetime import datetime
+from datetime import datetime, timezone
+from datetime import timezone as tz
+import time
+
+UTC = timezone.utc
 
 # 目标地区配置
 REGIONS = {
@@ -21,48 +24,57 @@ REGIONS = {
     "vn": "越南",
 }
 
-# 榜单类型
+# 榜单类型（iTunes RSS API 格式）
 CHART_TYPES = {
     "topfreeapplications": "免费游戏榜",
     "toppaidapplications": "付费游戏榜",
+    "topgrossingapplications": "畅销榜",
 }
 
-GAME_GENRE_ID = "6014"  # App Store 游戏品类 ID
+GAME_GENRE_ID = "6014"
 
 
 def fetch_appstore_chart(region: str, chart_type: str, limit: int = 100) -> list[dict]:
     """
-    从苹果官方 RSS API 拉取榜单
-    文档：https://rss.applemarketingtools.com
+    从苹果 iTunes RSS API 拉取榜单
+    接口：https://itunes.apple.com/{country}/rss/{chart}/limit={n}/genre=6014/json
     """
     url = (
-        f"https://rss.applemarketingtools.com/api/v2/{region}/apps/"
-        f"{chart_type}/{limit}/apps.json"
+        f"https://itunes.apple.com/{region}/rss/{chart_type}"
+        f"/limit={limit}/genre={GAME_GENRE_ID}/json"
     )
     try:
         resp = requests.get(url, timeout=15)
         resp.raise_for_status()
         data = resp.json()
-        results = data.get("feed", {}).get("results", [])
+        entries = data.get("feed", {}).get("entry", [])
 
         apps = []
-        for rank, app in enumerate(results, start=1):
+        for rank, entry in enumerate(entries, start=1):
+            # link 字段可能是 dict 或 list，统一处理
+            link_field = entry.get("link", {})
+            if isinstance(link_field, list):
+                link_field = link_field[0] if link_field else {}
+            url = link_field.get("attributes", {}).get("href", "")
+
             apps.append({
                 "rank": rank,
-                "app_id": app.get("id"),
-                "name": app.get("name"),
-                "artist": app.get("artistName"),
-                "genre": app.get("genres", [{}])[0].get("name", "") if app.get("genres") else "",
-                "genre_id": app.get("genres", [{}])[0].get("genreId", "") if app.get("genres") else "",
-                "url": app.get("url"),
-                "artwork": app.get("artworkUrl100"),
-                "release_date": app.get("releaseDate"),
+                "app_id": entry.get("id", {}).get("attributes", {}).get("im:id", ""),
+                "name": entry.get("im:name", {}).get("label", ""),
+                "artist": entry.get("im:artist", {}).get("label", ""),
+                "genre": entry.get("category", {}).get("attributes", {}).get("label", ""),
+                "genre_id": entry.get("category", {}).get("attributes", {}).get("im:id", ""),
+                "url": url,
+                "artwork": entry.get("im:image", [{}])[-1].get("label", ""),
+                "price": entry.get("im:price", {}).get("label", ""),
+                "release_date": entry.get("im:releaseDate", {}).get("label", ""),
                 "region": region,
                 "region_name": REGIONS.get(region, region),
                 "chart_type": chart_type,
                 "chart_name": CHART_TYPES.get(chart_type, chart_type),
-                "fetch_date": datetime.utcnow().strftime("%Y-%m-%d"),
-                "fetch_ts": datetime.utcnow().isoformat(),
+                "store": "appstore",
+                "fetch_date": datetime.now(UTC).strftime("%Y-%m-%d"),
+                "fetch_ts": datetime.now(UTC).isoformat(),
             })
         return apps
 
@@ -78,17 +90,14 @@ def fetch_all_appstore_charts() -> list[dict]:
         for chart_type in CHART_TYPES:
             print(f"[AppStore] 正在拉取 {REGIONS[region]} {CHART_TYPES[chart_type]}...")
             apps = fetch_appstore_chart(region, chart_type)
-            # 只保留游戏品类（部分接口可能混入非游戏）
-            games = [a for a in apps if a["genre_id"] == GAME_GENRE_ID or "game" in a["genre"].lower() or "游戏" in a["genre"]]
-            # 如果过滤后太少，保留原始数据（说明本来就是游戏榜）
-            all_data.extend(games if len(games) > 20 else apps)
-            print(f"  → 获取 {len(apps)} 条，游戏 {len(games)} 条")
+            all_data.extend(apps)
+            print(f"  → 获取 {len(apps)} 条")
+            time.sleep(0.5)
     return all_data
 
 
 if __name__ == "__main__":
     data = fetch_all_appstore_charts()
     print(f"\n总计获取 {len(data)} 条记录")
-    # 测试输出前3条
-    for item in data[:3]:
-        print(f"  [{item['region_name']}] #{item['rank']} {item['name']}")
+    for item in data[:5]:
+        print(f"  [{item['region_name']}] #{item['rank']} {item['name']} - {item['artist']}")
