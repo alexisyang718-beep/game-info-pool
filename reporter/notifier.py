@@ -71,42 +71,43 @@ def send_daily_wecom(
     dashboard_link = GITHUB_PAGES_URL or ""
     link_line = f"\n\n[📊 查看完整仪表盘]({dashboard_link})" if dashboard_link else ""
 
-    # ── 第一条：榜单概要 ──────────────────────────────────
-    # 从 chart_summary 提取精简版（企业微信 Markdown 不支持复杂表格，用列表代替）
+    # ── 第一条：榜单概要（畅销榜 Top3，控制在 4000 字内）──
     from collections import defaultdict
-    store_order  = {"appstore": 0, "google_play": 1}
-    chart_order  = {"免费游戏榜": 0, "付费游戏榜": 1, "畅销榜": 2}
+    REGION_ORDER = ["美国", "日本", "韩国", "英国", "德国", "法国",
+                    "印度尼西亚", "泰国", "新加坡", "越南"]
 
-    groups = defaultdict(list)
+    # 按 (store, region) 取畅销榜 Top3
+    gross_groups = defaultdict(list)
     for app in chart_data:
-        key = (app.get("store", ""), app.get("chart_name", ""), app.get("region_name", ""))
-        groups[key].append(app)
+        if app.get("chart_name") == "畅销榜":
+            key = (app.get("store", ""), app.get("region_name", ""))
+            gross_groups[key].append(app)
 
-    sorted_keys = sorted(
-        groups.keys(),
-        key=lambda k: (store_order.get(k[0], 9), chart_order.get(k[1], 9), k[2])
-    )
-
-    section_lines = []
-    current_section = ""
-    for store, chart_name, region in sorted_keys:
-        store_label = "App Store" if store == "appstore" else "Google Play"
-        section = f"{store_label} · {chart_name}"
-        if section != current_section:
-            section_lines.append(f"\n**{section}**")
-            current_section = section
-        apps = sorted(groups[(store, chart_name, region)], key=lambda x: x.get("rank", 999))[:5]
-        top5 = " / ".join([f"#{a['rank']}{a['name']}" for a in apps])
-        section_lines.append(f"> `{region}` {top5}")
+    as_lines = []
+    gp_lines = []
+    for region in REGION_ORDER:
+        # App Store
+        as_apps = sorted(gross_groups.get(("appstore", region), []),
+                         key=lambda x: x.get("rank", 999))[:3]
+        if as_apps:
+            top3 = " / ".join([f"#{a['rank']}{a['name']}" for a in as_apps])
+            as_lines.append(f"> `{region}` {top3}")
+        # Google Play
+        gp_apps = sorted(gross_groups.get(("google_play", region), []),
+                         key=lambda x: x.get("rank", 999))[:3]
+        if gp_apps:
+            top3 = " / ".join([f"#{a['rank']}{a['name']}" for a in gp_apps])
+            gp_lines.append(f"> `{region}` {top3}")
 
     total = len(chart_data)
     regions_count = len(set(a.get("region_name") for a in chart_data))
 
-    msg1 = f"""## 🎮 手游榜单日报 · {date_str}（一）榜单概要
-
-**数据概览**：{total} 条记录 · {regions_count} 个地区 · App Store + Google Play
-{"".join(section_lines)}
-"""
+    msg1 = (
+        f"## 🎮 手游榜单日报 · {date_str}（一）榜单概要\n\n"
+        f"**数据概览**：{total} 条 · {regions_count} 地区 · AS+GP · 完整数据见仪表盘{link_line}\n\n"
+        f"**App Store 畅销榜 Top3**\n" + "\n".join(as_lines) +
+        f"\n\n**Google Play 畅销榜 Top3**\n" + "\n".join(gp_lines)
+    )
     _send_markdown(msg1)
 
     # ── 第二条：异动解读 ──────────────────────────────────
