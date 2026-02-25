@@ -23,8 +23,17 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: 安装依赖
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 安装 Python 依赖
         run: pip install -r requirements.txt
+
+      - name: 安装 Node.js 依赖
+        run: npm install
 
       - name: 运行周报生成
         env:

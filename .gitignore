@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 credentials.json
 service_account.json
+node_modules/
