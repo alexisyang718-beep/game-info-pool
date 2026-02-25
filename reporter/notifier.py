@@ -99,7 +99,7 @@ def build_daily_wecom_message(changes: list[dict], ai_analysis: str, date_str: s
 {analysis_short}
 
 ---
-📊 完整数据请查看 Google Sheets
+📊 完整数据请在 GitHub 仓库 data/ 目录下载 Excel 文件查看
 """
     return message
 
