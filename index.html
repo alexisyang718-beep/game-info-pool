@@ -240,9 +240,9 @@
 
 <script>
 // ── 数据加载 ──────────────────────────────────────────────
-const DATA_URL   = 'latest.json';
-const CHANGE_URL = 'latest_changes.json';
-const AI_URL     = 'latest_analysis.json';
+const DATA_URL   = 'data/latest.json';
+const CHANGE_URL = 'data/latest_changes.json';
+const AI_URL     = 'data/latest_analysis.json';
 
 const PAGE_SIZE = 50;
 let allData = [], filtered = [], currentPage = 1;
@@ -423,7 +423,7 @@ function switchTab(tab) {
 // ── Market Overview ─────────────────────────────────────────
 function loadMarket() {
   window._marketLoaded = true;
-  fetch('market.json?t=' + Date.now())
+  fetch('data/market.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => renderMarket(data))
     .catch(() => {
