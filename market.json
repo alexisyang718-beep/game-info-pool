@@ -1,0 +1,245 @@
+{
+  "updated_at": "2026-02-26",
+  "regions": [
+    {
+      "region": "us",
+      "region_name": "美国",
+      "population": 340110988,
+      "mobile_per_100": 112.4,
+      "internet_pct": null,
+      "gdp_per_capita": 84534,
+      "estimated_devices": 382322162,
+      "genres": [
+        {
+          "name": "休闲益智",
+          "pct": 38
+        },
+        {
+          "name": "策略SLG",
+          "pct": 22
+        },
+        {
+          "name": "RPG",
+          "pct": 18
+        }
+      ],
+      "profile": "全球最大手游消费市场，付费意愿强，IAP 和订阅模式均成熟。休闲和超休闲游戏用户基数庞大，头部SLG长期霸榜畅销榜。"
+    },
+    {
+      "region": "gb",
+      "region_name": "英国",
+      "population": 69226000,
+      "mobile_per_100": 122.8,
+      "internet_pct": null,
+      "gdp_per_capita": 53246,
+      "estimated_devices": 85006758,
+      "genres": [
+        {
+          "name": "休闲益智",
+          "pct": 40
+        },
+        {
+          "name": "策略SLG",
+          "pct": 20
+        },
+        {
+          "name": "模拟经营",
+          "pct": 16
+        }
+      ],
+      "profile": "欧洲重要手游市场，用户偏好与美国相近，休闲游戏占主导。付费渗透率高，对本地化内容接受度强。"
+    },
+    {
+      "region": "de",
+      "region_name": "德国",
+      "population": 83516593,
+      "mobile_per_100": 124.7,
+      "internet_pct": 93.5,
+      "gdp_per_capita": 56103,
+      "estimated_devices": 104114290,
+      "genres": [
+        {
+          "name": "休闲益智",
+          "pct": 35
+        },
+        {
+          "name": "策略SLG",
+          "pct": 24
+        },
+        {
+          "name": "RPG",
+          "pct": 17
+        }
+      ],
+      "profile": "欧洲最大经济体，手游市场成熟。用户对质量要求高，隐私保护意识强（GDPR严格执行），付费用户忠诚度高。"
+    },
+    {
+      "region": "fr",
+      "region_name": "法国",
+      "population": 68551653,
+      "mobile_per_100": 116.7,
+      "internet_pct": 88.7,
+      "gdp_per_capita": 46103,
+      "estimated_devices": 79991552,
+      "genres": [
+        {
+          "name": "休闲益智",
+          "pct": 42
+        },
+        {
+          "name": "策略SLG",
+          "pct": 18
+        },
+        {
+          "name": "模拟经营",
+          "pct": 15
+        }
+      ],
+      "profile": "法国用户偏爱休闲类游戏，本地化内容表现突出。合并游戏（Merge）品类近年增长显著，MONOPOLY GO等社交属性游戏表现强劲。"
+    },
+    {
+      "region": "jp",
+      "region_name": "日本",
+      "population": 123975371,
+      "mobile_per_100": 178.4,
+      "internet_pct": null,
+      "gdp_per_capita": 32487,
+      "estimated_devices": 221211733,
+      "genres": [
+        {
+          "name": "RPG",
+          "pct": 45
+        },
+        {
+          "name": "卡牌收集",
+          "pct": 25
+        },
+        {
+          "name": "休闲益智",
+          "pct": 15
+        }
+      ],
+      "profile": "全球手游ARPU最高市场之一。IP驱动强烈（动漫、漫画联动频繁），Gacha机制高度成熟，玩家付费深度远超其他地区。"
+    },
+    {
+      "region": "kr",
+      "region_name": "韩国",
+      "population": 51751065,
+      "mobile_per_100": 162.1,
+      "internet_pct": 97.9,
+      "gdp_per_capita": 36238,
+      "estimated_devices": 83895721,
+      "genres": [
+        {
+          "name": "RPG",
+          "pct": 40
+        },
+        {
+          "name": "策略SLG",
+          "pct": 28
+        },
+        {
+          "name": "放置挂机",
+          "pct": 18
+        }
+      ],
+      "profile": "手游渗透率极高，竞技类和RPG为主流。本土游戏公司（Kakao、Netmarble等）占主导，放置挂机品类近年爆发增长。"
+    },
+    {
+      "region": "id",
+      "region_name": "印尼",
+      "population": 283487931,
+      "mobile_per_100": 125.2,
+      "internet_pct": 72.8,
+      "gdp_per_capita": 4925,
+      "estimated_devices": 355034615,
+      "genres": [
+        {
+          "name": "MOBA",
+          "pct": 35
+        },
+        {
+          "name": "休闲益智",
+          "pct": 30
+        },
+        {
+          "name": "Battle Royale",
+          "pct": 20
+        }
+      ],
+      "profile": "东南亚最大手游市场（用户体量），Mobile Legends长期称霸。用户基数庞大但ARPU偏低，免费游戏渗透率高，社交竞技需求强。"
+    },
+    {
+      "region": "th",
+      "region_name": "泰国",
+      "population": 71668011,
+      "mobile_per_100": 168.6,
+      "internet_pct": 90.9,
+      "gdp_per_capita": 7346,
+      "estimated_devices": 120863083,
+      "genres": [
+        {
+          "name": "MOBA",
+          "pct": 30
+        },
+        {
+          "name": "RPG",
+          "pct": 28
+        },
+        {
+          "name": "休闲益智",
+          "pct": 22
+        }
+      ],
+      "profile": "东南亚手游市场增速快，电竞文化浓厚。足球游戏（eFootball/EA FC）表现突出，本地IP和泰国明星联动营销效果显著。"
+    },
+    {
+      "region": "sg",
+      "region_name": "新加坡",
+      "population": 6036860,
+      "mobile_per_100": 173.2,
+      "internet_pct": 94.4,
+      "gdp_per_capita": 90674,
+      "estimated_devices": 10455841,
+      "genres": [
+        {
+          "name": "策略SLG",
+          "pct": 32
+        },
+        {
+          "name": "RPG",
+          "pct": 28
+        },
+        {
+          "name": "休闲益智",
+          "pct": 20
+        }
+      ],
+      "profile": "东南亚最高ARPU市场，高净值玩家密集。手机普及率接近双SIM普及，玩家对付费内容接受度高，SLG和重度RPG表现突出。"
+    },
+    {
+      "region": "vn",
+      "region_name": "越南",
+      "population": 100987686,
+      "mobile_per_100": 131.0,
+      "internet_pct": 84.2,
+      "gdp_per_capita": 4717,
+      "estimated_devices": 132284779,
+      "genres": [
+        {
+          "name": "休闲益智",
+          "pct": 35
+        },
+        {
+          "name": "MOBA",
+          "pct": 28
+        },
+        {
+          "name": "RPG",
+          "pct": 20
+        }
+      ],
+      "profile": "越南手游市场增速居东南亚前列，年轻用户占比高。本地化游戏（越南语版Free Fire、Liên Quân Mobile）表现强势，互联网基础设施快速改善。"
+    }
+  ]
+}
