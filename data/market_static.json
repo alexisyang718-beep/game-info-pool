@@ -1,0 +1,82 @@
+{
+  "us": {
+    "genres": [
+      {"name": "休闲益智", "pct": 38},
+      {"name": "策略SLG", "pct": 22},
+      {"name": "RPG", "pct": 18}
+    ],
+    "profile": "全球最大手游消费市场，付费意愿强，IAP 和订阅模式均成熟。休闲和超休闲游戏用户基数庞大，头部SLG长期霸榜畅销榜。"
+  },
+  "gb": {
+    "genres": [
+      {"name": "休闲益智", "pct": 40},
+      {"name": "策略SLG", "pct": 20},
+      {"name": "模拟经营", "pct": 16}
+    ],
+    "profile": "欧洲重要手游市场，用户偏好与美国相近，休闲游戏占主导。付费渗透率高，对本地化内容接受度强。"
+  },
+  "de": {
+    "genres": [
+      {"name": "休闲益智", "pct": 35},
+      {"name": "策略SLG", "pct": 24},
+      {"name": "RPG", "pct": 17}
+    ],
+    "profile": "欧洲最大经济体，手游市场成熟。用户对质量要求高，隐私保护意识强（GDPR严格执行），付费用户忠诚度高。"
+  },
+  "fr": {
+    "genres": [
+      {"name": "休闲益智", "pct": 42},
+      {"name": "策略SLG", "pct": 18},
+      {"name": "模拟经营", "pct": 15}
+    ],
+    "profile": "法国用户偏爱休闲类游戏，本地化内容表现突出。合并游戏（Merge）品类近年增长显著，MONOPOLY GO等社交属性游戏表现强劲。"
+  },
+  "jp": {
+    "genres": [
+      {"name": "RPG", "pct": 45},
+      {"name": "卡牌收集", "pct": 25},
+      {"name": "休闲益智", "pct": 15}
+    ],
+    "profile": "全球手游ARPU最高市场之一。IP驱动强烈（动漫、漫画联动频繁），Gacha机制高度成熟，玩家付费深度远超其他地区。"
+  },
+  "kr": {
+    "genres": [
+      {"name": "RPG", "pct": 40},
+      {"name": "策略SLG", "pct": 28},
+      {"name": "放置挂机", "pct": 18}
+    ],
+    "profile": "手游渗透率极高，竞技类和RPG为主流。本土游戏公司（Kakao、Netmarble等）占主导，放置挂机品类近年爆发增长。"
+  },
+  "id": {
+    "genres": [
+      {"name": "MOBA", "pct": 35},
+      {"name": "休闲益智", "pct": 30},
+      {"name": "Battle Royale", "pct": 20}
+    ],
+    "profile": "东南亚最大手游市场（用户体量），Mobile Legends长期称霸。用户基数庞大但ARPU偏低，免费游戏渗透率高，社交竞技需求强。"
+  },
+  "th": {
+    "genres": [
+      {"name": "MOBA", "pct": 30},
+      {"name": "RPG", "pct": 28},
+      {"name": "休闲益智", "pct": 22}
+    ],
+    "profile": "东南亚手游市场增速快，电竞文化浓厚。足球游戏（eFootball/EA FC）表现突出，本地IP和泰国明星联动营销效果显著。"
+  },
+  "sg": {
+    "genres": [
+      {"name": "策略SLG", "pct": 32},
+      {"name": "RPG", "pct": 28},
+      {"name": "休闲益智", "pct": 20}
+    ],
+    "profile": "东南亚最高ARPU市场，高净值玩家密集。手机普及率接近双SIM普及，玩家对付费内容接受度高，SLG和重度RPG表现突出。"
+  },
+  "vn": {
+    "genres": [
+      {"name": "休闲益智", "pct": 35},
+      {"name": "MOBA", "pct": 28},
+      {"name": "RPG", "pct": 20}
+    ],
+    "profile": "越南手游市场增速居东南亚前列，年轻用户占比高。本地化游戏（越南语版Free Fire、Liên Quân Mobile）表现强势，互联网基础设施快速改善。"
+  }
+}

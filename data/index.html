@@ -8,6 +8,7 @@
     :root {
       --bg: #f7f8fa;
       --card: #ffffff;
+      --surface: #ffffff;
       --border: #e8eaed;
       --text: #1a1a2e;
       --sub: #6b7280;
@@ -29,6 +30,24 @@
     header h1 { font-size: 18px; font-weight: 700; letter-spacing: -.3px; }
     header h1 span { color: var(--accent); }
     #last-updated { font-size: 12px; color: var(--sub); }
+
+    /* ── Tab Navigation ── */
+    .page-nav {
+      position: sticky; top: 57px; z-index: 90;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 0 24px; display: flex; gap: 4px;
+    }
+    .nav-btn {
+      padding: 10px 20px; border: none; background: none;
+      color: var(--sub); cursor: pointer; font-size: 14px;
+      border-bottom: 2px solid transparent; transition: all .2s;
+    }
+    .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .nav-btn:hover:not(.active) { color: var(--text); }
+
+    /* ── Tab Panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     /* ── Layout ── */
     .container { max-width: 1280px; margin: 0 auto; padding: 20px 24px; }
@@ -71,7 +90,7 @@
     .tag-gross { background: #fdf4ff; color: #9333ea; }
 
     /* ── Changes section ── */
-    .section-title { font-size: 16px; font-weight: 700; margin: 28px 0 12px; display: flex; align-items: center; gap: 8px; }
+    .section-title { font-size: 16px; font-weight: 700; margin: 28px 0 12px; display: flex; items: center; gap: 8px; }
     .section-title .badge { font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
     .changes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 28px; }
     .change-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
@@ -101,14 +120,34 @@
     .page-btn:hover { border-color: var(--accent); color: var(--accent); }
     .page-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+    /* ── Market Grid ── */
+    .market-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;
+    }
+    .market-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px;
+    }
+    .market-card h3 { margin: 0 0 12px; font-size: 16px; }
+    .market-stat { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .market-stat:last-of-type { border-bottom: none; }
+    .market-stat .val { font-weight: 600; color: var(--accent); }
+    .genre-bar { margin-top: 12px; }
+    .genre-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 12px; }
+    .genre-fill { height: 8px; border-radius: 4px; background: var(--accent); opacity: 0.7; }
+    .market-profile { margin-top: 12px; font-size: 12px; color: var(--sub); line-height: 1.6; }
+
     /* ── Footer ── */
     footer { text-align: center; padding: 24px; color: var(--sub); font-size: 12px; }
 
     @media (max-width: 640px) {
       .container { padding: 12px 14px; }
       .stats { grid-template-columns: repeat(2, 1fr); }
+      .page-nav { padding: 0 14px; }
+      .nav-btn { padding: 8px 12px; font-size: 13px; }
       table thead th:nth-child(n+5) { display: none; }
       table tbody td:nth-child(n+5) { display: none; }
+      .market-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -119,74 +158,84 @@
   <div id="last-updated">加载中...</div>
 </header>
 
+<nav class="page-nav">
+  <button class="nav-btn active" onclick="switchTab('charts')">榜单数据</button>
+  <button class="nav-btn" onclick="switchTab('market')">市场概况</button>
+</nav>
+
 <div class="container">
+  <!-- Tab Panel: Charts -->
+  <div id="tab-charts" class="tab-panel active">
+    <!-- Stats -->
+    <div class="stats" id="stats-row"></div>
 
-  <!-- Stats -->
-  <div class="stats" id="stats-row"></div>
+    <!-- AI Analysis -->
+    <div class="section-title">AI 市场分析</div>
+    <div class="analysis-box" id="analysis-box"><p style="color:var(--sub)">加载中...</p></div>
 
-  <!-- AI Analysis -->
-  <div class="section-title">AI 市场分析</div>
-  <div class="analysis-box" id="analysis-box"><p style="color:var(--sub)">加载中...</p></div>
+    <!-- Changes -->
+    <div class="section-title">今日异动 <span class="badge" id="change-count">0</span></div>
+    <div class="changes-grid" id="changes-grid"></div>
 
-  <!-- Changes -->
-  <div class="section-title">今日异动 <span class="badge" id="change-count">0</span></div>
-  <div class="changes-grid" id="changes-grid"></div>
+    <!-- Chart Table -->
+    <div class="section-title">完整榜单数据</div>
 
-  <!-- Chart Table -->
-  <div class="section-title">完整榜单数据</div>
-
-  <div class="filters">
-    <div class="filter-group">
-      <label>商店</label>
-      <select id="filter-store">
-        <option value="">全部</option>
-        <option value="appstore">App Store</option>
-        <option value="google_play">Google Play</option>
-      </select>
+    <div class="filters">
+      <div class="filter-group">
+        <label>商店</label>
+        <select id="filter-store">
+          <option value="">全部</option>
+          <option value="appstore">App Store</option>
+          <option value="google_play">Google Play</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>地区</label>
+        <select id="filter-region"><option value="">全部</option></select>
+      </div>
+      <div class="filter-group">
+        <label>榜单</label>
+        <select id="filter-chart">
+          <option value="">全部</option>
+          <option value="免费游戏榜">免费游戏榜</option>
+          <option value="付费游戏榜">付费游戏榜</option>
+          <option value="畅销榜">畅销榜</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>搜索</label>
+        <input type="text" id="filter-search" placeholder="游戏名 / 开发商" style="width:160px" />
+      </div>
     </div>
-    <div class="filter-group">
-      <label>地区</label>
-      <select id="filter-region"><option value="">全部</option></select>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px">排名</th>
+            <th>游戏</th>
+            <th>开发商</th>
+            <th>地区</th>
+            <th>商店</th>
+            <th>榜单</th>
+            <th>评分</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
     </div>
-    <div class="filter-group">
-      <label>榜单</label>
-      <select id="filter-chart">
-        <option value="">全部</option>
-        <option value="免费游戏榜">免费游戏榜</option>
-        <option value="付费游戏榜">付费游戏榜</option>
-        <option value="畅销榜">畅销榜</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>搜索</label>
-      <input type="text" id="filter-search" placeholder="游戏名 / 开发商" style="width:160px" />
-    </div>
+    <div class="pagination" id="pagination"></div>
   </div>
 
-  <div class="tabs" id="tabs"></div>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:50px">排名</th>
-          <th>游戏</th>
-          <th>开发商</th>
-          <th>地区</th>
-          <th>商店</th>
-          <th>榜单</th>
-          <th>评分</th>
-        </tr>
-      </thead>
-      <tbody id="table-body"></tbody>
-    </table>
+  <!-- Tab Panel: Market Overview -->
+  <div id="tab-market" class="tab-panel">
+    <div id="market-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <div id="market-grid" class="market-grid"></div>
   </div>
-  <div class="pagination" id="pagination"></div>
-
 </div>
 
 <footer>
-  数据来源：App Store iTunes RSS · Google Play · 每日北京时间 08:00 自动更新
+  数据来源：App Store iTunes RSS · Google Play · World Bank · 每日北京时间 08:00 自动更新
 </footer>
 
 <script>
@@ -197,6 +246,7 @@ const AI_URL     = 'latest_analysis.json';
 
 const PAGE_SIZE = 50;
 let allData = [], filtered = [], currentPage = 1;
+let window._marketLoaded = false;
 
 async function loadJSON(url) {
   try {
@@ -358,6 +408,66 @@ function renderPagination() {
 
 function goPage(n) { currentPage = n; renderTable(); renderPagination(); window.scrollTo(0,0); }
 
+// ── Tab Switching ───────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('tab-' + tab);
+  target.style.display = '';
+  target.classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (tab === 'market' && !window._marketLoaded) loadMarket();
+}
+
+// ── Market Overview ─────────────────────────────────────────
+function loadMarket() {
+  window._marketLoaded = true;
+  fetch('market.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => renderMarket(data))
+    .catch(() => {
+      const grid = document.getElementById('market-grid');
+      grid.innerHTML = '<p style="color:var(--sub);padding:40px 0">市场数据暂未生成</p>';
+    });
+}
+
+function renderMarket(data) {
+  document.getElementById('market-last-updated').textContent = '数据更新：' + (data.updated_at || '--');
+  const grid = document.getElementById('market-grid');
+  if (!data.regions || data.regions.length === 0) {
+    grid.innerHTML = '<p style="color:var(--sub);padding:40px 0">暂无市场数据</p>';
+    return;
+  }
+  grid.innerHTML = data.regions.map(r => {
+    const genresHTML = (r.genres || []).map(g => {
+      const barWidth = Math.min(Math.max(g.pct * 1.5, 8), 100);
+      return `<div class="genre-row">
+        <span style="width:70px">${esc(g.name)}</span>
+        <div class="genre-fill" style="width:${barWidth}px"></div>
+        <span>${g.pct}%</span>
+      </div>`;
+    }).join('');
+
+    const devices = r.estimated_devices
+      ? (r.estimated_devices >= 1e9
+        ? (r.estimated_devices / 1e9).toFixed(1) + 'B'
+        : (r.estimated_devices / 1e6).toFixed(0) + 'M')
+      : '--';
+
+    return `<div class="market-card">
+      <h3>${esc(r.region_name)}</h3>
+      <div class="market-stat"><span>手机普及率</span><span class="val">${r.mobile_per_100 ?? '--'} 台/百人</span></div>
+      <div class="market-stat"><span>互联网渗透率</span><span class="val">${r.internet_pct ?? '--'}%</span></div>
+      <div class="market-stat"><span>人均 GDP</span><span class="val">$${r.gdp_per_capita ? r.gdp_per_capita.toLocaleString() : '--'}</span></div>
+      <div class="market-stat"><span>估算移动设备数</span><span class="val">${devices}</span></div>
+      ${genresHTML ? `<div class="genre-bar">${genresHTML}</div>` : ''}
+      <div class="market-profile">${esc(r.profile || '')}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Utility ────────────────────────────────────────────────
 function esc(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
