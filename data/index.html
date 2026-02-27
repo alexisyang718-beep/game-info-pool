@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>手游榜单仪表盘</title>
+  <title>手游仪表盘</title>
   <style>
     :root {
       --bg: #f7f8fa;
@@ -195,7 +195,7 @@
 <body>
 
 <header>
-  <h1>🎮 手游<span>榜单</span>仪表盘</h1>
+  <h1>🎮 手游仪表盘</h1>
   <div id="last-updated">加载中...</div>
 </header>
 
@@ -209,16 +209,23 @@
 <div class="container">
   <!-- Tab Panel: Charts -->
   <div id="tab-charts" class="tab-panel active">
-    <!-- Stats -->
-    <div class="stats" id="stats-row"></div>
+    <!-- 数据来源与更新时间 -->
+    <div id="charts-data-info" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--sub);box-shadow:var(--shadow)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <span id="charts-update-time">📅 数据更新时间：加载中...</span>
+        <span>📊 数据来源：App Store iTunes RSS · Google Play</span>
+      </div>
+    </div>
 
-    <!-- AI Analysis -->
-    <div class="section-title">AI 市场分析</div>
+    <!-- AI Analysis (异动分析) -->
+    <div class="section-title">AI 异动分析</div>
     <div class="analysis-box" id="analysis-box"><p style="color:var(--sub)">加载中...</p></div>
+    <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：MiniMax AI 分析</div>
 
     <!-- Changes -->
     <div class="section-title">今日异动 <span class="badge" id="change-count">0</span></div>
     <div class="changes-grid" id="changes-grid"></div>
+    <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：榜单数据对比分析</div>
 
     <!-- Chart Table -->
     <div class="section-title">完整榜单数据</div>
@@ -267,24 +274,43 @@
         <tbody id="table-body"></tbody>
       </table>
     </div>
+    <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：App Store iTunes RSS · Google Play</div>
     <div class="pagination" id="pagination"></div>
   </div>
 
   <!-- Tab Panel: Market Overview -->
   <div id="tab-market" class="tab-panel">
-    <div id="market-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <!-- 数据来源与更新时间 -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--sub);box-shadow:var(--shadow)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <span id="market-update-time">📅 数据更新时间：加载中...</span>
+        <span>📊 数据来源：World Bank · App Annie / Sensor Tower</span>
+      </div>
+    </div>
     <div id="market-grid" class="market-grid"></div>
   </div>
 
   <!-- Tab Panel: Device Overview -->
   <div id="tab-device" class="tab-panel">
-    <div id="device-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <!-- 数据来源与更新时间 -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--sub);box-shadow:var(--shadow)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <span id="device-update-time">📅 数据更新时间：加载中...</span>
+        <span>📊 数据来源：IDC · StatCounter · 设备厂商报告</span>
+      </div>
+    </div>
     <div id="device-grid" class="market-grid"></div>
   </div>
 
   <!-- Tab Panel: Casual Games Analysis -->
   <div id="tab-casual" class="tab-panel">
-    <div id="casual-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <!-- 数据来源与更新时间 -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--sub);box-shadow:var(--shadow)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <span id="casual-update-time">📅 数据更新时间：加载中...（每季度人工更新）</span>
+        <span>📊 数据来源：data.ai · Sensor Tower · 行业报告</span>
+      </div>
+    </div>
     <div class="filters" style="margin-bottom:20px">
       <div class="filter-group">
         <label>地区</label>
@@ -295,22 +321,26 @@
       <div class="market-card" id="casual-top-games-card">
         <h3>热门休闲游戏 Top 10</h3>
         <div id="casual-top-games-list"></div>
+        <div style="font-size:11px;color:var(--sub);margin-top:12px;text-align:right">数据来源：App Store / Google Play 榜单</div>
       </div>
       <div class="market-card" id="casual-profile-card">
         <h3>用户画像</h3>
         <div id="casual-user-profile"></div>
+        <div style="font-size:11px;color:var(--sub);margin-top:12px;text-align:right">数据来源：data.ai · Sensor Tower</div>
       </div>
     </div>
     <div class="market-card" style="margin-top:16px;margin-bottom:16px">
       <h3>收入趋势指数</h3>
       <div id="casual-revenue-trend"></div>
+      <div style="font-size:11px;color:var(--sub);margin-top:12px;text-align:right">数据来源：Sensor Tower 估算</div>
     </div>
     <div class="analysis-box" id="casual-insight" style="margin-bottom:20px"></div>
+    <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：行业报告综合分析</div>
   </div>
 </div>
 
 <footer>
-  数据来源：App Store iTunes RSS · Google Play · World Bank · IDC/StatCounter 设备数据 · 每日北京时间 08:00 自动更新
+  © 手游仪表盘 · 每日北京时间 08:00 自动更新 · 数据仅供参考
 </footer>
 
 <script>
@@ -340,7 +370,6 @@ async function init() {
 
   if (chartData) {
     allData = chartData.data || [];
-    renderStats(chartData);
     populateRegions(allData);
     applyFilters();
   } else {
@@ -354,19 +383,9 @@ async function init() {
   const updated = chartData?.date || analysisData?.date || '';
   document.getElementById('last-updated').textContent =
     updated ? `更新时间：${updated}` : '';
-}
-
-// ── Stats ─────────────────────────────────────────────────
-function renderStats(meta) {
-  const stats = [
-    { label: '总记录数',  value: (meta.total || 0).toLocaleString() },
-    { label: '覆盖地区',  value: meta.regions || 0 },
-    { label: '今日新进榜', value: meta.new_entries || 0 },
-    { label: '今日异动',  value: meta.changes || 0 },
-  ];
-  document.getElementById('stats-row').innerHTML = stats.map(s =>
-    `<div class="stat-card"><div class="label">${s.label}</div><div class="value">${s.value}</div></div>`
-  ).join('');
+  // 更新榜单数据Tab的更新时间
+  document.getElementById('charts-update-time').textContent =
+    updated ? `📅 数据更新时间：${updated}` : '📅 数据更新时间：--';
 }
 
 // ── Changes ───────────────────────────────────────────────
@@ -512,7 +531,7 @@ function loadMarket() {
 }
 
 function renderMarket(data) {
-  document.getElementById('market-last-updated').textContent = '数据更新：' + (data.updated_at || '--');
+  document.getElementById('market-update-time').textContent = '📅 数据更新时间：' + (data.updated_at || '--');
   const grid = document.getElementById('market-grid');
   if (!data.regions || data.regions.length === 0) {
     grid.innerHTML = '<p style="color:var(--sub);padding:40px 0">暂无市场数据</p>';
@@ -542,6 +561,7 @@ function renderMarket(data) {
       <div class="market-stat"><span>估算移动设备数</span><span class="val">${devices}</span></div>
       ${genresHTML ? `<div class="genre-bar">${genresHTML}</div>` : ''}
       <div class="market-profile">${esc(r.profile || '')}</div>
+      <div style="font-size:10px;color:var(--sub);margin-top:10px;padding-top:8px;border-top:1px solid var(--border)">来源：World Bank · App Annie</div>
     </div>`;
   }).join('');
 }
@@ -559,8 +579,8 @@ function loadDevice() {
 }
 
 function renderDevice(data) {
-  document.getElementById('device-last-updated').textContent =
-    '数据更新：' + (data.updated_at || '--');
+  document.getElementById('device-update-time').textContent =
+    '📅 数据更新时间：' + (data.updated_at || '--');
   const grid = document.getElementById('device-grid');
   if (!data.regions || data.regions.length === 0) {
     grid.innerHTML = '<p style="color:var(--sub);padding:40px 0">暂无设备数据</p>';
@@ -615,6 +635,7 @@ function renderDevice(data) {
       ${iosVer ? `<div style="margin:10px 0 4px;font-size:12px;color:var(--sub);font-weight:600">iOS 版本分布</div><div class="genre-bar">${iosVer}</div>` : ''}
       ${adrVer ? `<div style="margin:10px 0 4px;font-size:12px;color:var(--sub);font-weight:600">Android 版本分布</div><div class="genre-bar">${adrVer}</div>` : ''}
       <div class="market-profile">${esc(r.device_notes || '')}</div>
+      <div style="font-size:10px;color:var(--sub);margin-top:10px;padding-top:8px;border-top:1px solid var(--border)">来源：IDC · StatCounter</div>
     </div>`;
   }).join('');
 }
@@ -628,8 +649,8 @@ function loadCasual() {
     .then(r => r.json())
     .then(data => {
       casualData = data;
-      document.getElementById('casual-last-updated').textContent =
-        '数据更新：' + (data.updated_at || '--') + '（每季度人工更新）';
+      document.getElementById('casual-update-time').textContent =
+        '📅 数据更新时间：' + (data.updated_at || '--') + '（每季度人工更新）';
       initCasualRegionSelect(data.regions);
       renderCasualRegion();
     })
