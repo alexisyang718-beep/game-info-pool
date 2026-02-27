@@ -1,12 +1,29 @@
 {
   "date": "2026-02-27",
-  "highlights": [
+  "rising": [
+    {
+      "game": "포켓몬 카드 게임 Pocket",
+      "change": "上升 71位（#115→#44）",
+      "region": "韩国",
+      "store": "App Store",
+      "analysis": "宝可梦卡牌在韩国畅销榜大幅攀升，IP影响力持续发酵，亚洲市场对卡牌类游戏需求旺盛。"
+    },
+    {
+      "game": "ドラゴンクエストウォーク",
+      "change": "上升 66位（#93→#27）",
+      "region": "日本",
+      "store": "App Store",
+      "analysis": "位置信息游戏在日本市场具有独特吸引力，DQ系列IP号召力强劲。"
+    }
+  ],
+  "falling": [],
+  "new_entries": [
     {
       "game": "Subway Surfers City",
       "change": "新进榜 #1",
       "region": "美国",
       "store": "App Store",
-      "analysis": "经典跑酷游戏衍生作品迅速登顶，与市场推广和更新内容有关。EA对《Skate》开发团队重组可能释放了市场空间。"
+      "analysis": "经典跑酷游戏衍生作品迅速登顶，与市场推广和更新内容有关。"
     },
     {
       "game": "Pokémon TCG Pocket",
@@ -14,20 +31,6 @@
       "region": "美国",
       "store": "App Store",
       "analysis": "口袋妖怪系列最新作品凭借品牌影响力和粉丝基础取得佳绩，卡牌类游戏持续受到关注。"
-    },
-    {
-      "game": "포켓몬 카드 게임 Pocket",
-      "change": "上升 71位",
-      "region": "韩国",
-      "store": "App Store",
-      "analysis": "宝可梦卡牌在韩国畅销榜大幅攀升，IP影响力持续发酵，亚洲市场对卡牌类游戏需求旺盛。"
-    },
-    {
-      "game": "ドラゴンクエストウォーク",
-      "change": "上升 66位",
-      "region": "日本",
-      "store": "App Store",
-      "analysis": "位置信息游戏在日本市场具有独特吸引力，DQ系列IP号召力强劲。"
     },
     {
       "game": "Dragon Traveler",

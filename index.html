@@ -108,7 +108,7 @@
     /* ── AI Analysis Cards ── */
     .analysis-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-bottom: 20px;
     }
@@ -118,9 +118,6 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
-    }
-    .analysis-card.analysis-highlights {
-      grid-column: span 2;
     }
     .analysis-card-header {
       display: flex;
@@ -148,7 +145,7 @@
     .analysis-card-body p {
       margin: 0;
     }
-    /* 重点异动列表样式 */
+    /* 异动列表样式 */
     .highlight-item {
       padding: 10px 12px;
       background: #f9fafb;
@@ -273,7 +270,6 @@
       .market-grid { grid-template-columns: 1fr; }
       .casual-two-col { grid-template-columns: 1fr; }
       .analysis-grid { grid-template-columns: 1fr; }
-      .analysis-card.analysis-highlights { grid-column: span 1; }
     }
   </style>
 </head>
@@ -303,15 +299,35 @@
     </div>
 
     <!-- AI Analysis (异动分析) - 模块化卡片 -->
-    <div class="section-title">AI 异动分析</div>
+    <div class="section-title">AI 异动分析 <span style="font-size:12px;font-weight:400;color:var(--sub);margin-left:8px">（对比昨日）</span></div>
     <div class="analysis-grid" id="analysis-grid">
-      <!-- 重点异动 -->
-      <div class="analysis-card analysis-highlights" id="analysis-highlights">
-        <div class="analysis-card-header">
-          <span class="analysis-icon">🔥</span>
-          <h3>重点异动</h3>
+      <!-- 上升 -->
+      <div class="analysis-card analysis-rising" id="analysis-rising">
+        <div class="analysis-card-header" style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);">
+          <span class="analysis-icon">📈</span>
+          <h3>上升</h3>
         </div>
-        <div class="analysis-card-body" id="highlights-content">
+        <div class="analysis-card-body" id="rising-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+      <!-- 下降 -->
+      <div class="analysis-card analysis-falling" id="analysis-falling">
+        <div class="analysis-card-header" style="background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);">
+          <span class="analysis-icon">📉</span>
+          <h3>下降</h3>
+        </div>
+        <div class="analysis-card-body" id="falling-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+      <!-- 新进榜 -->
+      <div class="analysis-card analysis-new-entries" id="analysis-new-entries">
+        <div class="analysis-card-header" style="background:linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
+          <span class="analysis-icon">🆕</span>
+          <h3>新进榜</h3>
+        </div>
+        <div class="analysis-card-body" id="new-entries-content">
           <p style="color:var(--sub)">加载中...</p>
         </div>
       </div>
@@ -547,27 +563,30 @@ function renderChanges(changes) {
 
 // ── Analysis ──────────────────────────────────────────────
 function renderAnalysis(data) {
-  // 处理新的结构化格式
-  const highlights = data.highlights || [];
+  // 处理新的结构化格式（上升/下降/新进榜分开）
+  const rising = data.rising || [];
+  const falling = data.falling || [];
+  const newEntries = data.new_entries || [];
   const regions = data.regions || '';
   const categories = data.categories || '';
   const industry = data.industry || '';
   const rawText = data.raw_text || data.analysis || '';
   
-  // 如果没有结构化数据但有原始文本，使用 fallback 渲染
-  if (!highlights.length && !regions && !categories && rawText) {
+  // 兼容旧格式：如果有 highlights 字段
+  const highlights = data.highlights || [];
+  
+  // 如果没有任何结构化数据但有原始文本，使用 fallback 渲染
+  if (!rising.length && !falling.length && !newEntries.length && !highlights.length && !regions && !categories && rawText) {
     renderAnalysisFallback(rawText);
     return;
   }
   
-  // 渲染重点异动
-  const highlightsEl = document.getElementById('highlights-content');
-  if (highlights.length) {
-    highlightsEl.innerHTML = highlights.map(h => {
-      let changeClass = 'new';
-      if (h.change && h.change.includes('上升')) changeClass = 'up';
-      else if (h.change && h.change.includes('下降')) changeClass = 'down';
-      
+  // 渲染函数：将异动数组渲染为 HTML
+  const renderHighlightItems = (items, changeClass) => {
+    if (!items.length) {
+      return '<p style="color:var(--sub)">暂无数据</p>';
+    }
+    return items.map(h => {
       return `<div class="highlight-item">
         <div class="highlight-header">
           <span class="highlight-game">《${esc(h.game || '')}》</span>
@@ -577,8 +596,22 @@ function renderAnalysis(data) {
         <div class="highlight-analysis">${esc(h.analysis || '')}</div>
       </div>`;
     }).join('');
+  };
+  
+  // 如果有旧格式的 highlights，按类型分类
+  if (highlights.length && !rising.length && !falling.length && !newEntries.length) {
+    const risingFromHighlights = highlights.filter(h => h.change && h.change.includes('上升'));
+    const fallingFromHighlights = highlights.filter(h => h.change && h.change.includes('下降'));
+    const newFromHighlights = highlights.filter(h => h.change && h.change.includes('新进榜'));
+    
+    document.getElementById('rising-content').innerHTML = renderHighlightItems(risingFromHighlights, 'up');
+    document.getElementById('falling-content').innerHTML = renderHighlightItems(fallingFromHighlights, 'down');
+    document.getElementById('new-entries-content').innerHTML = renderHighlightItems(newFromHighlights, 'new');
   } else {
-    highlightsEl.innerHTML = '<p style="color:var(--sub)">暂无重点异动数据</p>';
+    // 新格式，直接渲染
+    document.getElementById('rising-content').innerHTML = renderHighlightItems(rising, 'up');
+    document.getElementById('falling-content').innerHTML = renderHighlightItems(falling, 'down');
+    document.getElementById('new-entries-content').innerHTML = renderHighlightItems(newEntries, 'new');
   }
   
   // 渲染地区趋势
@@ -607,8 +640,10 @@ function renderAnalysis(data) {
 // Fallback: 兼容旧的纯文本格式
 function renderAnalysisFallback(text) {
   if (!text || text.includes('未配置')) {
-    document.getElementById('highlights-content').innerHTML =
+    document.getElementById('rising-content').innerHTML =
       '<p style="color:var(--sub)">AI 分析暂未生成，请配置 MINIMAX_API_KEY 后重新运行</p>';
+    document.getElementById('falling-content').innerHTML = '<p style="color:var(--sub)">暂无数据</p>';
+    document.getElementById('new-entries-content').innerHTML = '<p style="color:var(--sub)">暂无数据</p>';
     document.getElementById('regions-content').innerHTML = '';
     document.getElementById('categories-content').innerHTML = '';
     document.getElementById('industry-card').style.display = 'none';
@@ -616,13 +651,20 @@ function renderAnalysisFallback(text) {
   }
   
   // 解析旧格式文本，尝试提取各模块
-  let highlightsText = '', regionsText = '', categoriesText = '', industryText = '';
+  let risingText = '', fallingText = '', newEntriesText = '', regionsText = '', categoriesText = '', industryText = '';
   
   // 尝试按标题分割
   const sections = text.split(/###\s*/);
   for (const section of sections) {
-    if (section.includes('重点异动')) {
-      highlightsText = section.replace(/^[^\n]+\n/, '').trim();
+    if (section.includes('上升')) {
+      risingText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('下降')) {
+      fallingText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('新进榜') || section.includes('新上榜')) {
+      newEntriesText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('重点异动')) {
+      // 旧格式，尝试分类
+      risingText = section.replace(/^[^\n]+\n/, '').trim();
     } else if (section.includes('地区趋势')) {
       regionsText = section.replace(/^[^\n]+\n/, '').trim();
     } else if (section.includes('品类动向')) {
@@ -638,8 +680,14 @@ function renderAnalysisFallback(text) {
     .replace(/^- (.+)$/gm, '• $1<br>')
     .replace(/\n/g, '<br>');
   
-  document.getElementById('highlights-content').innerHTML = highlightsText 
-    ? `<div style="line-height:1.8">${toHTML(highlightsText)}</div>` 
+  document.getElementById('rising-content').innerHTML = risingText 
+    ? `<div style="line-height:1.8">${toHTML(risingText)}</div>` 
+    : '<p style="color:var(--sub)">暂无数据</p>';
+  document.getElementById('falling-content').innerHTML = fallingText 
+    ? `<div style="line-height:1.8">${toHTML(fallingText)}</div>` 
+    : '<p style="color:var(--sub)">暂无数据</p>';
+  document.getElementById('new-entries-content').innerHTML = newEntriesText 
+    ? `<div style="line-height:1.8">${toHTML(newEntriesText)}</div>` 
     : '<p style="color:var(--sub)">暂无数据</p>';
   document.getElementById('regions-content').innerHTML = regionsText 
     ? `<p>${toHTML(regionsText)}</p>` 
