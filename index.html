@@ -89,21 +89,8 @@
     .tag-paid { background: #fef3c7; color: #d97706; }
     .tag-gross { background: #fdf4ff; color: #9333ea; }
 
-    /* ── Changes section ── */
+    /* ── Section Title ── */
     .section-title { font-size: 16px; font-weight: 700; margin: 28px 0 12px; display: flex; items: center; gap: 8px; }
-    .section-title .badge { font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
-    .changes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 28px; }
-    .change-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
-    .change-card .change-type { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; width: fit-content; }
-    .type-new { background: #fef9c3; color: #854d0e; }
-    .type-up { background: #dcfce7; color: #166534; }
-    .type-down { background: #fee2e2; color: #991b1b; }
-    .type-out { background: #f3f4f6; color: var(--sub); }
-    .change-card .game-title { font-weight: 600; font-size: 14px; }
-    .change-card .meta { font-size: 12px; color: var(--sub); }
-    .change-card .delta { font-size: 18px; font-weight: 700; }
-    .delta-up { color: var(--up); }
-    .delta-down { color: var(--down); }
 
     /* ── AI Analysis Cards ── */
     .analysis-grid {
@@ -364,11 +351,6 @@
     </div>
     <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：MiniMax AI 分析</div>
 
-    <!-- Changes -->
-    <div class="section-title">今日异动 <span class="badge" id="change-count">0</span></div>
-    <div class="changes-grid" id="changes-grid"></div>
-    <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：榜单数据对比分析</div>
-
     <!-- Chart Table -->
     <div class="section-title">完整榜单数据</div>
 
@@ -488,7 +470,6 @@
 <script>
 // ── 数据加载 ──────────────────────────────────────────────
 const DATA_URL   = 'latest.json';
-const CHANGE_URL = 'latest_changes.json';
 const AI_URL     = 'latest_analysis.json';
 
 const PAGE_SIZE = 50;
@@ -506,8 +487,8 @@ async function loadJSON(url) {
 }
 
 async function init() {
-  const [chartData, changeData, analysisData] = await Promise.all([
-    loadJSON(DATA_URL), loadJSON(CHANGE_URL), loadJSON(AI_URL)
+  const [chartData, analysisData] = await Promise.all([
+    loadJSON(DATA_URL), loadJSON(AI_URL)
   ]);
 
   if (chartData) {
@@ -519,7 +500,6 @@ async function init() {
       '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--sub)">暂无数据，请等待首次采集完成</td></tr>';
   }
 
-  renderChanges(changeData?.changes || []);
   renderAnalysis(analysisData || {});
 
   const updated = chartData?.date || analysisData?.date || '';
@@ -528,37 +508,6 @@ async function init() {
   // 更新榜单数据Tab的更新时间
   document.getElementById('charts-update-time').textContent =
     updated ? `📅 数据更新时间：${updated}` : '📅 数据更新时间：--';
-}
-
-// ── Changes ───────────────────────────────────────────────
-function renderChanges(changes) {
-  document.getElementById('change-count').textContent = changes.length;
-  if (!changes.length) {
-    document.getElementById('changes-grid').innerHTML =
-      '<p style="color:var(--sub);font-size:13px">今日无显著异动（首次运行或数据未更新）</p>';
-    return;
-  }
-  document.getElementById('changes-grid').innerHTML = changes.slice(0, 24).map(c => {
-    const store = c.store === 'google_play' ? 'GP' : 'AS';
-    let typeClass = 'type-out', typeLabel = c.change_type;
-    if (c.change_type === '新进榜') typeClass = 'type-new';
-    else if (c.change_type === '上升')  typeClass = 'type-up';
-    else if (c.change_type === '下降')  typeClass = 'type-down';
-
-    const deltaHTML = c.rank_delta != null
-      ? `<div class="delta ${c.change_type === '上升' ? 'delta-up' : 'delta-down'}">
-          ${c.change_type === '上升' ? '↑' : '↓'}${Math.abs(c.rank_delta)}
-         </div>`
-      : '';
-
-    return `<div class="change-card">
-      <span class="change-type ${typeClass}">${typeLabel}</span>
-      <div class="game-title">${esc(c.name)}</div>
-      <div class="meta">${esc(c.region_name)} · ${store} · ${esc(c.chart_name)}</div>
-      <div class="meta">${c.rank_yesterday != null ? '#'+c.rank_yesterday+' → ' : ''}${c.rank_today != null ? '#'+c.rank_today : ''}</div>
-      ${deltaHTML}
-    </div>`;
-  }).join('');
 }
 
 // ── Analysis ──────────────────────────────────────────────
