@@ -426,8 +426,24 @@ function renderAnalysis(text) {
       '<p style="color:var(--sub)">AI 分析暂未生成，请配置 MINIMAX_API_KEY 后重新运行</p>';
     return;
   }
+  
+  // 只保留第二部分：异动解读（过滤掉第一部分榜单概要）
+  let analysisText = text;
+  const part2Match = text.match(/##\s*第二部分[：:].*/);
+  if (part2Match) {
+    const part2Index = text.indexOf(part2Match[0]);
+    analysisText = text.substring(part2Index);
+  } else if (text.includes('异动解读') || text.includes('异动分析')) {
+    // 备用匹配：直接找异动相关标题
+    const altMatch = text.match(/##\s*(异动解读|异动分析|重点异动).*/);
+    if (altMatch) {
+      const altIndex = text.indexOf(altMatch[0]);
+      analysisText = text.substring(altIndex);
+    }
+  }
+  
   // 简单 Markdown → HTML
-  let html = text
+  let html = analysisText
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
