@@ -161,9 +161,9 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
       "analysis": "简短分析原因，50字以内"
     }}
   ],
-  "regions": "各地区趋势分析，2-3句话，100字以内",
-  "categories": "品类动向分析，2-3句话，100字以内",
-  "industry": "相关行业动态，结合新闻，1-2句话，如无相关新闻则为空字符串"
+  "regions": "• 要点一：具体内容\\n\\n• 要点二：具体内容\\n\\n• 要点三：具体内容",
+  "categories": "• 要点一：具体内容\\n\\n• 要点二：具体内容\\n\\n• 要点三：具体内容",
+  "industry": "• 要点一：具体内容\\n\\n• 要点二：具体内容（如无相关新闻则为空字符串）"
 }}
 
 要求：
@@ -171,9 +171,13 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
 2. falling 数组：排名下降的游戏，选取 2-3 个最显著的
 3. new_entries 数组：新进榜的游戏，选取 2-3 个最重要的
 4. 每个 analysis 要简洁有力，点明关键原因
-5. regions 要提炼各地区的共性和差异
-6. categories 要指出哪些品类在上升/下降
-7. 只输出 JSON，不要有其他文字
+5. regions、categories、industry 必须分点陈述：
+   - 每个要点以"•"开头
+   - 每个要点之间用"\\n\\n"分隔（空一行）
+   - 每个模块 2-3 个要点，每个要点不超过 30 字
+6. regions 要提炼各地区的共性和差异
+7. categories 要指出哪些品类在上升/下降
+8. 只输出 JSON，不要有其他文字
 """
 
     system = "你是一位拥有10年经验的手游市场分析师。请基于数据和新闻给出专业、务实的分析。只输出合法的 JSON 格式，不要有任何其他文字。"
