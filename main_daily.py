@@ -22,7 +22,7 @@ from scrapers.news_scraper import fetch_all_news
 from scrapers.change_detector import (
     load_chart_data, save_chart_data, detect_changes, get_top_movers
 )
-from analyzer.ai_analyzer import analyze_changes, generate_chart_summary_text
+from analyzer.ai_analyzer import analyze_changes, analyze_changes_text, generate_chart_summary_text
 from reporter.excel_writer import write_daily_excel
 from reporter.dashboard_writer import write_dashboard_json
 from reporter.notifier import send_daily_wecom
@@ -71,25 +71,26 @@ def run_daily():
         top_changes = []
         print("  无昨日数据，跳过异动检测（首次运行正常）")
 
-    # ── 5. AI 分析（两部分）──────────────────────────────
+    # ── 5. AI 分析 ──────────────────────────────────────────
     print("\n[Step 5] 生成 AI 分析...")
     chart_summary = generate_chart_summary_text(all_data)
-    ai_analysis   = analyze_changes(top_changes, news_list=news_list)
-    print(f"  榜单概要 {len(chart_summary)} 字，异动解读 {len(ai_analysis)} 字")
+    ai_analysis   = analyze_changes(top_changes, news_list=news_list)  # 返回结构化字典
+    ai_analysis_text = analyze_changes_text(top_changes, news_list=news_list)  # 纯文本版本
+    print(f"  榜单概要 {len(chart_summary)} 字，异动解读已生成")
 
-    # ── 6. 生成 Excel ────────────────────────────────────
+    # ── 6. 生成 Excel ────────────────────────────────────────
     print("\n[Step 6] 生成 Excel 报告...")
-    full_analysis = chart_summary + "\n\n" + ai_analysis
+    full_analysis = chart_summary + "\n\n" + ai_analysis_text
     excel_path = write_daily_excel(all_data, top_changes, full_analysis, today)
     print(f"  已输出：{excel_path}")
 
-    # ── 7. 生成仪表盘 JSON ────────────────────────────────
+    # ── 7. 生成仪表盘 JSON ────────────────────────────────────
     print("\n[Step 7] 生成仪表盘 JSON...")
     write_dashboard_json(all_data, top_changes, ai_analysis, chart_summary, today)
 
-    # ── 8. 推送企业微信 ──────────────────────────────────
+    # ── 8. 推送企业微信 ──────────────────────────────────────
     print("\n[Step 8] 推送企业微信（两条）...")
-    send_daily_wecom(all_data, top_changes, chart_summary, ai_analysis, today)
+    send_daily_wecom(all_data, top_changes, chart_summary, ai_analysis_text, today)
 
     print(f"\n{'='*50}")
     print("  每日采集完成！")

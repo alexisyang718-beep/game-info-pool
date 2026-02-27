@@ -1,11 +1,14 @@
 """
 AI 分析模块
-使用 MiniMax API 生成两部分报告：
-第一部分：各地区榜单概要（表格）
-第二部分：结合行业新闻的异动解读
+使用 MiniMax API 生成结构化的异动分析报告：
+- 重点异动：3-5个值得关注的异动
+- 地区趋势：各地区规律或差异
+- 品类动向：品类走势分析
+- 行业动态：相关行业背景
 """
 
 import os
+import json
 import requests
 from collections import defaultdict
 from datetime import datetime
@@ -71,14 +74,18 @@ def build_chart_summary(chart_data: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def analyze_changes(changes: list[dict], news_list: list = None) -> str:
+def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
     """
-    生成完整的两部分分析报告
-    第一部分：榜单概要（由 build_chart_summary 数据驱动）
-    第二部分：结合新闻的异动解读
+    生成结构化的异动分析报告
+    返回包含四个模块的字典：highlights, regions, categories, industry
     """
     if not changes:
-        return "今日暂无显著榜单异动。"
+        return {
+            "highlights": [],
+            "regions": "今日暂无显著榜单异动。",
+            "categories": "今日暂无显著榜单异动。",
+            "industry": ""
+        }
 
     today = datetime.now().strftime("%Y年%m月%d日")
     news_text = ""
@@ -113,32 +120,107 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> str:
 """ if news_text else ""
 
     prompt = f"""
-请根据以下 {today} 手游榜单异动数据及行业新闻，生成一份专业分析报告。
+请根据以下 {today} 手游榜单异动数据及行业新闻，生成结构化的异动分析。
 
 **今日榜单异动：**
 {changes_text}
 {news_section}
 ---
 
-请严格按照以下格式输出，不要改变结构：
+请严格按照以下 JSON 格式输出，不要输出其他内容：
 
-## 第二部分：异动解读
+{{
+  "highlights": [
+    {{
+      "game": "游戏名",
+      "change": "新进榜 #1 / 上升50位 / 下降30位",
+      "region": "美国",
+      "store": "App Store",
+      "analysis": "简短分析原因，50字以内"
+    }}
+  ],
+  "regions": "各地区趋势分析，2-3句话，100字以内",
+  "categories": "品类动向分析，2-3句话，100字以内",
+  "industry": "相关行业动态，结合新闻，1-2句话，如无相关新闻则为空字符串"
+}}
 
-### 重点异动分析
-（挑选3-5个最值得关注的异动，每条100字左右，结合行业新闻分析可能原因）
-
-### 地区趋势
-（各地区有何规律或差异，2-3句话）
-
-### 品类动向
-（从今日异动看到的品类走势，2-3句话）
-
-### 相关行业动态
-（结合新闻，1-2条与榜单变化相关的行业背景，如无相关新闻可省略）
+要求：
+1. highlights 数组包含 3-5 个最值得关注的异动
+2. 每个 highlight 的 analysis 要简洁有力，点明关键原因
+3. regions 要提炼各地区的共性和差异
+4. categories 要指出哪些品类在上升/下降
+5. 只输出 JSON，不要有其他文字
 """
 
-    system = "你是一位拥有10年经验的手游市场分析师，熟悉全球各地区手游市场特征。请基于数据和新闻给出专业、务实的分析，语言简洁，避免空话。"
-    return call_minimax(prompt, system)
+    system = "你是一位拥有10年经验的手游市场分析师。请基于数据和新闻给出专业、务实的分析。只输出合法的 JSON 格式，不要有任何其他文字。"
+    
+    result = call_minimax(prompt, system)
+    
+    # 解析 JSON 结果
+    try:
+        # 尝试提取 JSON（处理可能的 markdown 代码块）
+        if "```json" in result:
+            result = result.split("```json")[1].split("```")[0]
+        elif "```" in result:
+            result = result.split("```")[1].split("```")[0]
+        
+        parsed = json.loads(result.strip())
+        return {
+            "highlights": parsed.get("highlights", []),
+            "regions": parsed.get("regions", ""),
+            "categories": parsed.get("categories", ""),
+            "industry": parsed.get("industry", "")
+        }
+    except (json.JSONDecodeError, IndexError, KeyError) as e:
+        # JSON 解析失败，返回原始文本作为 fallback
+        print(f"[Warning] AI 返回非 JSON 格式，使用 fallback: {e}")
+        return {
+            "highlights": [],
+            "regions": result if result else "分析生成失败",
+            "categories": "",
+            "industry": "",
+            "raw_text": result  # 保留原始文本供调试
+        }
+
+
+def analyze_changes_text(changes: list[dict], news_list: list = None) -> str:
+    """
+    生成纯文本格式的异动分析（用于 Excel 和企业微信）
+    """
+    analysis = analyze_changes(changes, news_list)
+    
+    lines = ["## 异动分析\n"]
+    
+    # 重点异动
+    if analysis.get("highlights"):
+        lines.append("### 重点异动")
+        for h in analysis["highlights"]:
+            lines.append(f"- **《{h.get('game', '')}》** {h.get('change', '')}（{h.get('region', '')} · {h.get('store', '')}）")
+            lines.append(f"  {h.get('analysis', '')}")
+        lines.append("")
+    
+    # 地区趋势
+    if analysis.get("regions"):
+        lines.append("### 地区趋势")
+        lines.append(analysis["regions"])
+        lines.append("")
+    
+    # 品类动向
+    if analysis.get("categories"):
+        lines.append("### 品类动向")
+        lines.append(analysis["categories"])
+        lines.append("")
+    
+    # 行业动态
+    if analysis.get("industry"):
+        lines.append("### 行业动态")
+        lines.append(analysis["industry"])
+    
+    # 如果有原始文本 fallback
+    if analysis.get("raw_text") and not analysis.get("highlights"):
+        return analysis["raw_text"]
+    
+    return "\n".join(lines)
 
 
 def generate_chart_summary_text(chart_data: list[dict], news_list: list = None) -> str:

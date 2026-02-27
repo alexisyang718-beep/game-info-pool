@@ -105,7 +105,90 @@
     .delta-up { color: var(--up); }
     .delta-down { color: var(--down); }
 
-    /* ── AI Analysis ── */
+    /* ── AI Analysis Cards ── */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .analysis-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .analysis-card.analysis-highlights {
+      grid-column: span 2;
+    }
+    .analysis-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .analysis-icon {
+      font-size: 18px;
+    }
+    .analysis-card-header h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .analysis-card-body {
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #374151;
+    }
+    .analysis-card-body p {
+      margin: 0;
+    }
+    /* 重点异动列表样式 */
+    .highlight-item {
+      padding: 10px 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .highlight-item:last-child {
+      margin-bottom: 0;
+    }
+    .highlight-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .highlight-game {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .highlight-change {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .highlight-change.up { background: #dcfce7; color: #166534; }
+    .highlight-change.down { background: #fee2e2; color: #991b1b; }
+    .highlight-change.new { background: #fef9c3; color: #854d0e; }
+    .highlight-meta {
+      font-size: 11px;
+      color: var(--sub);
+      margin-bottom: 4px;
+    }
+    .highlight-analysis {
+      font-size: 12px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    /* ── Legacy Analysis Box (for fallback) ── */
     .analysis-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow); line-height: 1.8; }
     .analysis-box h2 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; color: var(--accent); }
     .analysis-box h3 { font-size: 13px; font-weight: 700; margin: 12px 0 6px; color: var(--text); }
@@ -189,6 +272,8 @@
       table tbody td:nth-child(n+5) { display: none; }
       .market-grid { grid-template-columns: 1fr; }
       .casual-two-col { grid-template-columns: 1fr; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .analysis-card.analysis-highlights { grid-column: span 1; }
     }
   </style>
 </head>
@@ -217,9 +302,50 @@
       </div>
     </div>
 
-    <!-- AI Analysis (异动分析) -->
+    <!-- AI Analysis (异动分析) - 模块化卡片 -->
     <div class="section-title">AI 异动分析</div>
-    <div class="analysis-box" id="analysis-box"><p style="color:var(--sub)">加载中...</p></div>
+    <div class="analysis-grid" id="analysis-grid">
+      <!-- 重点异动 -->
+      <div class="analysis-card analysis-highlights" id="analysis-highlights">
+        <div class="analysis-card-header">
+          <span class="analysis-icon">🔥</span>
+          <h3>重点异动</h3>
+        </div>
+        <div class="analysis-card-body" id="highlights-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+      <!-- 地区趋势 -->
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <span class="analysis-icon">🌍</span>
+          <h3>地区趋势</h3>
+        </div>
+        <div class="analysis-card-body" id="regions-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+      <!-- 品类动向 -->
+      <div class="analysis-card">
+        <div class="analysis-card-header">
+          <span class="analysis-icon">📊</span>
+          <h3>品类动向</h3>
+        </div>
+        <div class="analysis-card-body" id="categories-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+      <!-- 行业动态 -->
+      <div class="analysis-card" id="industry-card">
+        <div class="analysis-card-header">
+          <span class="analysis-icon">📰</span>
+          <h3>行业动态</h3>
+        </div>
+        <div class="analysis-card-body" id="industry-content">
+          <p style="color:var(--sub)">加载中...</p>
+        </div>
+      </div>
+    </div>
     <div style="font-size:11px;color:var(--sub);margin-top:8px;text-align:right">数据来源：MiniMax AI 分析</div>
 
     <!-- Changes -->
@@ -378,7 +504,7 @@ async function init() {
   }
 
   renderChanges(changeData?.changes || []);
-  renderAnalysis(analysisData?.analysis || '');
+  renderAnalysis(analysisData || {});
 
   const updated = chartData?.date || analysisData?.date || '';
   document.getElementById('last-updated').textContent =
@@ -420,38 +546,115 @@ function renderChanges(changes) {
 }
 
 // ── Analysis ──────────────────────────────────────────────
-function renderAnalysis(text) {
-  if (!text || text.includes('未配置')) {
-    document.getElementById('analysis-box').innerHTML =
-      '<p style="color:var(--sub)">AI 分析暂未生成，请配置 MINIMAX_API_KEY 后重新运行</p>';
+function renderAnalysis(data) {
+  // 处理新的结构化格式
+  const highlights = data.highlights || [];
+  const regions = data.regions || '';
+  const categories = data.categories || '';
+  const industry = data.industry || '';
+  const rawText = data.raw_text || data.analysis || '';
+  
+  // 如果没有结构化数据但有原始文本，使用 fallback 渲染
+  if (!highlights.length && !regions && !categories && rawText) {
+    renderAnalysisFallback(rawText);
     return;
   }
   
-  // 只保留第二部分：异动解读（过滤掉第一部分榜单概要）
-  let analysisText = text;
-  const part2Match = text.match(/##\s*第二部分[：:].*/);
-  if (part2Match) {
-    const part2Index = text.indexOf(part2Match[0]);
-    analysisText = text.substring(part2Index);
-  } else if (text.includes('异动解读') || text.includes('异动分析')) {
-    // 备用匹配：直接找异动相关标题
-    const altMatch = text.match(/##\s*(异动解读|异动分析|重点异动).*/);
-    if (altMatch) {
-      const altIndex = text.indexOf(altMatch[0]);
-      analysisText = text.substring(altIndex);
+  // 渲染重点异动
+  const highlightsEl = document.getElementById('highlights-content');
+  if (highlights.length) {
+    highlightsEl.innerHTML = highlights.map(h => {
+      let changeClass = 'new';
+      if (h.change && h.change.includes('上升')) changeClass = 'up';
+      else if (h.change && h.change.includes('下降')) changeClass = 'down';
+      
+      return `<div class="highlight-item">
+        <div class="highlight-header">
+          <span class="highlight-game">《${esc(h.game || '')}》</span>
+          <span class="highlight-change ${changeClass}">${esc(h.change || '')}</span>
+        </div>
+        <div class="highlight-meta">${esc(h.region || '')} · ${esc(h.store || '')}</div>
+        <div class="highlight-analysis">${esc(h.analysis || '')}</div>
+      </div>`;
+    }).join('');
+  } else {
+    highlightsEl.innerHTML = '<p style="color:var(--sub)">暂无重点异动数据</p>';
+  }
+  
+  // 渲染地区趋势
+  const regionsEl = document.getElementById('regions-content');
+  regionsEl.innerHTML = regions 
+    ? `<p>${esc(regions)}</p>` 
+    : '<p style="color:var(--sub)">暂无地区趋势分析</p>';
+  
+  // 渲染品类动向
+  const categoriesEl = document.getElementById('categories-content');
+  categoriesEl.innerHTML = categories 
+    ? `<p>${esc(categories)}</p>` 
+    : '<p style="color:var(--sub)">暂无品类动向分析</p>';
+  
+  // 渲染行业动态
+  const industryEl = document.getElementById('industry-content');
+  const industryCard = document.getElementById('industry-card');
+  if (industry) {
+    industryEl.innerHTML = `<p>${esc(industry)}</p>`;
+    industryCard.style.display = '';
+  } else {
+    industryCard.style.display = 'none';
+  }
+}
+
+// Fallback: 兼容旧的纯文本格式
+function renderAnalysisFallback(text) {
+  if (!text || text.includes('未配置')) {
+    document.getElementById('highlights-content').innerHTML =
+      '<p style="color:var(--sub)">AI 分析暂未生成，请配置 MINIMAX_API_KEY 后重新运行</p>';
+    document.getElementById('regions-content').innerHTML = '';
+    document.getElementById('categories-content').innerHTML = '';
+    document.getElementById('industry-card').style.display = 'none';
+    return;
+  }
+  
+  // 解析旧格式文本，尝试提取各模块
+  let highlightsText = '', regionsText = '', categoriesText = '', industryText = '';
+  
+  // 尝试按标题分割
+  const sections = text.split(/###\s*/);
+  for (const section of sections) {
+    if (section.includes('重点异动')) {
+      highlightsText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('地区趋势')) {
+      regionsText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('品类动向')) {
+      categoriesText = section.replace(/^[^\n]+\n/, '').trim();
+    } else if (section.includes('行业动态') || section.includes('相关行业')) {
+      industryText = section.replace(/^[^\n]+\n/, '').trim();
     }
   }
   
   // 简单 Markdown → HTML
-  let html = analysisText
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+  const toHTML = (t) => t
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/gs, m => '<ul>' + m + '</ul>')
-    .replace(/\n{2,}/g, '</p><p>')
+    .replace(/^- (.+)$/gm, '• $1<br>')
     .replace(/\n/g, '<br>');
-  document.getElementById('analysis-box').innerHTML = '<p>' + html + '</p>';
+  
+  document.getElementById('highlights-content').innerHTML = highlightsText 
+    ? `<div style="line-height:1.8">${toHTML(highlightsText)}</div>` 
+    : '<p style="color:var(--sub)">暂无数据</p>';
+  document.getElementById('regions-content').innerHTML = regionsText 
+    ? `<p>${toHTML(regionsText)}</p>` 
+    : '<p style="color:var(--sub)">暂无数据</p>';
+  document.getElementById('categories-content').innerHTML = categoriesText 
+    ? `<p>${toHTML(categoriesText)}</p>` 
+    : '<p style="color:var(--sub)">暂无数据</p>';
+  
+  const industryCard = document.getElementById('industry-card');
+  if (industryText) {
+    document.getElementById('industry-content').innerHTML = `<p>${toHTML(industryText)}</p>`;
+    industryCard.style.display = '';
+  } else {
+    industryCard.style.display = 'none';
+  }
 }
 
 // ── Table ─────────────────────────────────────────────────
