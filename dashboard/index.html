@@ -137,6 +137,46 @@
     .genre-fill { height: 8px; border-radius: 4px; background: var(--accent); opacity: 0.7; }
     .market-profile { margin-top: 12px; font-size: 12px; color: var(--sub); line-height: 1.6; }
 
+    /* ── Casual Games Tab ── */
+    .casual-two-col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .casual-rank-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    }
+    .casual-rank-row:last-child { border-bottom: none; }
+    .casual-rank-num {
+      width: 22px; text-align: center; font-weight: 700;
+      color: var(--sub); flex-shrink: 0; font-size: 13px;
+    }
+    .casual-rank-num.top3 { color: var(--accent); }
+    .casual-game-info { flex: 1; min-width: 0; }
+    .casual-game-name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .casual-game-dev { font-size: 11px; color: var(--sub); }
+    .casual-sub-genre {
+      font-size: 11px; padding: 2px 7px;
+      background: #f0f9ff; color: var(--accent2);
+      border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+    }
+    .profile-row {
+      display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 12px;
+    }
+    .profile-label { width: 72px; color: var(--sub); flex-shrink: 0; }
+    .profile-bar-wrap { flex: 1; height: 8px; background: #f3f4f6; border-radius: 4px; overflow: hidden; }
+    .profile-bar-fill { height: 100%; border-radius: 4px; }
+    .profile-val { width: 36px; text-align: right; font-weight: 600; }
+    .casual-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .casual-stat-item { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+    .casual-stat-item .label { font-size: 11px; color: var(--sub); margin-bottom: 2px; }
+    .casual-stat-item .value { font-size: 18px; font-weight: 700; }
+    .casual-stat-item .value span { font-size: 12px; font-weight: 400; }
+    .trend-bar-wrap { display: flex; align-items: flex-end; gap: 6px; height: 96px; margin-top: 12px; }
+    .trend-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .trend-bar { width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; opacity: 0.75; }
+    .trend-label { font-size: 10px; color: var(--sub); white-space: nowrap; }
+    .trend-val { font-size: 11px; font-weight: 600; color: var(--accent); }
+
     /* ── Footer ── */
     footer { text-align: center; padding: 24px; color: var(--sub); font-size: 12px; }
 
@@ -148,6 +188,7 @@
       table thead th:nth-child(n+5) { display: none; }
       table tbody td:nth-child(n+5) { display: none; }
       .market-grid { grid-template-columns: 1fr; }
+      .casual-two-col { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -161,6 +202,8 @@
 <nav class="page-nav">
   <button class="nav-btn active" onclick="switchTab('charts')">榜单数据</button>
   <button class="nav-btn" onclick="switchTab('market')">市场概况</button>
+  <button class="nav-btn" onclick="switchTab('device')">设备概况</button>
+  <button class="nav-btn" onclick="switchTab('casual')">休闲游戏</button>
 </nav>
 
 <div class="container">
@@ -232,10 +275,42 @@
     <div id="market-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
     <div id="market-grid" class="market-grid"></div>
   </div>
+
+  <!-- Tab Panel: Device Overview -->
+  <div id="tab-device" class="tab-panel">
+    <div id="device-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <div id="device-grid" class="market-grid"></div>
+  </div>
+
+  <!-- Tab Panel: Casual Games Analysis -->
+  <div id="tab-casual" class="tab-panel">
+    <div id="casual-last-updated" style="color:var(--sub);font-size:13px;margin-bottom:16px"></div>
+    <div class="filters" style="margin-bottom:20px">
+      <div class="filter-group">
+        <label>地区</label>
+        <select id="casual-region-select" onchange="renderCasualRegion()"></select>
+      </div>
+    </div>
+    <div class="casual-two-col">
+      <div class="market-card" id="casual-top-games-card">
+        <h3>热门休闲游戏 Top 10</h3>
+        <div id="casual-top-games-list"></div>
+      </div>
+      <div class="market-card" id="casual-profile-card">
+        <h3>用户画像</h3>
+        <div id="casual-user-profile"></div>
+      </div>
+    </div>
+    <div class="market-card" style="margin-top:16px;margin-bottom:16px">
+      <h3>收入趋势指数</h3>
+      <div id="casual-revenue-trend"></div>
+    </div>
+    <div class="analysis-box" id="casual-insight" style="margin-bottom:20px"></div>
+  </div>
 </div>
 
 <footer>
-  数据来源：App Store iTunes RSS · Google Play · World Bank · 每日北京时间 08:00 自动更新
+  数据来源：App Store iTunes RSS · Google Play · World Bank · IDC/StatCounter 设备数据 · 每日北京时间 08:00 自动更新
 </footer>
 
 <script>
@@ -247,6 +322,8 @@ const AI_URL     = 'data/latest_analysis.json';
 const PAGE_SIZE = 50;
 let allData = [], filtered = [], currentPage = 1;
 window._marketLoaded = false;
+window._deviceLoaded = false;
+window._casualLoaded = false;
 
 async function loadJSON(url) {
   try {
@@ -418,6 +495,8 @@ function switchTab(tab) {
   target.classList.add('active');
   event.currentTarget.classList.add('active');
   if (tab === 'market' && !window._marketLoaded) loadMarket();
+  if (tab === 'device' && !window._deviceLoaded) loadDevice();
+  if (tab === 'casual' && !window._casualLoaded) loadCasual();
 }
 
 // ── Market Overview ─────────────────────────────────────────
@@ -465,6 +544,213 @@ function renderMarket(data) {
       <div class="market-profile">${esc(r.profile || '')}</div>
     </div>`;
   }).join('');
+}
+
+// ── Device Overview ─────────────────────────────────────────
+function loadDevice() {
+  window._deviceLoaded = true;
+  fetch('data/device.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => renderDevice(data))
+    .catch(() => {
+      document.getElementById('device-grid').innerHTML =
+        '<p style="color:var(--sub);padding:40px 0">设备数据暂未生成</p>';
+    });
+}
+
+function renderDevice(data) {
+  document.getElementById('device-last-updated').textContent =
+    '数据更新：' + (data.updated_at || '--');
+  const grid = document.getElementById('device-grid');
+  if (!data.regions || data.regions.length === 0) {
+    grid.innerHTML = '<p style="color:var(--sub);padding:40px 0">暂无设备数据</p>';
+    return;
+  }
+  grid.innerHTML = data.regions.map(r => {
+    // OS 占比横条
+    const iosPct = r.ios_pct ?? 0;
+    const adrPct = r.android_pct ?? 0;
+    const osBar = `
+      <div class="genre-row">
+        <span style="width:70px">iOS</span>
+        <div class="genre-fill" style="width:${Math.min(iosPct*1.5,100)}px;background:#818cf8"></div>
+        <span>${iosPct}%</span>
+      </div>
+      <div class="genre-row">
+        <span style="width:70px">Android</span>
+        <div class="genre-fill" style="width:${Math.min(adrPct*1.5,100)}px;background:#34d399"></div>
+        <span>${adrPct}%</span>
+      </div>`;
+
+    // 热门机型列表
+    const devicesHTML = (r.top_devices || []).slice(0, 5).map(d =>
+      `<div class="market-stat">
+        <span style="flex:1">${esc(d.model)}</span>
+        <span class="val">${d.share_pct}%</span>
+      </div>`
+    ).join('');
+
+    // iOS 版本分布
+    const iosVer = (r.os_versions?.ios || []).map(v =>
+      `<div class="genre-row">
+        <span style="width:90px;font-size:12px">${esc(v.version)}</span>
+        <div class="genre-fill" style="width:${Math.min(v.pct*1.5,100)}px;background:#818cf8;opacity:.7"></div>
+        <span>${v.pct}%</span>
+      </div>`
+    ).join('');
+
+    // Android 版本分布
+    const adrVer = (r.os_versions?.android || []).map(v =>
+      `<div class="genre-row">
+        <span style="width:90px;font-size:12px">${esc(v.version)}</span>
+        <div class="genre-fill" style="width:${Math.min(v.pct*1.5,100)}px;background:#34d399;opacity:.7"></div>
+        <span>${v.pct}%</span>
+      </div>`
+    ).join('');
+
+    return `<div class="market-card">
+      <h3>${esc(r.region_name)}</h3>
+      <div class="genre-bar" style="margin-bottom:12px">${osBar}</div>
+      ${devicesHTML ? `<div style="margin-bottom:8px;font-size:12px;color:var(--sub);font-weight:600">热门机型</div>${devicesHTML}` : ''}
+      ${iosVer ? `<div style="margin:10px 0 4px;font-size:12px;color:var(--sub);font-weight:600">iOS 版本分布</div><div class="genre-bar">${iosVer}</div>` : ''}
+      ${adrVer ? `<div style="margin:10px 0 4px;font-size:12px;color:var(--sub);font-weight:600">Android 版本分布</div><div class="genre-bar">${adrVer}</div>` : ''}
+      <div class="market-profile">${esc(r.device_notes || '')}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Casual Games Analysis ────────────────────────────────────
+let casualData = null;
+
+function loadCasual() {
+  window._casualLoaded = true;
+  fetch('data/casual.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      casualData = data;
+      document.getElementById('casual-last-updated').textContent =
+        '数据更新：' + (data.updated_at || '--') + '（每季度人工更新）';
+      initCasualRegionSelect(data.regions);
+      renderCasualRegion();
+    })
+    .catch(() => {
+      document.getElementById('casual-top-games-card').innerHTML =
+        '<p style="color:var(--sub);padding:40px 0">休闲游戏数据暂未生成</p>';
+    });
+}
+
+function initCasualRegionSelect(regions) {
+  const sel = document.getElementById('casual-region-select');
+  sel.innerHTML = '';
+  regions.forEach(r => {
+    const o = document.createElement('option');
+    o.value = r.region;
+    o.textContent = r.region_name;
+    sel.appendChild(o);
+  });
+}
+
+function renderCasualRegion() {
+  if (!casualData) return;
+  const regionCode = document.getElementById('casual-region-select').value;
+  const r = casualData.regions.find(x => x.region === regionCode);
+  if (!r) return;
+  renderCasualTopGames(r.top_games || []);
+  renderCasualUserProfile(r.user_profile || {});
+  renderCasualRevenueTrend(r.revenue_trend || []);
+  document.getElementById('casual-insight').innerHTML =
+    '<p>' + esc(r.insight || '暂无地区洞察') + '</p>';
+}
+
+function renderCasualTopGames(games) {
+  const container = document.getElementById('casual-top-games-list');
+  if (!games.length) {
+    container.innerHTML = '<p style="color:var(--sub)">暂无数据</p>';
+    return;
+  }
+  container.innerHTML = games.map(g => `
+    <div class="casual-rank-row">
+      <span class="casual-rank-num ${g.rank <= 3 ? 'top3' : ''}">${g.rank}</span>
+      <div class="casual-game-info">
+        <div class="casual-game-name">${esc(g.name)}</div>
+        <div class="casual-game-dev">${esc(g.developer || '')}</div>
+      </div>
+      <span class="casual-sub-genre">${esc(g.sub_genre || '')}</span>
+    </div>`).join('');
+}
+
+function renderCasualUserProfile(profile) {
+  const container = document.getElementById('casual-user-profile');
+  const ageGroups = profile.age_groups || [];
+  const maxAgePct = Math.max(...ageGroups.map(a => a.pct), 1);
+  const fPct = profile.gender?.female_pct ?? 0;
+  const mPct = profile.gender?.male_pct ?? 0;
+
+  const genderBar = `
+    <div class="profile-row" style="margin-bottom:10px">
+      <span class="profile-label">性别比例</span>
+      <div style="flex:1">
+        <div style="display:flex;height:10px;border-radius:5px;overflow:hidden">
+          <div style="width:${fPct}%;background:#f472b6"></div>
+          <div style="width:${mPct}%;background:#60a5fa"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:3px">
+          <span style="color:#f472b6">女 ${fPct}%</span>
+          <span style="color:#60a5fa">男 ${mPct}%</span>
+        </div>
+      </div>
+    </div>`;
+
+  const ageHTML = ageGroups.map(a => `
+    <div class="profile-row">
+      <span class="profile-label">${esc(a.label)}</span>
+      <div class="profile-bar-wrap">
+        <div class="profile-bar-fill" style="width:${Math.round(a.pct / maxAgePct * 100)}%;background:var(--accent);opacity:.7"></div>
+      </div>
+      <span class="profile-val">${a.pct}%</span>
+    </div>`).join('');
+
+  const statsHTML = `
+    <div class="casual-stats-grid">
+      <div class="casual-stat-item">
+        <div class="label">日均游玩次数</div>
+        <div class="value">${profile.sessions_per_day ?? '--'}<span> 次</span></div>
+      </div>
+      <div class="casual-stat-item">
+        <div class="label">单次时长</div>
+        <div class="value">${profile.session_avg_min ?? '--'}<span> 分钟</span></div>
+      </div>
+      <div class="casual-stat-item">
+        <div class="label">付费转化率</div>
+        <div class="value">${profile.paying_user_pct ?? '--'}<span>%</span></div>
+      </div>
+      <div class="casual-stat-item">
+        <div class="label">月 ARPU</div>
+        <div class="value">$${profile.arpu_usd ?? '--'}</div>
+      </div>
+    </div>`;
+
+  container.innerHTML = genderBar + ageHTML + statsHTML;
+}
+
+function renderCasualRevenueTrend(trend) {
+  const container = document.getElementById('casual-revenue-trend');
+  if (!trend.length) {
+    container.innerHTML = '<p style="color:var(--sub)">暂无趋势数据</p>';
+    return;
+  }
+  const maxIdx = Math.max(...trend.map(t => t.index), 1);
+  const barsHTML = trend.map(t => {
+    const barH = Math.round(t.index / maxIdx * 72);
+    return `<div class="trend-bar-col">
+      <span class="trend-val">${t.index}</span>
+      <div class="trend-bar" style="height:${barH}px"></div>
+      <span class="trend-label">${esc(t.period)}</span>
+    </div>`;
+  }).join('');
+  container.innerHTML = `
+    <div style="font-size:12px;color:var(--sub);margin-bottom:4px">以2025 Q3为基准（= 100）</div>
+    <div class="trend-bar-wrap">${barsHTML}</div>`;
 }
 
 // ── Utility ────────────────────────────────────────────────
