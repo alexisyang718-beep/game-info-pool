@@ -1,0 +1,1275 @@
+{
+  "updated_at": "2026-02",
+  "regions": [
+    {
+      "region": "us",
+      "region_name": "美国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 3,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 2,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 3,
+          "name": "Magic Sort!",
+          "developer": "Grand Games",
+          "chart_rank": 4,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 4,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 15,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 5,
+          "name": "MONOPOLY GO!",
+          "developer": "Scopely",
+          "chart_rank": 19,
+          "sub_genre": "棋盘派对"
+        },
+        {
+          "rank": 6,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 22,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 7,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 28,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 8,
+          "name": "Solitaire Grand Harvest",
+          "developer": "Supertreat",
+          "chart_rank": 31,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 9,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 35,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 10,
+          "name": "Woodoku",
+          "developer": "Tripledot Studios",
+          "chart_rank": 40,
+          "sub_genre": "益智消除"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 22
+          },
+          {
+            "label": "25-34岁",
+            "pct": 35
+          },
+          {
+            "label": "35-44岁",
+            "pct": 25
+          },
+          {
+            "label": "45岁+",
+            "pct": 18
+          }
+        ],
+        "gender": {
+          "female_pct": 62,
+          "male_pct": 38
+        },
+        "session_avg_min": 18,
+        "sessions_per_day": 4.2,
+        "paying_user_pct": 8,
+        "arpu_usd": 2.4
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 85
+        },
+        {
+          "period": "2025 Q2",
+          "index": 92
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 108
+        },
+        {
+          "period": "2026 Q1",
+          "index": 112
+        }
+      ],
+      "insight": "美国是全球最大的休闲游戏消费市场，三消、纸牌和益智消除主导榜单。女性玩家占六成以上，日均打开超4次。MONOPOLY GO 的社交裂变机制带动新一轮增长，合并类游戏近期快速渗透。"
+    },
+    {
+      "region": "gb",
+      "region_name": "英国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 2,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 2,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 7,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 3,
+          "name": "Travel Town",
+          "developer": "Magmatic Games",
+          "chart_rank": 5,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 4,
+          "name": "Domino Dreams",
+          "developer": "Sunday",
+          "chart_rank": 9,
+          "sub_genre": "棋盘派对"
+        },
+        {
+          "rank": 5,
+          "name": "Solitaire Associations Journey",
+          "developer": "Hitapps",
+          "chart_rank": 3,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 6,
+          "name": "Pixel Flow",
+          "developer": "Voodoo",
+          "chart_rank": 10,
+          "sub_genre": "绘画创意"
+        },
+        {
+          "rank": 7,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 18,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 8,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 24,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 9,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 30,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 10,
+          "name": "Block Crush",
+          "developer": "Block Puzzle Games",
+          "chart_rank": 8,
+          "sub_genre": "益智消除"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 20
+          },
+          {
+            "label": "25-34岁",
+            "pct": 33
+          },
+          {
+            "label": "35-44岁",
+            "pct": 27
+          },
+          {
+            "label": "45岁+",
+            "pct": 20
+          }
+        ],
+        "gender": {
+          "female_pct": 60,
+          "male_pct": 40
+        },
+        "session_avg_min": 16,
+        "sessions_per_day": 3.8,
+        "paying_user_pct": 7,
+        "arpu_usd": 2.1
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 80
+        },
+        {
+          "period": "2025 Q2",
+          "index": 88
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 102
+        },
+        {
+          "period": "2026 Q1",
+          "index": 106
+        }
+      ],
+      "insight": "英国偏好与美国接近，合并类游戏（Merge）是近两年的突出增长点。Travel Town 等游戏凭借休闲+叙事结合持续在榜，绘画创意类（如 Pixel Flow）在年轻女性群体中快速崛起。"
+    },
+    {
+      "region": "de",
+      "region_name": "德国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 5,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 8,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 3,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 3,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 4,
+          "name": "Solitaire Grand Harvest",
+          "developer": "Supertreat",
+          "chart_rank": 10,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 5,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 20,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 6,
+          "name": "Gardenscapes",
+          "developer": "Playrix",
+          "chart_rank": 25,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 7,
+          "name": "Woodoku",
+          "developer": "Tripledot Studios",
+          "chart_rank": 12,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 8,
+          "name": "Travel Town",
+          "developer": "Magmatic Games",
+          "chart_rank": 15,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 9,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 28,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 10,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 35,
+          "sub_genre": "跑酷"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 18
+          },
+          {
+            "label": "25-34岁",
+            "pct": 30
+          },
+          {
+            "label": "35-44岁",
+            "pct": 30
+          },
+          {
+            "label": "45岁+",
+            "pct": 22
+          }
+        ],
+        "gender": {
+          "female_pct": 58,
+          "male_pct": 42
+        },
+        "session_avg_min": 14,
+        "sessions_per_day": 3.2,
+        "paying_user_pct": 6,
+        "arpu_usd": 1.9
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 82
+        },
+        {
+          "period": "2025 Q2",
+          "index": 90
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 98
+        },
+        {
+          "period": "2026 Q1",
+          "index": 103
+        }
+      ],
+      "insight": "德国玩家偏好益智和策略类休闲游戏，年龄结构偏成熟，35岁以上用户占比超过一半。付费意愿相对保守，三消+叙事类（Gardenscapes、Homescapes）凭借内容深度保持较高留存。"
+    },
+    {
+      "region": "fr",
+      "region_name": "法国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 2,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 2,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 6,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 3,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 9,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 4,
+          "name": "Travel Town",
+          "developer": "Magmatic Games",
+          "chart_rank": 4,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 5,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 14,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 6,
+          "name": "Gardenscapes",
+          "developer": "Playrix",
+          "chart_rank": 18,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 7,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 22,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 8,
+          "name": "Solitaire Grand Harvest",
+          "developer": "Supertreat",
+          "chart_rank": 16,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 9,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 25,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 10,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 40,
+          "sub_genre": "跑酷"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 21
+          },
+          {
+            "label": "25-34岁",
+            "pct": 34
+          },
+          {
+            "label": "35-44岁",
+            "pct": 28
+          },
+          {
+            "label": "45岁+",
+            "pct": 17
+          }
+        ],
+        "gender": {
+          "female_pct": 61,
+          "male_pct": 39
+        },
+        "session_avg_min": 17,
+        "sessions_per_day": 3.9,
+        "paying_user_pct": 7,
+        "arpu_usd": 2.0
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 83
+        },
+        {
+          "period": "2025 Q2",
+          "index": 91
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 105
+        },
+        {
+          "period": "2026 Q1",
+          "index": 109
+        }
+      ],
+      "insight": "法国玩家偏好叙事驱动的休闲游戏，Playrix 系列（Homescapes、Gardenscapes）长期在榜，合并类游戏增速在欧洲最为显著。女性玩家主导，25-44岁为核心用户群。"
+    },
+    {
+      "region": "jp",
+      "region_name": "日本",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "ブロックブラスト！",
+          "developer": "Hungry Studio",
+          "chart_rank": 8,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Heartopia",
+          "developer": "Matryoshka Inc.",
+          "chart_rank": 7,
+          "sub_genre": "模拟生活"
+        },
+        {
+          "rank": 3,
+          "name": "ディズニー ソリティア",
+          "developer": "SuperPlay",
+          "chart_rank": 6,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 4,
+          "name": "ソリティア・グランドハーベスト",
+          "developer": "Supertreat",
+          "chart_rank": 10,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 5,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 15,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 6,
+          "name": "ホームスケイプ",
+          "developer": "Playrix",
+          "chart_rank": 18,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 7,
+          "name": "ガーデンスケイプ",
+          "developer": "Playrix",
+          "chart_rank": 22,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 8,
+          "name": "ファミリーファーム",
+          "developer": "Social Point",
+          "chart_rank": 20,
+          "sub_genre": "模拟经营"
+        },
+        {
+          "rank": 9,
+          "name": "ウッドク",
+          "developer": "Tripledot Studios",
+          "chart_rank": 12,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 10,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 35,
+          "sub_genre": "跑酷"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 18
+          },
+          {
+            "label": "25-34岁",
+            "pct": 30
+          },
+          {
+            "label": "35-44岁",
+            "pct": 30
+          },
+          {
+            "label": "45岁+",
+            "pct": 22
+          }
+        ],
+        "gender": {
+          "female_pct": 58,
+          "male_pct": 42
+        },
+        "session_avg_min": 15,
+        "sessions_per_day": 3.5,
+        "paying_user_pct": 12,
+        "arpu_usd": 3.8
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 90
+        },
+        {
+          "period": "2025 Q2",
+          "index": 95
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 105
+        },
+        {
+          "period": "2026 Q1",
+          "index": 108
+        }
+      ],
+      "insight": "日本休闲游戏用户付费率明显高于欧美，月ARPU居全球前列。本地化内容（日文界面+IP联动）是留存关键，生活模拟类游戏在中老年女性中极受欢迎。中置年龄用户（35-44岁）占比高于其他市场。"
+    },
+    {
+      "region": "kr",
+      "region_name": "韩国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "블록 블라스트!",
+          "developer": "Hungry Studio",
+          "chart_rank": 5,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "디즈니 솔리테어",
+          "developer": "SuperPlay",
+          "chart_rank": 3,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 3,
+          "name": "캔디크러쉬사가",
+          "developer": "King",
+          "chart_rank": 10,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 4,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 20,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 5,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 25,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 6,
+          "name": "Travel Town",
+          "developer": "Magmatic Games",
+          "chart_rank": 12,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 7,
+          "name": "Anipang 4",
+          "developer": "WYG",
+          "chart_rank": 8,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 8,
+          "name": "모두의 마블",
+          "developer": "Netmarble",
+          "chart_rank": 30,
+          "sub_genre": "棋盘派对"
+        },
+        {
+          "rank": 9,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 38,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 10,
+          "name": "Woodoku",
+          "developer": "Tripledot Studios",
+          "chart_rank": 15,
+          "sub_genre": "益智消除"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 25
+          },
+          {
+            "label": "25-34岁",
+            "pct": 38
+          },
+          {
+            "label": "35-44岁",
+            "pct": 24
+          },
+          {
+            "label": "45岁+",
+            "pct": 13
+          }
+        ],
+        "gender": {
+          "female_pct": 55,
+          "male_pct": 45
+        },
+        "session_avg_min": 20,
+        "sessions_per_day": 5.1,
+        "paying_user_pct": 10,
+        "arpu_usd": 3.2
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 88
+        },
+        {
+          "period": "2025 Q2",
+          "index": 94
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 107
+        },
+        {
+          "period": "2026 Q1",
+          "index": 111
+        }
+      ],
+      "insight": "韩国玩家活跃度极高，日均游玩次数超过5次，单次时长也是10个市场中最长的之一。本土IP（Anipang、모두의 마블）持续具有影响力，年轻用户（18-34岁）占比近六成。"
+    },
+    {
+      "region": "id",
+      "region_name": "印尼",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 4,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 6,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 3,
+          "name": "Traffic Jam 3D",
+          "developer": "SayGames",
+          "chart_rank": 8,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 4,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 12,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 5,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 10,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 6,
+          "name": "Free Fire MAX",
+          "developer": "Garena",
+          "chart_rank": 2,
+          "sub_genre": "休闲竞技"
+        },
+        {
+          "rank": 7,
+          "name": "My Perfect Hotel",
+          "developer": "SayGames",
+          "chart_rank": 15,
+          "sub_genre": "模拟经营"
+        },
+        {
+          "rank": 8,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 20,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 9,
+          "name": "Gardenscapes",
+          "developer": "Playrix",
+          "chart_rank": 30,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 10,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 35,
+          "sub_genre": "三消+叙事"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 35
+          },
+          {
+            "label": "25-34岁",
+            "pct": 38
+          },
+          {
+            "label": "35-44岁",
+            "pct": 18
+          },
+          {
+            "label": "45岁+",
+            "pct": 9
+          }
+        ],
+        "gender": {
+          "female_pct": 48,
+          "male_pct": 52
+        },
+        "session_avg_min": 22,
+        "sessions_per_day": 5.5,
+        "paying_user_pct": 3,
+        "arpu_usd": 0.6
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 78
+        },
+        {
+          "period": "2025 Q2",
+          "index": 88
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 112
+        },
+        {
+          "period": "2026 Q1",
+          "index": 122
+        }
+      ],
+      "insight": "印尼是东南亚最大手游市场，用户群体年轻、活跃，日均游玩时长位居前列。但付费率偏低，变现仍以广告为主。市场整体高速增长，是休闲游戏出海的重要蓝海。"
+    },
+    {
+      "region": "th",
+      "region_name": "泰国",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 5,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 7,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 3,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 10,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 4,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 8,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 5,
+          "name": "Traffic Jam 3D",
+          "developer": "SayGames",
+          "chart_rank": 6,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 6,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 22,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 7,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 18,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 8,
+          "name": "My Perfect Hotel",
+          "developer": "SayGames",
+          "chart_rank": 12,
+          "sub_genre": "模拟经营"
+        },
+        {
+          "rank": 9,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 28,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 10,
+          "name": "Gardenscapes",
+          "developer": "Playrix",
+          "chart_rank": 32,
+          "sub_genre": "三消+叙事"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 32
+          },
+          {
+            "label": "25-34岁",
+            "pct": 40
+          },
+          {
+            "label": "35-44岁",
+            "pct": 19
+          },
+          {
+            "label": "45岁+",
+            "pct": 9
+          }
+        ],
+        "gender": {
+          "female_pct": 52,
+          "male_pct": 48
+        },
+        "session_avg_min": 20,
+        "sessions_per_day": 4.8,
+        "paying_user_pct": 4,
+        "arpu_usd": 0.8
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 80
+        },
+        {
+          "period": "2025 Q2",
+          "index": 90
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 108
+        },
+        {
+          "period": "2026 Q1",
+          "index": 116
+        }
+      ],
+      "insight": "泰国玩家年龄结构与印尼相似，25-34岁为核心群体。性别较为均衡，女性略多。市场付费率低于东亚，但增速可观，跑酷与益智消除类游戏参与度高。"
+    },
+    {
+      "region": "sg",
+      "region_name": "新加坡",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 2,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 2,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 4,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 3,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 10,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 4,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 12,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 5,
+          "name": "Travel Town",
+          "developer": "Magmatic Games",
+          "chart_rank": 8,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 6,
+          "name": "MONOPOLY GO!",
+          "developer": "Scopely",
+          "chart_rank": 15,
+          "sub_genre": "棋盘派对"
+        },
+        {
+          "rank": 7,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 20,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 8,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 25,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 9,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 22,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 10,
+          "name": "Woodoku",
+          "developer": "Tripledot Studios",
+          "chart_rank": 18,
+          "sub_genre": "益智消除"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 22
+          },
+          {
+            "label": "25-34岁",
+            "pct": 38
+          },
+          {
+            "label": "35-44岁",
+            "pct": 28
+          },
+          {
+            "label": "45岁+",
+            "pct": 12
+          }
+        ],
+        "gender": {
+          "female_pct": 57,
+          "male_pct": 43
+        },
+        "session_avg_min": 16,
+        "sessions_per_day": 4.0,
+        "paying_user_pct": 9,
+        "arpu_usd": 2.8
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 85
+        },
+        {
+          "period": "2025 Q2",
+          "index": 93
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 107
+        },
+        {
+          "period": "2026 Q1",
+          "index": 112
+        }
+      ],
+      "insight": "新加坡是东南亚付费率和ARPU最高的市场，接近欧美水平。双语环境使国际化游戏能直接上线，偏好与英美市场趋同，纸牌和三消长期占主导。25-34岁职场人群是主力消费用户。"
+    },
+    {
+      "region": "vn",
+      "region_name": "越南",
+      "top_games": [
+        {
+          "rank": 1,
+          "name": "Block Blast!",
+          "developer": "Hungry Studio",
+          "chart_rank": 3,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 2,
+          "name": "Subway Surfers",
+          "developer": "SYBO Games",
+          "chart_rank": 5,
+          "sub_genre": "跑酷"
+        },
+        {
+          "rank": 3,
+          "name": "Traffic Jam 3D",
+          "developer": "SayGames",
+          "chart_rank": 7,
+          "sub_genre": "益智消除"
+        },
+        {
+          "rank": 4,
+          "name": "Candy Crush Saga",
+          "developer": "King",
+          "chart_rank": 10,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 5,
+          "name": "My Perfect Hotel",
+          "developer": "SayGames",
+          "chart_rank": 9,
+          "sub_genre": "模拟经营"
+        },
+        {
+          "rank": 6,
+          "name": "Disney Solitaire",
+          "developer": "SuperPlay",
+          "chart_rank": 12,
+          "sub_genre": "纸牌"
+        },
+        {
+          "rank": 7,
+          "name": "Royal Match",
+          "developer": "Dream Games",
+          "chart_rank": 25,
+          "sub_genre": "三消"
+        },
+        {
+          "rank": 8,
+          "name": "Merge Mansion",
+          "developer": "Metacore",
+          "chart_rank": 20,
+          "sub_genre": "合并"
+        },
+        {
+          "rank": 9,
+          "name": "Gardenscapes",
+          "developer": "Playrix",
+          "chart_rank": 30,
+          "sub_genre": "三消+叙事"
+        },
+        {
+          "rank": 10,
+          "name": "Homescapes",
+          "developer": "Playrix",
+          "chart_rank": 35,
+          "sub_genre": "三消+叙事"
+        }
+      ],
+      "user_profile": {
+        "age_groups": [
+          {
+            "label": "18-24岁",
+            "pct": 38
+          },
+          {
+            "label": "25-34岁",
+            "pct": 40
+          },
+          {
+            "label": "35-44岁",
+            "pct": 15
+          },
+          {
+            "label": "45岁+",
+            "pct": 7
+          }
+        ],
+        "gender": {
+          "female_pct": 50,
+          "male_pct": 50
+        },
+        "session_avg_min": 24,
+        "sessions_per_day": 6.0,
+        "paying_user_pct": 2,
+        "arpu_usd": 0.4
+      },
+      "revenue_trend": [
+        {
+          "period": "2025 Q1",
+          "index": 70
+        },
+        {
+          "period": "2025 Q2",
+          "index": 83
+        },
+        {
+          "period": "2025 Q3",
+          "index": 100
+        },
+        {
+          "period": "2025 Q4",
+          "index": 118
+        },
+        {
+          "period": "2026 Q1",
+          "index": 135
+        }
+      ],
+      "insight": "越南是增速最快的市场，用户极度年轻化（18-34岁占78%），游玩时长和频次领先所有地区。付费率最低，目前以广告变现为主。未来随着人均收入提升，付费转化空间巨大。"
+    }
+  ]
+}
