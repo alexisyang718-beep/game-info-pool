@@ -1,7 +1,9 @@
 """
 AI 分析模块
 使用 MiniMax API 生成结构化的异动分析报告：
-- 重点异动：3-5个值得关注的异动
+- 上升异动：排名显著上升的游戏
+- 下降异动：排名显著下降的游戏
+- 新进榜：新上榜的游戏
 - 地区趋势：各地区规律或差异
 - 品类动向：品类走势分析
 - 行业动态：相关行业背景
@@ -77,11 +79,13 @@ def build_chart_summary(chart_data: list[dict]) -> str:
 def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
     """
     生成结构化的异动分析报告
-    返回包含四个模块的字典：highlights, regions, categories, industry
+    返回包含模块的字典：rising, falling, new_entries, regions, categories, industry
     """
     if not changes:
         return {
-            "highlights": [],
+            "rising": [],
+            "falling": [],
+            "new_entries": [],
             "regions": "今日暂无显著榜单异动。",
             "categories": "今日暂无显著榜单异动。",
             "industry": ""
@@ -130,10 +134,28 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
 请严格按照以下 JSON 格式输出，不要输出其他内容：
 
 {{
-  "highlights": [
+  "rising": [
     {{
       "game": "游戏名",
-      "change": "新进榜 #1 / 上升50位 / 下降30位",
+      "change": "上升50位（#60→#10）",
+      "region": "美国",
+      "store": "App Store",
+      "analysis": "简短分析原因，50字以内"
+    }}
+  ],
+  "falling": [
+    {{
+      "game": "游戏名",
+      "change": "下降30位（#5→#35）",
+      "region": "美国",
+      "store": "App Store",
+      "analysis": "简短分析原因，50字以内"
+    }}
+  ],
+  "new_entries": [
+    {{
+      "game": "游戏名",
+      "change": "新进榜 #1",
       "region": "美国",
       "store": "App Store",
       "analysis": "简短分析原因，50字以内"
@@ -145,11 +167,13 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
 }}
 
 要求：
-1. highlights 数组包含 3-5 个最值得关注的异动
-2. 每个 highlight 的 analysis 要简洁有力，点明关键原因
-3. regions 要提炼各地区的共性和差异
-4. categories 要指出哪些品类在上升/下降
-5. 只输出 JSON，不要有其他文字
+1. rising 数组：排名上升的游戏，选取 2-3 个最显著的
+2. falling 数组：排名下降的游戏，选取 2-3 个最显著的
+3. new_entries 数组：新进榜的游戏，选取 2-3 个最重要的
+4. 每个 analysis 要简洁有力，点明关键原因
+5. regions 要提炼各地区的共性和差异
+6. categories 要指出哪些品类在上升/下降
+7. 只输出 JSON，不要有其他文字
 """
 
     system = "你是一位拥有10年经验的手游市场分析师。请基于数据和新闻给出专业、务实的分析。只输出合法的 JSON 格式，不要有任何其他文字。"
@@ -166,7 +190,9 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
         
         parsed = json.loads(result.strip())
         return {
-            "highlights": parsed.get("highlights", []),
+            "rising": parsed.get("rising", []),
+            "falling": parsed.get("falling", []),
+            "new_entries": parsed.get("new_entries", []),
             "regions": parsed.get("regions", ""),
             "categories": parsed.get("categories", ""),
             "industry": parsed.get("industry", "")
@@ -175,7 +201,9 @@ def analyze_changes(changes: list[dict], news_list: list = None) -> dict:
         # JSON 解析失败，返回原始文本作为 fallback
         print(f"[Warning] AI 返回非 JSON 格式，使用 fallback: {e}")
         return {
-            "highlights": [],
+            "rising": [],
+            "falling": [],
+            "new_entries": [],
             "regions": result if result else "分析生成失败",
             "categories": "",
             "industry": "",
@@ -189,12 +217,28 @@ def analyze_changes_text(changes: list[dict], news_list: list = None) -> str:
     """
     analysis = analyze_changes(changes, news_list)
     
-    lines = ["## 异动分析\n"]
+    lines = ["## 异动分析（对比昨日）\n"]
     
-    # 重点异动
-    if analysis.get("highlights"):
-        lines.append("### 重点异动")
-        for h in analysis["highlights"]:
+    # 上升
+    if analysis.get("rising"):
+        lines.append("### 📈 上升")
+        for h in analysis["rising"]:
+            lines.append(f"- **《{h.get('game', '')}》** {h.get('change', '')}（{h.get('region', '')} · {h.get('store', '')}）")
+            lines.append(f"  {h.get('analysis', '')}")
+        lines.append("")
+    
+    # 下降
+    if analysis.get("falling"):
+        lines.append("### 📉 下降")
+        for h in analysis["falling"]:
+            lines.append(f"- **《{h.get('game', '')}》** {h.get('change', '')}（{h.get('region', '')} · {h.get('store', '')}）")
+            lines.append(f"  {h.get('analysis', '')}")
+        lines.append("")
+    
+    # 新进榜
+    if analysis.get("new_entries"):
+        lines.append("### 🆕 新进榜")
+        for h in analysis["new_entries"]:
             lines.append(f"- **《{h.get('game', '')}》** {h.get('change', '')}（{h.get('region', '')} · {h.get('store', '')}）")
             lines.append(f"  {h.get('analysis', '')}")
         lines.append("")
@@ -217,7 +261,7 @@ def analyze_changes_text(changes: list[dict], news_list: list = None) -> str:
         lines.append(analysis["industry"])
     
     # 如果有原始文本 fallback
-    if analysis.get("raw_text") and not analysis.get("highlights"):
+    if analysis.get("raw_text") and not analysis.get("rising") and not analysis.get("falling") and not analysis.get("new_entries"):
         return analysis["raw_text"]
     
     return "\n".join(lines)
