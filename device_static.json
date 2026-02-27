@@ -1,0 +1,242 @@
+{
+  "us": {
+    "ios_pct": 57,
+    "android_pct": 43,
+    "top_devices": [
+      {"model": "iPhone 15 Pro / 15 Pro Max", "share_pct": 14},
+      {"model": "iPhone 14", "share_pct": 9},
+      {"model": "iPhone 13", "share_pct": 8},
+      {"model": "Samsung Galaxy S24 系列", "share_pct": 5},
+      {"model": "Google Pixel 8 系列", "share_pct": 3}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 72},
+        {"version": "iOS 16", "pct": 20},
+        {"version": "iOS 15 及以下", "pct": 8}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 35},
+        {"version": "Android 13", "pct": 38},
+        {"version": "Android 12 及以下", "pct": 27}
+      ]
+    },
+    "device_notes": "iPhone 渗透率全球最高。iOS 占比超过 Android，主力机型集中在近 3 代 iPhone。Android 以三星为主，谷歌 Pixel 为辅。"
+  },
+  "gb": {
+    "ios_pct": 52,
+    "android_pct": 48,
+    "top_devices": [
+      {"model": "iPhone 14", "share_pct": 12},
+      {"model": "iPhone 13", "share_pct": 10},
+      {"model": "Samsung Galaxy S24 系列", "share_pct": 7},
+      {"model": "iPhone 15 Pro", "share_pct": 6},
+      {"model": "Google Pixel 7 系列", "share_pct": 4}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 65},
+        {"version": "iOS 16", "pct": 25},
+        {"version": "iOS 15 及以下", "pct": 10}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 32},
+        {"version": "Android 13", "pct": 35},
+        {"version": "Android 12 及以下", "pct": 33}
+      ]
+    },
+    "device_notes": "iOS 优势明显，但 Android 份额接近一半。三星 Galaxy 系列、Google Pixel 表现稳定。用户对系统更新接受度高。"
+  },
+  "de": {
+    "ios_pct": 47,
+    "android_pct": 53,
+    "top_devices": [
+      {"model": "Samsung Galaxy S24 系列", "share_pct": 11},
+      {"model": "iPhone 15 Pro", "share_pct": 9},
+      {"model": "iPhone 14", "share_pct": 8},
+      {"model": "Samsung Galaxy S23 系列", "share_pct": 6},
+      {"model": "Google Pixel 8", "share_pct": 3}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 60},
+        {"version": "iOS 16", "pct": 28},
+        {"version": "iOS 15 及以下", "pct": 12}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 28},
+        {"version": "Android 13", "pct": 32},
+        {"version": "Android 12 及以下", "pct": 40}
+      ]
+    },
+    "device_notes": "Android 略占优势，三星是市场主导者。德国用户对隐私保护敏感，苹果用户忠诚度高。中端机型市场份额较大。"
+  },
+  "fr": {
+    "ios_pct": 44,
+    "android_pct": 56,
+    "top_devices": [
+      {"model": "Samsung Galaxy S24 系列", "share_pct": 12},
+      {"model": "iPhone 15", "share_pct": 8},
+      {"model": "iPhone 14", "share_pct": 7},
+      {"model": "Samsung Galaxy A 系列", "share_pct": 6},
+      {"model": "Xiaomi 13 系列", "share_pct": 4}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 58},
+        {"version": "iOS 16", "pct": 28},
+        {"version": "iOS 15 及以下", "pct": 14}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 25},
+        {"version": "Android 13", "pct": 30},
+        {"version": "Android 12 及以下", "pct": 45}
+      ]
+    },
+    "device_notes": "Android 优势明显，三星地位稳固。中端市场竞争激烈，小米等中国品牌有一定份额。用户对价格敏感度较高。"
+  },
+  "jp": {
+    "ios_pct": 67,
+    "android_pct": 33,
+    "top_devices": [
+      {"model": "iPhone 15 Pro Max", "share_pct": 16},
+      {"model": "iPhone 15", "share_pct": 14},
+      {"model": "iPhone 14 Pro", "share_pct": 11},
+      {"model": "iPhone 14", "share_pct": 8},
+      {"model": "Google Pixel 8 Pro", "share_pct": 4}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 78},
+        {"version": "iOS 16", "pct": 18},
+        {"version": "iOS 15 及以下", "pct": 4}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 45},
+        {"version": "Android 13", "pct": 32},
+        {"version": "Android 12 及以下", "pct": 23}
+      ]
+    },
+    "device_notes": "全球 iOS 渗透率最高的市场，iPhone 占据绝对主导。Android 以 Google Pixel 和索尼为主。系统更新率极高。日本用户换机周期较短。"
+  },
+  "kr": {
+    "ios_pct": 38,
+    "android_pct": 62,
+    "top_devices": [
+      {"model": "Samsung Galaxy S24 Ultra", "share_pct": 15},
+      {"model": "Samsung Galaxy S24", "share_pct": 12},
+      {"model": "iPhone 15 Pro", "share_pct": 10},
+      {"model": "Samsung Galaxy S23 系列", "share_pct": 9},
+      {"model": "iPhone 14", "share_pct": 6}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 65},
+        {"version": "iOS 16", "pct": 25},
+        {"version": "iOS 15 及以下", "pct": 10}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 40},
+        {"version": "Android 13", "pct": 35},
+        {"version": "Android 12 及以下", "pct": 25}
+      ]
+    },
+    "device_notes": "Android 遥遥领先，三星本土优势明显。iPhone 仍有相当市场份额，高端用户居多。OneUI 等定制系统普及率高。"
+  },
+  "id": {
+    "ios_pct": 15,
+    "android_pct": 85,
+    "top_devices": [
+      {"model": "Samsung Galaxy A 系列", "share_pct": 18},
+      {"model": "Xiaomi Redmi 系列", "share_pct": 15},
+      {"model": "OPPO A 系列", "share_pct": 12},
+      {"model": "Vivo Y 系列", "share_pct": 10},
+      {"model": "Realme C 系列", "share_pct": 8}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 16", "pct": 55},
+        {"version": "iOS 15", "pct": 30},
+        {"version": "iOS 14 及以下", "pct": 15}
+      ],
+      "android": [
+        {"version": "Android 13", "pct": 38},
+        {"version": "Android 12", "pct": 32},
+        {"version": "Android 11 及以下", "pct": 30}
+      ]
+    },
+    "device_notes": "Android 绝对主导，中国品牌（小米、OPPO、Vivo、Realme）占据大部分市场。价格敏感度高，中低端机型为主。iOS 占比极低。"
+  },
+  "th": {
+    "ios_pct": 22,
+    "android_pct": 78,
+    "top_devices": [
+      {"model": "Samsung Galaxy A 系列", "share_pct": 16},
+      {"model": "OPPO Reno 系列", "share_pct": 13},
+      {"model": "Xiaomi Redmi 系列", "share_pct": 12},
+      {"model": "iPhone 13", "share_pct": 8},
+      {"model": "iPhone 14", "share_pct": 6}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 16", "pct": 52},
+        {"version": "iOS 15", "pct": 32},
+        {"version": "iOS 14 及以下", "pct": 16}
+      ],
+      "android": [
+        {"version": "Android 13", "pct": 35},
+        {"version": "Android 12", "pct": 33},
+        {"version": "Android 11 及以下", "pct": 32}
+      ]
+    },
+    "device_notes": "Android 占据四分之三以上市场，OPPO 和小米表现突出。iPhone 在年轻群体中有一定吸引力。中端市场竞争激烈。"
+  },
+  "sg": {
+    "ios_pct": 75,
+    "android_pct": 25,
+    "top_devices": [
+      {"model": "iPhone 15 Pro Max", "share_pct": 18},
+      {"model": "iPhone 15", "share_pct": 15},
+      {"model": "iPhone 14 Pro", "share_pct": 12},
+      {"model": "iPhone 14", "share_pct": 10},
+      {"model": "Samsung Galaxy S24 Ultra", "share_pct": 5}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 17", "pct": 80},
+        {"version": "iOS 16", "pct": 16},
+        {"version": "iOS 15 及以下", "pct": 4}
+      ],
+      "android": [
+        {"version": "Android 14", "pct": 42},
+        {"version": "Android 13", "pct": 35},
+        {"version": "Android 12 及以下", "pct": 23}
+      ]
+    },
+    "device_notes": "iOS 渗透率极高，接近四分之三用户使用 iPhone。用户付费能力强，换机频繁。Android 市场以三星 Galaxy S 系列和 Pixel 为主。"
+  },
+  "vn": {
+    "ios_pct": 12,
+    "android_pct": 88,
+    "top_devices": [
+      {"model": "Samsung Galaxy A 系列", "share_pct": 20},
+      {"model": "Xiaomi Redmi 系列", "share_pct": 18},
+      {"model": "OPPO A 系列", "share_pct": 14},
+      {"model": "Vivo Y 系列", "share_pct": 12},
+      {"model": "iPhone 12", "share_pct": 6}
+    ],
+    "os_versions": {
+      "ios": [
+        {"version": "iOS 15", "pct": 45},
+        {"version": "iOS 16", "pct": 40},
+        {"version": "iOS 14 及以下", "pct": 15}
+      ],
+      "android": [
+        {"version": "Android 12", "pct": 38},
+        {"version": "Android 11", "pct": 32},
+        {"version": "Android 10 及以下", "pct": 30}
+      ]
+    },
+    "device_notes": "Android 绝对主导，三星和小米是市场主力。价格极其敏感，低端和中端机型占主导。iOS 用户主要集中在一线城市年轻人群。"
+  }
+}
