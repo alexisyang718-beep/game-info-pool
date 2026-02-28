@@ -469,8 +469,8 @@
 
 <script>
 // ── 数据加载 ──────────────────────────────────────────────
-const DATA_URL   = 'latest.json';
-const AI_URL     = 'latest_analysis.json';
+const DATA_URL   = '../data/latest.json';
+const AI_URL     = '../data/latest_analysis.json';
 
 const PAGE_SIZE = 50;
 let allData = [], filtered = [], currentPage = 1;
@@ -758,7 +758,7 @@ function switchTab(tab) {
 // ── Market Overview ─────────────────────────────────────────
 function loadMarket() {
   window._marketLoaded = true;
-  fetch('market.json?t=' + Date.now())
+  fetch('../data/market.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => renderMarket(data))
     .catch(() => {
@@ -806,7 +806,7 @@ function renderMarket(data) {
 // ── Device Overview ─────────────────────────────────────────
 function loadDevice() {
   window._deviceLoaded = true;
-  fetch('device.json?t=' + Date.now())
+  fetch('../data/device.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => renderDevice(data))
     .catch(() => {
@@ -882,7 +882,7 @@ let casualData = null;
 
 function loadCasual() {
   window._casualLoaded = true;
-  fetch('casual.json?t=' + Date.now())
+  fetch('../data/casual.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       casualData = data;
