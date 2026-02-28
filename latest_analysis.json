@@ -1,46 +1,7 @@
 {
-  "date": "2026-02-27",
-  "rising": [
-    {
-      "game": "포켓몬 카드 게임 Pocket",
-      "change": "上升 71位（#115→#44）",
-      "region": "韩国",
-      "store": "App Store",
-      "analysis": "宝可梦卡牌在韩国畅销榜大幅攀升，IP影响力持续发酵，亚洲市场对卡牌类游戏需求旺盛。"
-    },
-    {
-      "game": "ドラゴンクエストウォーク",
-      "change": "上升 66位（#93→#27）",
-      "region": "日本",
-      "store": "App Store",
-      "analysis": "位置信息游戏在日本市场具有独特吸引力，DQ系列IP号召力强劲。"
-    }
-  ],
-  "falling": [],
-  "new_entries": [
-    {
-      "game": "Subway Surfers City",
-      "change": "新进榜 #1",
-      "region": "美国",
-      "store": "App Store",
-      "analysis": "经典跑酷游戏衍生作品迅速登顶，与市场推广和更新内容有关。"
-    },
-    {
-      "game": "Pokémon TCG Pocket",
-      "change": "新进榜 #44",
-      "region": "美国",
-      "store": "App Store",
-      "analysis": "口袋妖怪系列最新作品凭借品牌影响力和粉丝基础取得佳绩，卡牌类游戏持续受到关注。"
-    },
-    {
-      "game": "Dragon Traveler",
-      "change": "新进榜 #93",
-      "region": "美国",
-      "store": "App Store",
-      "analysis": "RPG新作上榜，结合Tencent对Hungry Studio的潜在投资，显示投资者对移动游戏公司关注度提升。"
-    }
-  ],
-  "regions": "美国市场新进榜游戏种类多样，从休闲到策略再到RPG均有涉及，显示玩家对不同类型手游的广泛接受度。亚洲市场（泰国、新加坡、日本）榜单波动较大，与地区特有的推广活动和用户偏好相关。日本市场位置信息游戏表现亮眼。",
-  "categories": "休闲益智类游戏继续占据主流，《Match Factory!》《Bubble Bus》等新作上榜。RPG和策略游戏同样活跃，反映玩家对沉浸式深度体验的持续需求。卡牌类游戏（如宝可梦TCG）在多地区表现强势。",
-  "industry": "Tencent对《Block Blast!》开发商Hungry Studio的潜在投资，显示投资者对有潜力的移动游戏公司关注增加。应用商店对战利品箱透明度要求提升，可能影响游戏开发商营销策略。"
+  "date": "2026-02-28",
+  "highlights": [],
+  "regions": "• 美国市场新游戏表现活跃\n\n• 韩国和越南游戏上升趋势显著\n\n• 法国游戏市场竞争激烈，排名波动大",
+  "categories": "• 新进榜游戏集中在动作和策略品类\n\n• 上升游戏多为策略和角色扮演\n\n• 下降游戏中策略游戏占多数",
+  "industry": "• Türkiye政府支持游戏工作室\n\n• 2025年移动游戏下载量激增\n\n• Netflix推出儿童游戏中心"
 }

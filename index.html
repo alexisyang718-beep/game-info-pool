@@ -469,8 +469,8 @@
 
 <script>
 // ── 数据加载 ──────────────────────────────────────────────
-const DATA_URL   = 'latest.json';
-const AI_URL     = 'latest_analysis.json';
+const DATA_URL   = '../data/latest.json';
+const AI_URL     = '../data/latest_analysis.json';
 
 const PAGE_SIZE = 50;
 let allData = [], filtered = [], currentPage = 1;
@@ -563,23 +563,44 @@ function renderAnalysis(data) {
     document.getElementById('new-entries-content').innerHTML = renderHighlightItems(newEntries, 'new');
   }
   
+  // 将分点文本转换为 HTML（支持 • 列表和换行）
+  const formatBulletPoints = (text) => {
+    if (!text) return '';
+    // 按换行分割，处理每个要点
+    const lines = text.split(/\n+/).filter(line => line.trim());
+    if (lines.length === 0) return `<p>${esc(text)}</p>`;
+    
+    // 检查是否有 bullet points
+    const hasBullets = lines.some(line => line.trim().startsWith('•') || line.trim().startsWith('-'));
+    
+    if (hasBullets) {
+      return '<ul style="list-style:none;padding:0;margin:0">' + 
+        lines.map(line => {
+          const cleaned = line.trim().replace(/^[•\-]\s*/, '');
+          return `<li style="margin-bottom:10px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${esc(cleaned)}</li>`;
+        }).join('') + '</ul>';
+    } else {
+      return lines.map(line => `<p style="margin-bottom:8px">${esc(line.trim())}</p>`).join('');
+    }
+  };
+  
   // 渲染地区趋势
   const regionsEl = document.getElementById('regions-content');
   regionsEl.innerHTML = regions 
-    ? `<p>${esc(regions)}</p>` 
+    ? formatBulletPoints(regions)
     : '<p style="color:var(--sub)">暂无地区趋势分析</p>';
   
   // 渲染品类动向
   const categoriesEl = document.getElementById('categories-content');
   categoriesEl.innerHTML = categories 
-    ? `<p>${esc(categories)}</p>` 
+    ? formatBulletPoints(categories)
     : '<p style="color:var(--sub)">暂无品类动向分析</p>';
   
   // 渲染行业动态
   const industryEl = document.getElementById('industry-content');
   const industryCard = document.getElementById('industry-card');
   if (industry) {
-    industryEl.innerHTML = `<p>${esc(industry)}</p>`;
+    industryEl.innerHTML = formatBulletPoints(industry);
     industryCard.style.display = '';
   } else {
     industryCard.style.display = 'none';
@@ -737,7 +758,7 @@ function switchTab(tab) {
 // ── Market Overview ─────────────────────────────────────────
 function loadMarket() {
   window._marketLoaded = true;
-  fetch('market.json?t=' + Date.now())
+  fetch('../data/market.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => renderMarket(data))
     .catch(() => {
@@ -785,7 +806,7 @@ function renderMarket(data) {
 // ── Device Overview ─────────────────────────────────────────
 function loadDevice() {
   window._deviceLoaded = true;
-  fetch('device.json?t=' + Date.now())
+  fetch('../data/device.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => renderDevice(data))
     .catch(() => {
@@ -861,7 +882,7 @@ let casualData = null;
 
 function loadCasual() {
   window._casualLoaded = true;
-  fetch('casual.json?t=' + Date.now())
+  fetch('../data/casual.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       casualData = data;
