@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-04",
+  "date": "2026-03-05",
   "highlights": [],
-  "regions": "• 美国新游戏入榜数量最多\n\n• 英国《Netflix Game Controller》表现突出\n\n• 新加坡游戏排名波动大，多款游戏上升或下降显著",
-  "categories": "• 拼图游戏《Word Oasis: Calm Puzzle Game》和《Hexa Sort》表现突出\n\n• 角色扮演游戏《Honkai: Star Rail》新进榜\n\n• 策略游戏《Top War: Battle Game》新进榜",
-  "industry": "• 腾讯可能被迫从美国公司撤资\n\n• Supercell推出新IP游戏《Hay Day Match》\n\n• Netflix退出Warner Bros. Discovery竞购"
+  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"Unboxing the Cryptic Killer\",\n       \"change\": \"上升 81位（#89→#8）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"游戏可能进行了重大更新或营销活动\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Papa's Bakeria To Go!\",\n       \"change\": \"下降 67位（#20→#87）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能面临新竞争或用户流失\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"Carmen Sandiego.\",\n       \"change\": \"新进榜 #40\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"品牌效应及营销推广带动\"\n     }\n   ],\n   \"regions\": \n   • 美国和英国榜单新进游戏较多，显示市场活跃\\n\\n• 新加坡榜单中既有游戏排名波动较大，竞争激烈\\n\\n• 印度尼西亚和泰国榜单显示特定游戏受欢迎度变化\\n\",\n   \"categories\": \n   • 益智类游戏如《Crossword Master》表现突出\\n\\n• 动作类游戏《Red Dead Redemption》和《Max Payne Mobile》新进榜单\\n\\n• 赌博模拟类游戏如《Gold Fish Casino Slots Games》新进榜单\\n\",\n   \"industry\": \n   • Google降低Play商店费用可能吸引更多开发者和用户\\n\\n• Epic与Google法律争议解决后，Fortnite回归Play商店\\n\\n• Tencent投资审查可能影响其在全球游戏公司的持股\\n\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
