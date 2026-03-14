@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-13",
+  "date": "2026-03-14",
   "highlights": [],
-  "regions": "\n{\n  \"rising\": [\n    {\n      \"game\": \"Arknights: Endfield\",\n      \"change\": \"上升 85位（#98→#13）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新内容或活动吸引大量新用户\"\n    },\n    {\n      \"game\": \"Terraria\",\n      \"change\": \"上升 71位（#91→#20）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"更新或营销活动提升了游戏热度\"\n    }\n  ],\n  \"falling\": [\n    {\n      \"game\": \"Cytus II\",\n      \"change\": \"下降 67位（#15→#82）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能因缺乏更新或竞争新作影响\"\n    },\n    {\n      \"game\": \"Wizard of Legend\",\n      \"change\": \"下降 67位（#19→#86）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"玩家兴趣转移或新游戏竞争\"\n    }\n  ],\n  \"new_entries\": [\n    {\n      \"game\": \"BALL x PIT\",\n      \"change\": \"新进榜 #60\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新发布游戏受到玩家关注\"\n    },\n    {\n      \"game\": \"Need for Speed™ Most Wanted\",\n      \"change\": \"新进榜 #93\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"经典IP回归，吸引老玩家\"\n    },\n    {\n      \"game\": \"Arknights: Endfield\",\n      \"change\": \"新进榜 #58\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新作发布，受到IP和题材吸引\"\n    }\n  ],\n  \"regions\": \n    \"• 新加坡市场对策略和角色扮演游戏需求上升\\n\\n\"\n    \"• 美国市场新作表现活跃，尤其是知名IP游戏\\n\\n\"\n    \"• 英国市场有新休闲游戏进入榜单\",\n  \"categories\": \n    \"• 策略游戏和角色扮演游戏在新加坡市场受欢迎\\n\\n\"\n    \"• 动作和赛车游戏在美国市场有新作表现\\n\\n\"\n    \"• 休闲游戏在英国市场有所增长\",\n  \"industry\": \n    \"• PEGI系统更新，考虑战利箱和日常任务对年龄评级的影响\\n\\n\"\n    \"• Google Play Level Up计划降低IAP费率，鼓励开发者加入\\n\\n\"\n    \"• 越南移动游戏市场收入增长，本地化渠道加强\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国榜单新进游戏多，显示市场活跃\n\n• 新加坡游戏排名普遍下降，竞争激烈\n\n• 韩国《냥코 대전쟁》排名大幅上升，受本地玩家喜爱",
+  "categories": "• 新进榜游戏以休闲和动作游戏为主\n\n• 策略游戏《Rise of Kingdoms》表现突出\n\n• 竞速游戏《No Limit Drag Racing 2》新进多个榜单",
+  "industry": "• Clair Obscur: Expedition 33在GDC获得多个奖项\n\n• Google Play推出游戏试玩功能\n\n• Razer推出AI开发工具加速游戏生产"
 }
