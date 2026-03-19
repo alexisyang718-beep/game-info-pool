@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-18",
+  "date": "2026-03-19",
   "highlights": [],
-  "regions": "• 美国新游戏入榜活跃\n\n• 泰国老游戏上升显著\n\n• 越南游戏排名波动大",
-  "categories": "• 新策略游戏受欢迎\n\n• 老牌游戏在特定区域回春\n\n• 社交/卡牌游戏表现稳定",
-  "industry": "• Epic Games Store开放移动自出版\n\n• Fortnite回归Google Play"
+  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"DRAGON BALL Z DOKKAN BATTLE\",\n       \"change\": \"上升 82位（#84→#2）\",\n       \"region\": \"法国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能因新内容发布或营销活动\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Grand Theft Auto: Vice City\",\n       \"change\": \"下降 69位（#9→#78）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受新游戏发布影响\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"DRAGON BALL Z DOKKAN BATTLE\",\n       \"change\": \"新进榜 #9\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"知名IP与营销活动可能推动\"\n     },\n     {\n       \"game\": \"Fate/Grand Order (English)\",\n       \"change\": \"新进榜 #38\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"粉丝基础及推广活动可能关键\"\n     }\n   ],\n   \"regions\": \n   • 美国新游多，竞争激烈\\n\\n\n   • 法国与泰国榜单变动显著\\n\\n\n   • 新加坡与印尼游戏排名下降明显\",\n   \n   \"categories\": \n   • 动漫IP游戏表现强劲\\n\\n\n   • 策略类游戏在英国受欢迎\\n\\n\n   • 沙盒类游戏在德国上升迅速\",\n   \n   \"industry\": \n   • Meta平台重心向移动端转移\\n\\n\n   • Nazara扩大在社交游戏领域的投资\\n\\n\n   • Candy Crush视频系列引发反馈循环\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
