@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-20",
+  "date": "2026-03-21",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"Warrior In Dungeon\",\n       \"change\": \"上升82位（#95→#13）\",\n       \"region\": \"越南\",\n       \"store\": \"Google Play\",\n       \"analysis\": \"可能进行了营销推广或更新优化\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Brotato: Premium\",\n       \"change\": \"下降78位（#22→#100）\",\n       \"region\": \"泰国\",\n       \"store\": \"Google Play\",\n       \"analysis\": \"可能面临新竞争或玩家流失\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"Family Go! - Lifetime Sim game\",\n       \"change\": \"新进榜 #66\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新游戏发布，吸引用户关注\"\n     },\n     {\n       \"game\": \"Fortnite\",\n       \"change\": \"新进榜 #77\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"回归Google Play后，用户重新下载\"\n     },\n     {\n       \"game\": \"GODDESS OF VICTORY: NIKKE\",\n       \"change\": \"新进榜 #35\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"热门新作，吸引大量玩家\"\n     }\n   ],\n   \"regions\": \n   • 美国新游戏多，可能与市场推广有关\\n\\n• 东南亚市场竞争激烈，排名波动大\\n\\n• Google Play在越南表现优于泰国\",\n   \"categories\": \n   • 新进榜游戏多为动作和模拟类\\n\\n• 排名下降游戏多为休闲和策略类\\n\\n• 热门游戏如《Fortnite》回归影响榜单\",\n   \"industry\": \n   • Epic与Google和解，Fortnite回归Google Play\\n\\n• Ubisoft重组，结束Red Storm工作室游戏开发\\n\\n• 游戏行业就业市场趋势研究发布\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国榜单新游戏多，显示市场活跃\n\n• 新加坡榜单变动大，竞争激烈\n\n• 英国榜单较稳定，无显著变化",
+  "categories": "• 新进榜游戏以休闲、策略为主\n\n• 上升游戏多为合作或故事驱动型\n\n• 下降游戏多为长期运营游戏",
+  "industry": "• Moonton被Savvy Games Group以60亿美元收购\n\n• 新游戏发布和收购活动频繁"
 }
