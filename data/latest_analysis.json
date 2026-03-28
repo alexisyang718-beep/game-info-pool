@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-27",
+  "date": "2026-03-28",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"레이싱 마스터\",\n       \"change\": \"上升 70位（#94→#24）\",\n       \"region\": \"韩国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受益于新推广或用户口碑\"\n     },\n     {\n       \"game\": \"Townscaper\",\n       \"change\": \"上升 70位（#83→#13）\",\n       \"region\": \"越南\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能与新内容更新或社区活动相关\"\n     },\n     {\n       \"game\": \"던전앤파이터 모바일\",\n       \"change\": \"上升 69位（#84→#15）\",\n       \"region\": \"韩国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能因季节性活动或更新引起关注\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Grand Theft Auto: ViceCity\",\n       \"change\": \"下降 59位（#37→#96）\",\n       \"region\": \"德国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能与市场竞争加剧或用户兴趣转移有关\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"CookieRun: OvenSmash\",\n       \"change\": \"新进榜 #1\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新发布或重大更新引发下载热潮\"\n     },\n     {\n       \"game\": \"Paranoize\",\n       \"change\": \"新进榜 #7\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"独特题材或营销活动吸引新用户\"\n     },\n     {\n       \"game\": \"Rainbow Six Mobile\",\n       \"change\": \"新进榜 #97\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"知名IP效应带动新用户下载\"\n     }\n   ],\n   \"regions\": \"• 美国榜单变动显著，新游戏多\\n\\n• 韩国和越南游戏上升趋势明显\\n\\n• 德国市场波动较大，有显著下降\"\n   \n   \"categories\": \"• 新兴休闲游戏受用户喜爱\\n\\n• 传统知名IP游戏依然强势\\n\\n• 模拟经营类游戏表现突出\"\n   \n   \"industry\": \"• Unity出售Supersonic标签，关闭Ironsource广告网络\\n\\n• TapNation转向奖励式玩法\\n\\n• Monopoly Go Pets Season引发社区互动\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新游戏较多，可能与市场推广有关\n\n• 英国和新加坡新进榜游戏较少，竞争可能较激烈\n\n• 日本和韩国游戏排名下降，需关注用户反馈",
+  "categories": "• 新进榜游戏多为休闲/电竞类\n\n• 下降游戏多为解谜/模拟类\n\n• 上升游戏与热门IP或电竞赛事相关",
+  "industry": "• Unity关闭广告网络，关注高增长领域\n\n• 游戏开发行业面临挑战，需创新与适应市场"
 }
