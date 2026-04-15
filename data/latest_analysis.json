@@ -1,7 +1,7 @@
 {
-  "date": "2026-04-14",
+  "date": "2026-04-15",
   "highlights": [],
-  "regions": "• 美国新游戏入榜数量多，显示市场活跃\n\n• 越南和法国游戏排名显著上升，可能有特定推广活动\n\n• 新加坡游戏排名下降，竞争激烈或市场饱和",
-  "categories": "• 新进榜游戏多为休闲或策略类\n\n• 下降游戏多为解谜或恐怖题材\n\n• 排名上升游戏多为策略或角色扮演游戏",
-  "industry": "• 政府资助游戏行业，促进产业发展\n\n• 安全问题促使平台更新账号系统\n\n• 非洲市场转化率低，需改善基础设施"
+  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"Insaquarium: Tap Aquarium\",\n       \"change\": \"上升 81位（#97→#16）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"游戏可能进行了更新或营销活动，吸引新用户\"\n     },\n     {\n       \"game\": \"Coffee Inc 2\",\n       \"change\": \"上升 79位（#96→#17）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新内容发布或口碑传播导致排名激增\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Dead Cells\",\n       \"change\": \"下降 75位（#11→#86）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能面临新竞争或用户流失\"\n     },\n     {\n       \"game\": \"Crush the Castle\",\n       \"change\": \"下降 73位（#14→#87）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"用户参与度下降或新游戏冲击\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"DRAGON BALL Z DOKKAN BATTLE\",\n       \"change\": \"新进榜 #31\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"知名IP和营销活动可能推动了新进榜\"\n     },\n     {\n       \"game\": \"Arknights\",\n       \"change\": \"新进榜 #43\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能得益于强大的粉丝基础和市场推广\"\n     }\n   ],\n   \"regions\": \"• 美国榜单新进多款游戏，显示市场活跃\\n\\n• 印度尼西亚游戏上升显著，可能有地区特色营销\\n\\n• 新加坡游戏普遍下降，竞争激烈或市场饱和\",\n   \n   \"categories\": \"• 益智类游戏新进榜数量较多，受欢迎\\n\\n• 动作类游戏《Shadow Fight 2 Special Edition》新进榜\\n\\n• 角色扮演类游戏《DRAGON BALL Z DOKKAN BATTLE》表现突出\",\n   \n   \"industry\": \"• Epic Games开发迪士尼题材射击游戏，预计2026年发布\\n\\n• Supercell透露自家游戏引擎Titan细节，强调跨平台兼容性\\n\\n• Xbox Game Pass因价格问题被内部评价为\"太贵\"，可能影响订阅策略\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
