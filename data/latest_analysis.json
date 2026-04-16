@@ -1,7 +1,7 @@
 {
-  "date": "2026-04-15",
+  "date": "2026-04-16",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"Insaquarium: Tap Aquarium\",\n       \"change\": \"上升 81位（#97→#16）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"游戏可能进行了更新或营销活动，吸引新用户\"\n     },\n     {\n       \"game\": \"Coffee Inc 2\",\n       \"change\": \"上升 79位（#96→#17）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新内容发布或口碑传播导致排名激增\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Dead Cells\",\n       \"change\": \"下降 75位（#11→#86）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能面临新竞争或用户流失\"\n     },\n     {\n       \"game\": \"Crush the Castle\",\n       \"change\": \"下降 73位（#14→#87）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"用户参与度下降或新游戏冲击\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"DRAGON BALL Z DOKKAN BATTLE\",\n       \"change\": \"新进榜 #31\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"知名IP和营销活动可能推动了新进榜\"\n     },\n     {\n       \"game\": \"Arknights\",\n       \"change\": \"新进榜 #43\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能得益于强大的粉丝基础和市场推广\"\n     }\n   ],\n   \"regions\": \"• 美国榜单新进多款游戏，显示市场活跃\\n\\n• 印度尼西亚游戏上升显著，可能有地区特色营销\\n\\n• 新加坡游戏普遍下降，竞争激烈或市场饱和\",\n   \n   \"categories\": \"• 益智类游戏新进榜数量较多，受欢迎\\n\\n• 动作类游戏《Shadow Fight 2 Special Edition》新进榜\\n\\n• 角色扮演类游戏《DRAGON BALL Z DOKKAN BATTLE》表现突出\",\n   \n   \"industry\": \"• Epic Games开发迪士尼题材射击游戏，预计2026年发布\\n\\n• Supercell透露自家游戏引擎Titan细节，强调跨平台兼容性\\n\\n• Xbox Game Pass因价格问题被内部评价为\"太贵\"，可能影响订阅策略\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新进榜游戏多样，显示市场活跃\n\n• 新加坡和越南榜单变化显著，可能与地区特性有关\n\n• 韩国以教育游戏为主，显示教育类游戏受欢迎",
+  "categories": "• 策略和模拟类游戏在榜单中表现突出\n\n• 教育游戏在特定区域有上升趋势\n\n• 卡牌和角色扮演游戏保持稳定",
+  "industry": "• RuneScape开发商计划扩大亚洲市场\n\n• 新Xbox负责人对Game Pass成本提出质疑\n\n• Aptoide对Google提起反垄断诉讼"
 }
