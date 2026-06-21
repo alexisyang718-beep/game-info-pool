@@ -1,7 +1,7 @@
 {
-  "date": "2026-06-20",
+  "date": "2026-06-21",
   "highlights": [],
-  "regions": "• 美国新游表现强劲，多款新进榜\n\n• 新加坡市场竞争激烈，老游戏排名下滑\n\n• 亚洲多国出现上升势头，本地化游戏受欢迎",
-  "categories": "• 新游上线：《Meta Horizon》等\n\n• 经典游戏回归：《PUBG MOBILE》等\n\n• 休闲游戏：《Incredibox》等",
-  "industry": "• 全球游戏收入突破2000亿美元\n\n• 欧洲委员会探索视频游戏保存新标准\n\n• Roblox公布品牌合作费用结构"
+  "regions": "\n{\n  \"rising\": [\n    {\n      \"game\": \"Thronefall\",\n      \"change\": \"上升 75位（#87→#12）\",\n      \"region\": \"新加坡\",\n      \"store\": \"Google Play\",\n      \"analysis\": \"可能受新内容更新或营销活动推动\"\n    }\n  ],\n  \"falling\": [\n    {\n      \"game\": \"Tiny Terraces\",\n      \"change\": \"下降 76位（#15→#91）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能因用户留存下降或竞争加剧\"\n    },\n    {\n      \"game\": \"Little Nightmares\",\n      \"change\": \"下降 76位（#23→#99）\",\n      \"region\": \"越南\",\n      \"store\": \"Google Play\",\n      \"analysis\": \"可能受新游戏发布或用户偏好变化影响\"\n    }\n  ],\n  \"new_entries\": [\n    {\n      \"game\": \"The Battle Cats\",\n      \"change\": \"新进榜 #100\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能由于营销活动或口碑传播\"\n    },\n    {\n      \"game\": \"NYT Crossplay: Word Games\",\n      \"change\": \"新进榜 #100\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能受益于品牌效应或新内容推出\"\n    },\n    {\n      \"game\": \"Ultimate Custom Night\",\n      \"change\": \"新进榜 #88\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能由于特定节日或活动推广\"\n    }\n  ],\n  \"regions\": \n    • 美国新游戏入榜活跃，可能与市场推广有关\\n\\n\"\n    • 新加坡和越南榜单变动较大，需关注用户偏好变化\\n\\n\"\n    • 英国榜单变化未见明显异动\",\n  \"categories\": \n    • 新进榜游戏以休闲、益智类为主\\n\\n\"\n    • 下降榜游戏多为策略或模拟经营类\\n\\n\"\n    • 升降榜游戏类型多样，但未见明显趋势\",\n  \"industry\": \n    • PocketGamer.biz报道了行业多个重要话题，包括移动游戏市场动态\\n\\n\"\n    • 游戏收入增长，移动游戏市场表现强劲\\n\\n\"\n    • Epic Games与苹果和Google的法律斗争影响行业\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
