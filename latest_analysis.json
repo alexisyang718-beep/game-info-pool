@@ -1,7 +1,7 @@
 {
-  "date": "2026-06-26",
+  "date": "2026-06-27",
   "highlights": [],
-  "regions": "• 美国新游戏入榜数量较多，显示市场活跃\n\n• 韩国和法国游戏排名显著上升，可能是本地化或营销策略成功\n\n• 新加坡和越南游戏排名下降，需分析市场趋势和用户反馈",
-  "categories": "• 策略塔防类游戏在韩国和新加坡表现突出\n\n• 体育和动作类游戏在美国新进榜，显示用户兴趣\n\n• 冒险和角色扮演游戏在美国和韩国上升，可能受IP或更新影响",
-  "industry": "• 中国游戏开发商在国际榜单表现强劲\n\n• Google Play对开发者费用降低，可能吸引更多小型开发商\n\n• 社交媒体年龄限制政策引发行业讨论"
+  "regions": "[AI 分析失败: HTTPSConnectionPool(host='api.minimax.chat', port=443): Max retries exceeded with url: /v1/text/chatcompletion_v2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.minimax.chat', port=443) at 0x7fabbba29950>, 'Connection to api.minimax.chat timed out. (connect timeout=60)'))]",
+  "categories": "",
+  "industry": ""
 }
