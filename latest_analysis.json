@@ -1,7 +1,7 @@
 {
-  "date": "2026-06-27",
+  "date": "2026-06-28",
   "highlights": [],
-  "regions": "[AI 分析失败: HTTPSConnectionPool(host='api.minimax.chat', port=443): Max retries exceeded with url: /v1/text/chatcompletion_v2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.minimax.chat', port=443) at 0x7fabbba29950>, 'Connection to api.minimax.chat timed out. (connect timeout=60)'))]",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国市场多款新游戏入榜\n\n• 新加坡市场游戏排名波动大\n\n• 德国市场有显著下降趋势",
+  "categories": "• 字谜游戏类上升\n\n• 动作类游戏新进榜活跃\n\n• 冒险类游戏下降明显",
+  "industry": "• 硬件价格上涨影响市场\n\n• 苹果提高MacBook和iPad价格\n\n• 中国开发者对App Store费用提出反垄断诉讼"
 }
