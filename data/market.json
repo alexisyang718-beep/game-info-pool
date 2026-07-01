@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-05-01",
+  "updated_at": "2026-07-01",
   "regions": [
     {
       "region": "us",
       "region_name": "美国",
-      "population": 340110988,
+      "population": 341784857,
       "mobile_per_100": 113.2,
       "internet_pct": 94.7,
-      "gdp_per_capita": 84534,
-      "estimated_devices": 384973265,
+      "gdp_per_capita": 90026,
+      "estimated_devices": 386867926,
       "genres": [
         {
           "name": "休闲益智",
@@ -28,11 +28,11 @@
     {
       "region": "gb",
       "region_name": "英国",
-      "population": 69226000,
+      "population": 69487000,
       "mobile_per_100": 121.6,
       "internet_pct": 95.5,
-      "gdp_per_capita": 53246,
-      "estimated_devices": 84208812,
+      "gdp_per_capita": 57601,
+      "estimated_devices": 84526301,
       "genres": [
         {
           "name": "休闲益智",
@@ -52,11 +52,11 @@
     {
       "region": "de",
       "region_name": "德国",
-      "population": 83516593,
+      "population": 83491249,
       "mobile_per_100": 129.2,
       "internet_pct": 93.5,
-      "gdp_per_capita": 56103,
-      "estimated_devices": 107862449,
+      "gdp_per_capita": 60496,
+      "estimated_devices": 107829717,
       "genres": [
         {
           "name": "休闲益智",
@@ -76,10 +76,10 @@
     {
       "region": "fr",
       "region_name": "法国",
-      "population": 68551653,
+      "population": 68720337,
       "mobile_per_100": null,
       "internet_pct": 88.7,
-      "gdp_per_capita": 46103,
+      "gdp_per_capita": 48985,
       "estimated_devices": null,
       "genres": [
         {
@@ -100,10 +100,10 @@
     {
       "region": "jp",
       "region_name": "日本",
-      "population": 123975371,
+      "population": 123366734,
       "mobile_per_100": null,
       "internet_pct": 85.5,
-      "gdp_per_capita": 32487,
+      "gdp_per_capita": 35951,
       "estimated_devices": null,
       "genres": [
         {
@@ -124,11 +124,11 @@
     {
       "region": "kr",
       "region_name": "韩国",
-      "population": 51751065,
+      "population": 51684564,
       "mobile_per_100": 172.5,
       "internet_pct": 97.9,
-      "gdp_per_capita": 36238,
-      "estimated_devices": 89281062,
+      "gdp_per_capita": 36226,
+      "estimated_devices": 89166334,
       "genres": [
         {
           "name": "RPG",
@@ -148,11 +148,11 @@
     {
       "region": "id",
       "region_name": "印尼",
-      "population": 283487931,
+      "population": 285721236,
       "mobile_per_100": 122.5,
       "internet_pct": 72.8,
-      "gdp_per_capita": 4925,
-      "estimated_devices": 347315086,
+      "gdp_per_capita": 5059,
+      "estimated_devices": 350051219,
       "genres": [
         {
           "name": "MOBA",
@@ -172,11 +172,11 @@
     {
       "region": "th",
       "region_name": "泰国",
-      "population": 71668011,
+      "population": 71619863,
       "mobile_per_100": 160.6,
       "internet_pct": 90.9,
-      "gdp_per_capita": 7346,
-      "estimated_devices": 115127000,
+      "gdp_per_capita": 8056,
+      "estimated_devices": 115049655,
       "genres": [
         {
           "name": "MOBA",
@@ -196,11 +196,11 @@
     {
       "region": "sg",
       "region_name": "新加坡",
-      "population": 6036860,
+      "population": 6111175,
       "mobile_per_100": 170.8,
       "internet_pct": 94.4,
-      "gdp_per_capita": 90674,
-      "estimated_devices": 10309904,
+      "gdp_per_capita": 98813,
+      "estimated_devices": 10436821,
       "genres": [
         {
           "name": "策略SLG",
@@ -220,11 +220,11 @@
     {
       "region": "vn",
       "region_name": "越南",
-      "population": 100987686,
+      "population": 101598527,
       "mobile_per_100": 127.6,
       "internet_pct": 84.2,
-      "gdp_per_capita": 4717,
-      "estimated_devices": 128866823,
+      "gdp_per_capita": 5065,
+      "estimated_devices": 129646295,
       "genres": [
         {
           "name": "休闲益智",
