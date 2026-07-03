@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-02",
+  "date": "2026-07-03",
   "highlights": [],
-  "regions": "• 美国：新游戏入榜活跃，Genshin Impact表现突出\n\n• 日本：《イナズマイレブン クロス》上升显著\n\n• 法国：Genshin Impact上升趋势明显",
-  "categories": "• 新游戏入榜：策略、解谜、角色扮演\n\n• 上升趋势：模拟经营、动作冒险",
-  "industry": "• Godot禁止AI编写贡献，但允许辅助\n\n• 游戏跨界合作频繁，如Monopoly Go与The Simpsons合作\n\n• Ubisoft Barcelona因裁员问题发生员工罢工"
+  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"HotDance-ID\",\n       \"change\": \"上升 72位（#89→#17）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受印尼市场特定营销活动影响\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Root Board Game\",\n       \"change\": \"下降 72位（#13→#85）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受新加坡市场竞争加剧影响\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"Love and Deepspace\",\n       \"change\": \"新进榜 #61\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新发布游戏，受玩家关注\"\n     },\n     {\n       \"game\": \"CookieRun: Kingdom\",\n       \"change\": \"新进榜 #100\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新发布游戏，受玩家关注\"\n     }\n   ],\n   \"regions\": \"• 美国新游戏入榜数量较多，显示市场活力\\n\\n• 新加坡游戏排名波动显著，市场竞争激烈\\n\\n• 印度尼西亚游戏排名上升，可能有特定因素推动\"\n\n   \"categories\": \"• 益智类游戏在美国市场表现突出\\n\\n• 模拟类游戏在新加坡排名下降\\n\\n• 新发布的游戏在多个地区获得关注\"\n\n   \"industry\": \"• Google在欧洲的反垄断罚款影响其业务\\n\\n• Supercell高层变动，可能影响公司战略\\n\\n• 游戏引擎Godot禁止AI代码贡献，维护质量\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
