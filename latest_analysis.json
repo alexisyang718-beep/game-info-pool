@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-03",
+  "date": "2026-07-04",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"HotDance-ID\",\n       \"change\": \"上升 72位（#89→#17）\",\n       \"region\": \"印度尼西亚\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受印尼市场特定营销活动影响\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Root Board Game\",\n       \"change\": \"下降 72位（#13→#85）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受新加坡市场竞争加剧影响\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"Love and Deepspace\",\n       \"change\": \"新进榜 #61\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新发布游戏，受玩家关注\"\n     },\n     {\n       \"game\": \"CookieRun: Kingdom\",\n       \"change\": \"新进榜 #100\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新发布游戏，受玩家关注\"\n     }\n   ],\n   \"regions\": \"• 美国新游戏入榜数量较多，显示市场活力\\n\\n• 新加坡游戏排名波动显著，市场竞争激烈\\n\\n• 印度尼西亚游戏排名上升，可能有特定因素推动\"\n\n   \"categories\": \"• 益智类游戏在美国市场表现突出\\n\\n• 模拟类游戏在新加坡排名下降\\n\\n• 新发布的游戏在多个地区获得关注\"\n\n   \"industry\": \"• Google在欧洲的反垄断罚款影响其业务\\n\\n• Supercell高层变动，可能影响公司战略\\n\\n• 游戏引擎Godot禁止AI代码贡献，维护质量\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新游多，竞争激烈\n\n• 新加坡策略游戏受欢迎\n\n• 泰国、越南游戏排名波动大",
+  "categories": "• 合并类游戏上升\n\n• 策略游戏表现突出\n\n• 恐怖解谜游戏回归",
+  "industry": "• Cyberpunk 2077销量达4000万\n\n• Google失去47亿美元反垄断上诉"
 }
