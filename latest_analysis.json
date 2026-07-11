@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-10",
+  "date": "2026-07-11",
   "highlights": [],
-  "regions": "\n{\n  \"rising\": [\n    {\n      \"game\": \"Limbus Company\",\n      \"change\": \"上升 82位（#86→#4）\",\n      \"region\": \"韩国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"韩国市场对策略游戏需求激增\"\n    },\n    {\n      \"game\": \"eFootball™\",\n      \"change\": \"上升 69位（#83→#14）\",\n      \"region\": \"英国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"体育游戏在英国市场受欢迎\"\n    }\n  ],\n  \"falling\": [\n    {\n      \"game\": \"TABS Pocket Edition\",\n      \"change\": \"下降 78位（#14→#92）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新加坡市场对塔防游戏兴趣减少\"\n    },\n    {\n      \"game\": \"Kingdom Rush 5: Alliance TD\",\n      \"change\": \"下降 77位（#17→#94）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新加坡市场策略游戏排名下滑\"\n    }\n  ],\n  \"new_entries\": [\n    {\n      \"game\": \"PUBG MOBILE\",\n      \"change\": \"新进榜 #41\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"美国市场对射击游戏的需求回温\"\n    },\n    {\n      \"game\": \"GTA: San Andreas – Definitive\",\n      \"change\": \"新进榜 #91\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"经典游戏复刻版带动市场关注\"\n    }\n  ],\n  \"regions\": \n    • 美国市场新游戏表现活跃\\n\\n\n    • 韩国市场策略游戏受欢迎\\n\\n\n    • 新加坡市场排名波动大，需关注趋势\",\n  \"categories\": \n    • 射击游戏和体育游戏在美国市场表现良好\\n\\n\n    • 策略游戏在韩国市场受到青睐\\n\\n\n    • 塔防和策略游戏在新加坡市场排名下降\",\n  \"industry\": \n    • 行业并购活动频繁，2026年Q2达23亿美元\\n\\n\n    • Xbox重组，裁员3200人，影响深远\\n\\n\n    • 电子竞技和独立游戏站点发展迅速\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新游戏表现活跃，多款游戏新进榜\n\n• 越南市场游戏下载和收入显著增长\n\n• 新加坡游戏市场出现较大波动，多款游戏排名大幅下降",
+  "categories": "• 槽机类游戏《Gleaming Slots》等新进榜，可能受市场推广影响\n\n• 策略游戏《Pocket Build》等受欢迎，显示策略类游戏热度\n\n• 下降游戏中休闲游戏占多数，可能因用户偏好变化",
+  "industry": "• 中国游戏市场继续保持重要地位，影响全球市场\n\n• 新西兰游戏工作室收入增长，得益于政策支持\n\n• 越南移动游戏市场表现强劲，下载和收入双增长"
 }
