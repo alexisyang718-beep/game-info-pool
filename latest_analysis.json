@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-18",
+  "date": "2026-07-19",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"Mini Murder Mysteries\",\n       \"change\": \"上升74位（#99→#25）\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新进榜，可能得益于营销活动或口碑传播\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Earn to Die\",\n       \"change\": \"下降94位（#4→#98）\",\n       \"region\": \"越南\",\n       \"store\": \"Google Play\",\n       \"analysis\": \"可能因新竞争者出现或用户兴趣转移\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"Mobile Legends: Bang Bang.US\",\n       \"change\": \"新进榜 #76\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新进榜可能得益于品牌影响力或更新内容\"\n     }\n   ],\n   \"regions\": \"• 美国市场新游表现强劲，多款游戏新进榜\\n\\n• 越南和新加坡市场出现显著下降，可能与本地化策略有关\\n\\n• 韩国市场《두근두근타운》表现突出，上升79位\"\n   \n   \"categories\": \"• 益智类游戏《Mini Murder Mysteries》表现突出\\n\\n• 策略类游戏《Rebel Inc.》新进榜，可能吸引特定用户群体\\n\\n• 赛车游戏《Dirt Trackin 3》新进榜，显示此类游戏的持续受欢迎\"\n   \n   \"industry\": \"• ZA/UM Studios裁员，但艺术标准不变，可能影响游戏开发进度\\n\\n• Roblox推出AI游戏创作工具Build，推动游戏创作民主化\\n\\n• Looney Tunes: World of Mayhem即将关闭，玩家需迁移或失去服务\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国市场新游戏进入较多\n\n• 新加坡和越南市场有显著的排名变动\n\n• Google Play和App Store榜单异动不一",
+  "categories": "• 槽点类游戏在美国和越南表现突出\n\n• 桌游类和模拟经营类在新加坡上升\n\n• 新进榜游戏多为休闲和策略类",
+  "industry": "• ZA/UM Studios裁员但坚持艺术标准\n\n• 中国游戏制造商在全球市场发展\n\n• Roblox推出AI游戏创建工具"
 }
