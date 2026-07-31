@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-30",
+  "date": "2026-07-31",
   "highlights": [],
-  "regions": "• 美国新进榜游戏多，竞争激烈\n\n• 日本和越南有显著上升游戏，IP效应显著\n\n• 新加坡游戏排名波动大，市场变化快",
-  "categories": "• 社交/模拟类游戏新进榜多\n\n• 角色扮演类游戏上升显著\n\n• 动作/冒险类游戏下降明显",
-  "industry": "• 移动游戏市场合作与联动活跃\n\n• 电子竞技赛事推动相关游戏增长\n\n• 开发者和发行商寻求新市场和投资"
+  "regions": "\n{\n  \"rising\": [\n    {\n      \"game\": \"Papa's Mocharia To Go!\",\n      \"change\": \"上升 82位（#97→#15）\",\n      \"region\": \"越南\",\n      \"store\": \"Google Play\",\n      \"analysis\": \"可能受营销活动或更新影响\"\n    }\n  ],\n  \"falling\": [\n    {\n      \"game\": \"RFS - Real Flight Simulator\",\n      \"change\": \"下降 82位（#10→#92）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能由于竞争加剧或用户兴趣减少\"\n    },\n    {\n      \"game\": \"Terraria\",\n      \"change\": \"下降 81位（#12→#93）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能由于缺乏更新或新竞争者出现\"\n    }\n  ],\n  \"new_entries\": [\n    {\n      \"game\": \"EA College Football Mobile 27\",\n      \"change\": \"新进榜 #61\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"EA的体育游戏新作受期待\"\n    },\n    {\n      \"game\": \"Dead Cells\",\n      \"change\": \"新进榜 #46\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"动作游戏新作可能受好评\"\n    },\n    {\n      \"game\": \"MapleStory M: Fantasy MMORPG\",\n      \"change\": \"新进榜 #40\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"MMORPG游戏受欢迎\"\n    }\n  ],\n  \"regions\": \n    \"• 美国新游戏入榜多，显示市场活跃度高\\n\\n\"\n    \"• 新加坡和越南榜单变动显著，反映地区市场变化\\n\\n\"\n    \"• 新加坡App Store下降游戏多，可能与市场饱和有关\",\n  \n  \"categories\": \n    \"• 动作类游戏《Dead Cells》上升显著\\n\\n\"\n    \"• 体育游戏《EA College Football Mobile 27》新进榜\\n\\n\"\n    \"• 多款休闲和模拟游戏新进或上升榜单\",\n  \n  \"industry\": \n    \"• 苹果对英国App Store规则提出批评\\n\\n\"\n    \"• Krafton Q2收入增长95%，创记录\\n\\n\"\n    \"• 移动IAP收入下降2%，广告支出增长\"\n}\n",
+  "categories": "",
+  "industry": ""
 }
