@@ -1,7 +1,7 @@
 {
-  "date": "2026-08-27",
+  "date": "2026-08-28",
   "highlights": [],
-  "regions": "\n{\n  \"rising\": [\n    {\n      \"game\": \"Honkai: Star Rail\",\n      \"change\": \"上升 77位（#98→#21）\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能与游戏更新或营销活动有关\"\n    }\n  ],\n  \"falling\": [\n    {\n      \"game\": \"Ala Mobile\",\n      \"change\": \"下降 72位（#13→#85）\",\n      \"region\": \"新加坡\",\n      \"store\": \"App Store\",\n      \"analysis\": \"可能由于用户评价下降或竞争加剧\"\n    }\n  ],\n  \"new_entries\": [\n    {\n      \"game\": \"Car Evolve\",\n      \"change\": \"新进榜 #35\",\n      \"region\": \"美国\",\n      \"store\": \"App Store\",\n      \"analysis\": \"新发布游戏，可能有强大的推广支持\"\n    }\n  ],\n  \"regions\": \n    \"• 美国新进榜游戏较多，显示市场活跃度\\n\\n\"\n    \"• 新加坡榜单变动剧烈，有上升也有下降\\n\\n\"\n    \"• 泰国和日本榜单变化相对较小\",\n  \"categories\": \n    \"• 拼图游戏在新加坡榜单中上升显著\\n\\n\"\n    \"• 策略游戏《信長の野望 覇道》在日本榜单上升\\n\\n\"\n    \"• 动作游戏《Street Fighter IV CE》在美国新进榜\",\n  \"industry\": \n    \"• 游戏行业对AI技术的讨论持续热烈\\n\\n\"\n    \"• 游戏泄露事件影响开发公司情绪\\n\\n\"\n    \"• 游戏公司积极扩展新市场，如Roblox在沙特阿拉伯\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新游戏集中进榜\n• 东南亚市场竞争激烈\n• 日本游戏排名显著上升",
+  "categories": "• 解谜游戏表现突出\n• 拼图游戏受欢迎\n• 大型IP游戏回归",
+  "industry": "• Google支付诉讼影响开发者\n• US App Store支出首次下滑\n• 新游戏发布和更新推动榜单变化"
 }
