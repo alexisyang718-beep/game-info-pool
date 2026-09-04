@@ -1,7 +1,7 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"War of Empire Conquest(3V3)\",\n       \"change\": \"上升78位（#93→#15）\",\n       \"region\": \"越南\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能因本地化推广或赛事活动\"\n     },\n     {\n       \"game\": \"TABS Pocket Edition\",\n       \"change\": \"上升74位（#91→#17）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受新内容更新或社区活动影响\"\n     },\n     {\n       \"game\": \"幻想水滸伝 STAR LEAP\",\n       \"change\": \"上升72位（#85→#13）\",\n       \"region\": \"日本\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能因IP效应或营销活动\"\n     }\n   ],\n   \"falling\": [],\n   \"new_entries\": [\n     {\n       \"game\": \"Hole Stars: Puzzle Game\",\n       \"change\": \"新进榜 #92\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"新游戏发布，吸引初期用户\"\n     },\n     {\n       \"game\": \"NYT Games: Wordle & Crossword\",\n       \"change\": \"新进榜 #72\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"知名媒体品牌效应带动下载\"\n     },\n     {\n       \"game\": \"Genshin Impact\",\n       \"change\": \"新进榜 #79\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"热门游戏更新或活动吸引新用户\"\n     }\n   ],\n   \"regions\": \"• 越南、新加坡、日本新游戏上升显著\\n\\n• 美国新游戏进榜活跃\\n\\n• 英国、法国、泰国新游戏较少\"\n   \n   \"categories\": \"• 解谜和策略类游戏受欢迎\\n\\n• 休闲和角色扮演游戏上升趋势\\n\\n• 大型IP改编游戏表现强劲\"\n   \n   \"industry\": \"• 移动游戏行业新闻关注App Store动态\\n\\n• 中国游戏公司积极拓展海外合作\\n\\n• 游戏引擎Godot获得投资增长\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新进榜游戏数量显著\n\n• 日本有游戏排名大幅上升\n\n• 新加坡游戏排名下降显著",
+  "categories": "• 拼图游戏和策略游戏新进榜\n\n• 角色扮演游戏和赌场游戏上升",
+  "industry": "• Xbox云游戏服务限制影响\n\n• Supercell收购Metacore即将完成\n\n• 游戏行业资本运作活跃"
 }
