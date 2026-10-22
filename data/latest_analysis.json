@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "highlights": [],
-  "regions": "[AI 分析失败: HTTPSConnectionPool(host='api.minimax.chat', port=443): Read timed out. (read timeout=60)]",
-  "categories": "",
-  "industry": ""
+  "regions": "• 德国、韩国、日本对特定游戏类别有显著偏好\n• 新加坡市场对游戏排名变化敏感\n• 印度尼西亚对新游戏接受度下降",
+  "categories": "• 上升榜中策略和RPG游戏表现突出\n• 新进榜以休闲和策略游戏为主",
+  "industry": "• EA裁员影响游戏开发团队\n• 移动游戏市场成熟但持续发展\n• 合作与跨界营销活动频繁"
 }
