@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "highlights": [],
-  "regions": "\n{\n   \"rising\": [\n     {\n       \"game\": \"RioRise－A life simulation game\",\n       \"change\": \"上升 89位（#93→#4）\",\n       \"region\": \"越南\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受当地用户偏好影响，热度提升\"\n     },\n     {\n       \"game\": \"Gambonanza\",\n       \"change\": \"上升 83位（#99→#16）\",\n       \"region\": \"德国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能获得推荐或营销活动支持\"\n     }\n   ],\n   \"falling\": [\n     {\n       \"game\": \"Grand Theft Auto: San Andreas\",\n       \"change\": \"下降 78位（#12→#90）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能与GTA 6发布有关，用户转移\"\n     },\n     {\n       \"game\": \"Absolum\",\n       \"change\": \"下降 76位（#16→#92）\",\n       \"region\": \"新加坡\",\n       \"store\": \"App Store\",\n       \"analysis\": \"可能受新游戏发布冲击，用户流失\"\n     }\n   ],\n   \"new_entries\": [\n     {\n       \"game\": \"The Binding of Isaac: Rebirth\",\n       \"change\": \"新进榜 #78\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"经典游戏重登榜单，受GTA 6影响\"\n     },\n     {\n       \"game\": \"Grand Theft Auto III\",\n       \"change\": \"新进榜 #71\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"GTA系列效应，带动经典游戏热度\"\n     },\n     {\n       \"game\": \"Neverwinter Nights\",\n       \"change\": \"新进榜 #55\",\n       \"region\": \"美国\",\n       \"store\": \"App Store\",\n       \"analysis\": \"受经典RPG爱好者期待，新进榜单\"\n     }\n   ],\n   \"regions\": \"• 美国新游戏入榜数量显著\\n\\n• 越南和德国榜单上升显著\\n\\n• 新加坡榜单下降游戏多\"\n   \n   \"categories\": \"• 生活模拟和策略游戏上升\\n\\n• 经典动作冒险游戏回归\\n\\n• 大型开放世界游戏受关注\"\n   \n   \"industry\": \"• Rockstar Games的GTA系列在移动端持续热门\\n\\n• 移动游戏行业面临裁员潮，影响市场稳定性\"\n}\n",
-  "categories": "",
-  "industry": ""
+  "regions": "• 美国新游戏多，可能与市场活跃度高有关\n\n• 新加坡老游戏上升，可能与GTA 6发布有关\n\n• 法国和印尼游戏下降，需进一步分析原因",
+  "categories": "• 新游戏类：Brawl Stars, DRAGON BALL Z DOKKAN BATTLE\n\n• 休闲类：CookieRun: Crumble\n\n• 体育类：EA SPORTS FC Soccer Mobile 27",
+  "industry": "• GTA 6发布对市场产生显著影响\n\n• Rockstar Games作品表现突出"
 }
